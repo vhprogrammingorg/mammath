@@ -2,7 +2,7 @@
 
 Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra and calculus. 
 
-It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them.
+It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them. 
 
 All categories:
 Shunting Yard Algorithm <br>
@@ -26,6 +26,6 @@ Physics (beta) <br>
 Miscellaneous (Equation parser, special numbers, tables, times tables) <br>
 <br>
 
-We hope Mammath is a useful and reliable asset.
+We hope Mammath is a useful and reliable asset. Install via <code>pip install mammath</code>
 
 Thank you!
