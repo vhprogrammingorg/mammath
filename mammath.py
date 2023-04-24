@@ -499,6 +499,11 @@ def HCF(a, b):
     return a
 def LCM(a, b):
     return (a*b)/HCF(a, b)
+    
+def summate(n, a, b):
+    return sum(nthRange(n, a, b))
+def product(n, a, b):
+    return listMultiply(nthRange(n, a, b))
 
 """
 END OF OPERATIONS
@@ -538,13 +543,28 @@ def primeNumberPrinter(low, high):
                     break
             else:
                 print(num)
+
+
+def primeCheck(n):
+    if n == 1 or not n:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    maxNum = math.floor(math.sqrt(n))
+    for i in range(3, maxNum + 1, 2):
+        if not n % i:
+            return False
+    return True
+
 """
 END OF PRIME NUMBERS
 """
 
 
 """
-NUMBER/SEQUENCE CHECKS
+NUMBER/SEQUENCE CHECKS AND PRINTERS
 """
 
 def perfectSquare(num):
@@ -591,8 +611,23 @@ def pentagonalPrinter(low, high):
         if pentagonalCheck(i) == True:
             print(i)
 
+def perfectNumberCheck(n):
+    pFactors = []
+    for i in range(1, n):
+        if not n % i:
+            pFactors.append(i)
+    return sum(pFactors) == n
+
+def perfectNumberPrinter(lower, upper, list = False):
+    perfects = [i for i in range(lower, upper+1) if perfectNumberCheck(i)]
+    if list:
+        return perfects
+    for i in perfects:
+        print(i)
+
+
 """
-END OF NUMBER/SEQUENCE CHECKS
+END OF NUMBER/SEQUENCE CHECKS AND PRINTERS
 """
 
 
@@ -702,22 +737,7 @@ def divCheck(num, num2):
 END OF DIVISIBILITY CHECKS
 """
 
-    
-def summate(n, a, b):
-    return sum(nthRange(n, a, b))
-def product(n, a, b):
-    return listMultiply(nthRange(n, a, b))
 
-def timesTables(n):
-    for i in range(1, n+1):
-        for j in range(i, (n*i)+i, i):
-            print(str(j) + " ", end="")
-        print("")
-
-def CoefficientsQuadratic(string):
-    string = "".join(" " if i == "x" or i == "+" else i for i in string)
-    string = string.replace("^2", " ")
-    return list(map(int, string.split()))
 
 
 
@@ -933,18 +953,7 @@ def pythagoreanTripletsCheck(a, b, c):
 END OF OF GEOMETRY
 """
 
-def quadraticSolver(a,b,c):
-    dis = b * b - 4 * a * c
-    sqrt_val = math.sqrt(abs(dis))
-    if dis > 0:
-        print((-b + sqrt_val)/(2 * a))
-        print((-b - sqrt_val)/(2 * a))
-    elif dis == 0:
-        print(-b / (2 * a))
-    else:
-        print("Complex Roots")
-        print(- b / (2 * a), " + i", sqrt_val)
-        print(- b / (2 * a), " - i", sqrt_val)
+
 
 """
 SEQUENCES
@@ -1255,6 +1264,10 @@ END OF BASE CONVERSIONS
 
 
 
+"""
+TABLES
+"""
+
 def constSearch(con):
     G = 6.67384*10**(-11)
     c = 2.99792458*10**(8)
@@ -1293,97 +1306,40 @@ def constTable():
     print(constants)
     
 def trigTable():
-        identities = {"Quotient Identities": ["tanθ = sinθ/cosθ", "cotθ = cosθ/sinθ"],
-               "Reciprocal Identities": ["cotθ = 1/tanθ", "cscθ = 1/sinθ", "sec = 1/cosθ"],
-               "Pythagorean Identities": ["sin^2θ + cos^2θ = 1", "tan^2θ + 1 = sec^2θ", "1 + cot^2θ = csc^2θ"],
-               "Sum Identities": ["sin(a+b) = sin(a)cos(b)+cos(a)sin(b)", "cos(a+b) = cos(a)cos(b)-sin(a)sin(b)", "tan(a+b) = (tan(a) + tan(b))/1 - tan(a)tan(b)"],
-               "Difference Identities": ["sin(a-b) = sin(a)cos(b)-cos(a)sin(b)", "cos(a-b) = cos(a)cos(b)+sin(a)sin(b)", "tan(a-b) = (tan(a)-tan(b))/1 + tan(a)tan(b)"],
-               "Double-Angle Formulas": ["sin(2a) = 2sin(a)cos(a)", "cos(2a) = 2cos^2 a - 1 = 1 - 2sin^2 a", "tan(2a) = 2tan(a)/1-tan^2 a"]
-               }
-        print(tabulate(identities, headers = "keys"))
+    identities = {"Quotient Identities": ["tanθ = sinθ/cosθ", "cotθ = cosθ/sinθ"],
+           "Reciprocal Identities": ["cotθ = 1/tanθ", "cscθ = 1/sinθ", "sec = 1/cosθ"],
+           "Pythagorean Identities": ["sin^2θ + cos^2θ = 1", "tan^2θ + 1 = sec^2θ", "1 + cot^2θ = csc^2θ"],
+           "Sum Identities": ["sin(a+b) = sin(a)cos(b)+cos(a)sin(b)", "cos(a+b) = cos(a)cos(b)-sin(a)sin(b)", "tan(a+b) = (tan(a) + tan(b))/1 - tan(a)tan(b)"],
+           "Difference Identities": ["sin(a-b) = sin(a)cos(b)-cos(a)sin(b)", "cos(a-b) = cos(a)cos(b)+sin(a)sin(b)", "tan(a-b) = (tan(a)-tan(b))/1 + tan(a)tan(b)"],
+           "Double-Angle Formulas": ["sin(2a) = 2sin(a)cos(a)", "cos(2a) = 2cos^2 a - 1 = 1 - 2sin^2 a", "tan(2a) = 2tan(a)/1-tan^2 a"]
+           }
+    print(tabulate(identities, headers = "keys"))
 
-def sumToPalindrome(num, stepsList = False):
-    isPalindrome = lambda num: num == num[::-1]
-    steps = 0
-    stepList = [] if stepsList else None
-    while not isPalindrome(str(num)):
-        num = str(num)
-        num = str(int(num) + int(str(num)[::-1]))
-        steps += 1
-        stepList.append(num) if stepsList else None
-    return "Final palindrome: " + num + ", Steps: " + str(steps) if not stepsList else "Final Palindrome: " + num + ", Steps: " + str(steps) + ", Step List: " + str([(i+1, int(j)) for i, j in enumerate(stepList)]).strip("[]")
+"""
+END OF TABLES
+"""
 
 
-def primeCheck(n):
-    if n == 1 or not n:
-        return False
-    if n == 2:
-        return True
-    if n % 2 == 0:
-        return False
-    maxNum = math.floor(math.sqrt(n))
-    for i in range(3, maxNum + 1, 2):
-        if not n % i:
-            return False
-    return True
-        
-def prothPrimes(k):
-    n = 1
-    while not primeCheck((k * 2**n) + 1):
-        n += 1
-    return "Number: " + str((k * 2**n) + 1) + ", n: " + str(n)
-    
-def prothPrimesCheck(k, n):
-    return primeCheck((k * 2**n) + 1)
 
-def isPolydivisible(number):
-    polydiv = False
-    if number > 0:
-        n = number
-        length = 0
-        while n > 0:
-            n = int(n / 10)
-            length += 1
-        if n == 1:
-            polydiv = True
-        else:
-            data = [0] * length
-            i = length - 1
-            num = 0
-            n = number
-            while n > 0:
-                data[i] = n % 10
-                n = int(n / 10)
-                i -= 1
-            num = data[0]
-            i = 1
-            if num:
-                polydiv = True
-            while i < length and polydiv:
-                num = (num * 10) + data[i]
-                if ((num % (i + 1)) != 0):
-                    polydiv = False
-                i += 1          
-    return polydiv
-
-def perfectNumberCheck(n):
-    pFactors = []
-    for i in range(1, n):
-        if not n % i:
-            pFactors.append(i)
-    return sum(pFactors) == n
-def perfectNumberPrinter(lower, upper, list = False):
-    perfects = [i for i in range(lower, upper+1) if perfectNumberCheck(i)]
-    if list:
-        return perfects
-    for i in perfects:
-        print(i)
-
-        
+"""
+HELPER FUNCTIONS
+"""
 
 def f(fx, x, y):
     if type(eval(fx)) == np.ndarray:
         return eval(fx)
+
+def parseEquation(eq):
+    pass
+
+"""
+END OF HELPER FUNCTIONS
+"""
+
+
+
+
+
 
 """
 GRAPHING
@@ -1510,20 +1466,24 @@ END OF GRAPHING
 
 
 
-
-def isInfinite(x):
-    return mpmath.isinf(x)
-def isFinite(x):
-    return mpmath.isfinite(x)
-def isInt(x, gaussian = False): 
-    return mpmath.isint(x, gaussian)
-
-def Zeta(s):
-    return zeta(s)
-
 """
 ALGEBRA
 """
+
+def quadraticSolver(a,b,c):
+    dis = b * b - 4 * a * c
+    sqrt_val = math.sqrt(abs(dis))
+    if dis > 0:
+        print((-b + sqrt_val)/(2 * a))
+        print((-b - sqrt_val)/(2 * a))
+    elif dis == 0:
+        print(-b / (2 * a))
+    else:
+        print("Complex Roots")
+        print(- b / (2 * a), " + i", sqrt_val)
+        print(- b / (2 * a), " - i", sqrt_val)
+
+        
 def solveGaussElimination(*equations):              
     equations = list(equations)
     for i in range(0, len(equations)):
@@ -1807,8 +1767,11 @@ def inequality(eq):
 END OF ALGEBRA
 """
 
-def parseEquation(eq):
-    pass
+
+
+
+
+
 
 
 
@@ -1927,13 +1890,7 @@ END OF COMPLEX
 """
 
 
-"""
-MISC
-"""
 
-"""
-END OF MISC
-"""
 
 
 
@@ -1943,4 +1900,86 @@ PHYSICS
 
 """
 END OF PHYSICS
+"""
+
+
+
+
+"""
+MISC
+"""
+
+def isInfinite(x):
+    return mpmath.isinf(x)
+def isFinite(x):
+    return mpmath.isfinite(x)
+def isInt(x, gaussian = False): 
+    return mpmath.isint(x, gaussian)
+
+def Zeta(s):
+    return zeta(s)
+
+def timesTables(n):
+    for i in range(1, n+1):
+        for j in range(i, (n*i)+i, i):
+            print(str(j) + " ", end="")
+        print("")
+
+def CoefficientsQuadratic(string):
+    string = "".join(" " if i == "x" or i == "+" else i for i in string)
+    string = string.replace("^2", " ")
+    return list(map(int, string.split()))
+
+def sumToPalindrome(num, stepsList = False):
+    isPalindrome = lambda num: num == num[::-1]
+    steps = 0
+    stepList = [] if stepsList else None
+    while not isPalindrome(str(num)):
+        num = str(num)
+        num = str(int(num) + int(str(num)[::-1]))
+        steps += 1
+        stepList.append(num) if stepsList else None
+    return "Final palindrome: " + num + ", Steps: " + str(steps) if not stepsList else "Final Palindrome: " + num + ", Steps: " + str(steps) + ", Step List: " + str([(i+1, int(j)) for i, j in enumerate(stepList)]).strip("[]")
+        
+def prothPrimes(k):
+    n = 1
+    while not primeCheck((k * 2**n) + 1):
+        n += 1
+    return "Number: " + str((k * 2**n) + 1) + ", n: " + str(n)
+    
+def prothPrimesCheck(k, n):
+    return primeCheck((k * 2**n) + 1)
+
+def isPolydivisible(number):
+    polydiv = False
+    if number > 0:
+        n = number
+        length = 0
+        while n > 0:
+            n = int(n / 10)
+            length += 1
+        if n == 1:
+            polydiv = True
+        else:
+            data = [0] * length
+            i = length - 1
+            num = 0
+            n = number
+            while n > 0:
+                data[i] = n % 10
+                n = int(n / 10)
+                i -= 1
+            num = data[0]
+            i = 1
+            if num:
+                polydiv = True
+            while i < length and polydiv:
+                num = (num * 10) + data[i]
+                if ((num % (i + 1)) != 0):
+                    polydiv = False
+                i += 1          
+    return polydiv
+
+"""
+END OF MISC
 """
