@@ -6,24 +6,25 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 
 All categories:
 Shunting Yard Algorithm <br>
-Math Teachers
-Operations (logarithms, factorials, sums, hcf, lcm, etc.)
-Prime Numbers
-Number / Sequence Checks
-Fibonacci
-Divisibility checks + learn tricks (beta)
-Fractions
-Geometry
-Sequences
-Formulas
-Base conversions
-Graphing
-Algebra
-Linear Algebra
-Calculus
-Complex (complex ln, operations with complex numbers
-Physics (beta)
-Miscellaneous (Equation parser, special numbers, tables, times tables)
+Math Teachers <br>
+Operations (logarithms, factorials, sums, hcf, lcm, etc.) <br>
+Prime Numbers <br>
+Number / Sequence Checks <br>
+Fibonacci <br>
+Divisibility checks + learn tricks (beta) <br>
+Fractions <br>
+Geometry <br>
+Sequences <br>
+Formulas <br>
+Base conversions <br>
+Graphing <br>
+Algebra <br>
+Linear Algebra <br>
+Calculus <br>
+Complex (complex ln, operations with complex numbers) <br>
+Physics (beta) <br>
+Miscellaneous (Equation parser, special numbers, tables, times tables) <br>
+<br>
 
 We hope Mammath is a useful and reliable asset.
 
