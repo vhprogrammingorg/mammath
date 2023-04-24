@@ -5,7 +5,7 @@ Mammath is the python library with all the functions you need to do complicated 
 
 It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them. 
 
-All categories:
+All categories: <br>
 Shunting Yard Algorithm <br>
 Math Teachers <br>
 Operations (logarithms, factorials, sums, hcf, lcm, etc.) <br>
