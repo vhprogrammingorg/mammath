@@ -19,6 +19,144 @@ import inspect
 import re
 import mpmath
 
+# Mathematics
+π = pi = 3.14159265359
+ℯ = e = 2.71828182846
+ϕ = phi = golden_ratio = 1.61803398875
+𝑖 = i = imaginary_unit = complex(0, 1)
+γ = euler_mascheroni = 0.5772156649
+ζ_3 = apery = 1.2020569032
+G = catalan = 0.9159655942
+sqrt2 = 1.41421356237
+sqrt3 = 1.73205080757
+ln2 = log2 = 0.69314718056
+ln10 = log10 = 2.30258509299
+khinchin = 2.68545200107
+twin_prime = 0.6601618158468696
+conways_constant = 1.303577269
+feigenbaum_constant = 4.669201609
+glaisher_constant = 1.282427129
+lehmer_constant = 0.110264815
+levy_constant = 3.275822918
+mills_constant = 1.306377883
+mrB_constant = 0.2614972128
+odds_constant = 0.78515625
+omega_constant = 0.5671432904
+sierpinski_constant = 2.584981759
+thue_morse_constant = 0.4124540336
+universal_parabolic_constant = 2.29558714939
+viswanath_constant = 1.13198824
+
+# Physics and Astronomy
+𝑐 = c = speed_of_light = 299792458
+𝐺 = G = gravitational_constant = 6.67430e-11
+ℎ = h = plancks_constant = 6.62607015e-34
+ℏ = h_bar = reduced_plancks_constant = 1.054571817e-34
+𝑘 = k = boltzmanns_constant = 1.380649e-23
+𝑁_A = N_A = avogadros_number = 6.02214076e23
+𝑒 = e = elementary_charge = 1.602176634e-19
+𝑅 = R = gas_constant = 8.314462618
+σ = stefan_boltzmann = 5.670374419e-8
+ε_0 = vacuum_permittivity = 8.8541878128e-12
+μ_0 = vacuum_permeability = 4 * pi * 1e-7
+k_e = coulomb_constant = 1/(4*pi*vacuum_permittivity)
+α = fine_structure = 1 / 137
+m_p = proton_mass = 1.67262192369e-27
+m_n = neutron_mass = 1.67492749804e-27
+m_e = electron_mass = 9.1093837015e-31
+a_0 = bohr_radius = 5.29177210903e-11
+R_inf = rydberg_constant = 10973731.568160
+m_u = atomic_mass_constant = 1.66053906660e-27
+F = faraday_constant = 96485.33212
+b = wien_displacement = 2.897771955e-3
+H_0 = hubble_constant = 70  # Value between 67 and 73
+Λ = cosmological_constant = 1.1056e-52
+Gpc = giga_parsec = 3.08567758128e25
+solar_mass = 1.98847e30
+solar_radius = 6.9634e8
+solar_luminosity = 3.828e26
+AU = astronomical_unit = 149597870.7
+ly = light_year = 9.46073047258e15
+pc = parsec = 3.08567758128e16
+c_air = sound_speed_air = 343.2
+c_water = sound_speed_water = 1481
+c_steel = sound_speed_steel = 5130
+l_P = planck_length = 1.616255e-35
+t_P = planck_time = 5.391247e-44
+T_P = planck_temperature = 1.416784e32
+
+# Mechanics
+eV = electron_volt = 1.602176634e-19
+joule_per_electronvolt = 6.242e+12
+N = newton = 1
+Pa = pascal = 1
+atm = atmosphere = 101325
+bar = 100000
+torr = 133.322
+dyne = 1e-5
+erg = 1e-7
+cal = calorie = 4.184
+btu = 1055.06
+hp = horsepower = 745.7
+W = watt = 1
+
+# Quantum Mechanics
+alpha = fine_structure_constant = 7.2973525664e-3
+h_over_4pi = quantum_of_circulation = 3.6369475516e-4
+h_over_2pi = quantum_of_circulation_times_2 = 7.2738951033e-4
+Phi_0 = flux_quantum = 2.067833848e-15
+K_J = josephson_constant = 483597.8484e9
+R_K = von_klitzing_constant = 25812.80745
+mu_B = bohr_magneton = 9.2740100783e-24
+mu_N = nuclear_magneton = 5.0507837461e-27
+lambda_C = compton_wavelength = 2.42631023867e-12
+lambda_C_over_2pi = compton_wavelength_over_2pi = 386.1592678e-15
+r_e = classical_electron_radius = 2.8179403262e-15
+E_h = hartree_energy = 4.3597447222071e-18
+G_0 = conductance_quantum = 7.748091729e-5
+R_0_inv = inverse_conductance_quantum = 12906.40372
+mu_0 = magnetic_constant = 1.25663706212e-6
+epsilon_0 = electric_constant = 8.8541878128e-12
+Z_0 = characteristic_impedance_of_vacuum = 376.730313461
+e = elementary_charge = 1.602176634e-19
+
+
+# Chemistry
+V_m = molar_volume_ideal_gas = 22.414
+𝑅 = R = molar_gas_constant = 8.314462618
+eV = electronvolt = 1.602176634e-19
+K_w = ion_product_of_water = 1.0e-14  # at 25°C
+pK_w = 14  
+K_b_chem = boltzmann_constant_chem = 1.380649e-23  
+h_chem = planck_constant_chem = 6.62607015e-34  
+
+# Geophysics and Geology
+𝑔 = g = earth_gravity = 9.80665
+M_E = earth_mass = 5.97237e24
+R_E = earth_equatorial_radius = 6378.1
+R_p = earth_polar_radius = 6356.8
+R_m = earth_mean_radius = 6371.0
+f = earth_oblateness = 0.0033528
+P_sidereal = sidereal_year = 365.25636
+P_tropical = tropical_year = 365.24219
+
+# Electronics and Computer Science
+bit = 1
+byte = 8 * bit
+kB = kilobyte = 1024 * bit
+MB = megabyte = 1024 * kilobyte
+GB = gigabyte = 1024 * megabyte
+TB = terabyte = 1024 * gigabyte
+PB = petabyte = 1024 * terabyte
+EB = exabyte = 1024 * petabyte
+ZB = zettabyte = 1024 * exabyte
+YB = yottabyte = 1024 * zettabyte
+fLOPS = floating_point_operations_per_second = 1  
+MIPS = million_instructions_per_second = 1e6  
+Baud = symbols_per_second = 1  
+bps = bits_per_second = 1  
+Hz = hertz = cycles_per_second = 1  
+
 
 """
 SHUNTING YARD ALGORITHM
@@ -392,12 +530,21 @@ OPERATIONS
 """
 
 def add(*args):
+    """
+    Adds any amount of numbers
+    """
     return sum(args)
 
 def subtract(a, *args):
+    """
+    Subtracts any amount of numbers
+    """
     return a - sum(args)
 
 def multiply(*args):
+    """
+    Multiplies any amount of numbers
+    """
     x = 1
     y = 0
     while y < len(args):
@@ -406,10 +553,16 @@ def multiply(*args):
     return x
 
 def divide(a, *args):
+    """
+    Divides any amount of numbers
+    """
     return a / listMultiply(args)
 
-#Multiplies all of the elements in a list
+
 def listMultiply(lis):
+    """
+    Returns the product of a list
+    """
     x = 1
     y = 0
     while y < len(List):
@@ -418,6 +571,10 @@ def listMultiply(lis):
     return x
 
 def power(base, exponent):
+    """
+    Returns base^exponent
+    """
+    
     if exponent == 0:
         return 1
     if exponent > 0:
@@ -425,9 +582,13 @@ def power(base, exponent):
     return 1 /(base * power(base, -exponent - 1))
 
 def sqrt(a):
-    return math.sqrt(a)
+    return a ** (1/2)
 
-def root(a, b):    
+def root(a, b):
+    """
+    Returns the bth root of a
+    """
+    
     x = a**(1/b)
     try:
         y = round(x)
@@ -472,6 +633,10 @@ def root(a, b):
         return t
 
 def factorial(a):
+    """
+    Returns the factorial (n*factorial(n-1)) of a
+    """
+    
     x = 1
     while a > 0:
         x *=a
@@ -479,32 +644,80 @@ def factorial(a):
     return x
 
 def log(num, base):
+    """
+    Returns the logarithm of num with the given base
+    """
+    
     return math.log(num, base)
 
-def ln(a):
-    return log(a, math.e)
+def ln(num):
+    """
+    Returns the natural log (log base e) of num
+    """
+    
+    return log(num, math.e)
 
-def sigFig(a, b):
-    rounded = round(a, b - int(math.floor(math.log10(abs(a)))) - 1)
+def sigFig(num, figs):
+    """
+    Rounds num to figs significant figures
+    """
+    
+    rounded = round(num, figs - int(math.floor(math.log10(abs(num)))) - 1)
     return rounded
-def absVal(a):
+
+def absVal(num):
+    """
+    Returns the absoltue value of num
+    """
+    
     return math.fabs(a)
+
 def remainder(a, b):
-    return math.remainder(a, b)
+    """
+    Returns the remainder when a is divided by b
+    """
+    
+    return a % b
 
 def HCF(a, b):
+    """
+    Returns the highest common factor of a and b
+    """
+    
     a, b = max(a, b), min(a, b)
     while b!=0:
         a, b = b, a % b
     return a
+
 def LCM(a, b):
+    """
+    Returns the lowest common multiple of a and b
+    """
+    
     return (a*b)/HCF(a, b)
     
 def summate(n, a, b):
     return sum(nthRange(n, a, b))
+
 def product(n, a, b):
     return listMultiply(nthRange(n, a, b))
 
+def nchoosek(n, k):
+    """
+    Returns nCk given by the formula n!/k!(n-k)!
+    """
+    
+    return factorial(n)/(factorial(n-k)*factorial(k))
+
+def permutations(n, r):
+    """
+    Returns nPr given by the formula n!/(n-k)!
+    """
+    
+    return factorial(n)/factorial(n-r)
+
+
+    
 """
 END OF OPERATIONS
 """
@@ -561,6 +774,58 @@ def primeCheck(n):
 """
 END OF PRIME NUMBERS
 """
+
+
+
+"""
+FIBONACCI
+"""
+
+def fibonacciBinet(n):
+    x = (((((1+math.sqrt(5))/2)**n)-((((1-math.sqrt(5))/2)**n))))/math.sqrt(5)
+    return round(x)
+def fibonacci(n):
+    n0, n = n, abs(n)
+    F = {}
+    
+    qinx = []  
+    qinx.append(n)
+    F[n] = -1
+    while qinx:
+        k = qinx.pop() >> 1
+        if k not in F:
+            F[k] = -1
+            qinx.append(k)
+        if (k + 1) not in F:
+            F[k+1] = -1
+            qinx.append(k + 1)
+    
+    F[0], F[1], F[2] = 0, 1, 1
+    keys_sorted = sorted(F.keys())
+    for k in keys_sorted[3:]:
+        k2 = k >> 1
+        f1, f2 = F[k2], F[k2 + 1]
+        if k % 2 == 0:
+            F[k] = 2 * f2 * f1 - f1 * f1
+        else:
+            F[k] = f2 * f2 + f1 * f1
+    
+    r = F[n]
+    if n0 < 0:
+        return negativeFib(n, r)
+    return r
+
+def fibonacciCheck(n):
+    return perfectSquareCheck(5*n*n + 4) or perfectSquareCheck(5*n*n - 4)
+def fibonacciPrinter(low, high):
+    for i in range(low, high+1):
+        if fibonacciCheck(i) == True:
+            print(i)
+
+"""
+END OF FIBONACCI
+"""
+
 
 
 """
@@ -632,56 +897,6 @@ END OF NUMBER/SEQUENCE CHECKS AND PRINTERS
 
 
 
-"""
-FIBONACCI
-"""
-
-def fibonacciBinet(n):
-    x = (((((1+math.sqrt(5))/2)**n)-((((1-math.sqrt(5))/2)**n))))/math.sqrt(5)
-    return round(x)
-def fibonacci(n):
-    n0, n = n, abs(n)
-    F = {}
-    
-    qinx = []  
-    qinx.append(n)
-    F[n] = -1
-    while qinx:
-        k = qinx.pop() >> 1
-        if k not in F:
-            F[k] = -1
-            qinx.append(k)
-        if (k + 1) not in F:
-            F[k+1] = -1
-            qinx.append(k + 1)
-    
-    F[0], F[1], F[2] = 0, 1, 1
-    keys_sorted = sorted(F.keys())
-    for k in keys_sorted[3:]:
-        k2 = k >> 1
-        f1, f2 = F[k2], F[k2 + 1]
-        if k % 2 == 0:
-            F[k] = 2 * f2 * f1 - f1 * f1
-        else:
-            F[k] = f2 * f2 + f1 * f1
-    
-    r = F[n]
-    if n0 < 0:
-        return negativeFib(n, r)
-    return r
-
-def fibonacciCheck(n):
-    return perfectSquareCheck(5*n*n + 4) or perfectSquareCheck(5*n*n - 4)
-def fibonacciPrinter(low, high):
-    for i in range(low, high+1):
-        if fibonacciCheck(i) == True:
-            print(i)
-
-"""
-END OF FIBONACCI
-"""
-
-
 
 """
 DIVISIBILITY CHECKS
@@ -732,6 +947,9 @@ def divCheck(num, num2):
         return True
     else:
         return False
+
+def divCheckCreate(num):
+    return lambda x: return not num % x
 
 """
 END OF DIVISIBILITY CHECKS
@@ -854,36 +1072,38 @@ def coneHeight(r, vol):
     height = 3*(vol/(pi*r**2))
     return round(height, 5)
 
-##def sin(a):
-##    return math.sin(a)
-##def cos(a):
-##    return math.cos(a)
-##def tan(a):
-##    return math.tan(a)
-##def asin(a):
-##    return math.asin(a)
-##def acos(a):
-##    return math.acos(a)
-##def atan(a):
-##    return math.atan(a)
-##def sinh(a):
-##    return math.sinh(a)
-##def cosh(a):
-##    return math.cosh(a)
-##def tanh(a):
-##    return math.tanh(a)
-##def asinh(a):
-##    return math.asinh(a)
-##def acosh(a):
-##    return math.acosh(a)
-##def atanh(a):
-##    return math.atanh(a)
-##def sec(a):
-##    return round(1/cos(a), 5)
-##def csc(a):
-##    return round(1/sin(a), 5)
-##def cot(a):
-##    return round(1/tan(a), 5)
+def mamsin(a):
+    return math.sin(a)
+def mamcos(a):
+    return math.cos(a)
+def mamtan(a):
+    return math.tan(a)
+def mamasin(a):
+    return math.asin(a)
+def mamacos(a):
+    return math.acos(a)
+def mamatan(a):
+    return math.atan(a)
+def mamsinh(a):
+    return math.sinh(a)
+def mamcosh(a):
+    return math.cosh(a)
+def mamtanh(a):
+    return math.tanh(a)
+def mamasinh(a):
+    return math.asinh(a)
+def mamacosh(a):
+    return math.acosh(a)
+def mamatanh(a):
+    return math.atanh(a)
+def mamsec(a):
+    return round(1/cos(a), 5)
+def mamcsc(a):
+    return round(1/sin(a), 5)
+def mamcot(a):
+    return round(1/tan(a), 5)
+
+
 def gamma(a):
     return math.gamma(a)
 def lgamma(a):
@@ -948,6 +1168,10 @@ def pythagoreanTriplets(n):
             print(a, b, int(c))
 def pythagoreanTripletsCheck(a, b, c):
     return True if a * a + b * b == c * c else False
+
+def heronsFormula(a, b, c):
+    s = (a+b+c)/2
+    return sqrt(s*(s-a)*(s-b)*(s-c))
 
 """
 END OF OF GEOMETRY
@@ -1268,42 +1492,171 @@ END OF BASE CONVERSIONS
 TABLES
 """
 
-def constSearch(con):
-    G = 6.67384*10**(-11)
-    c = 2.99792458*10**(8)
-    h = 6.626070040*10**(-34)
-    k = 1.38064852*10**(-23)
-    F = 9.648533289*10**(4)
-    pi = 3.141592653589793238462643
-    e = 2.718281828459045235360287
-    π = pi
-    phi = 1.618033988749894848204586
-    φ = phi
-    conlist = [G, c, h, k, F, pi, π, φ, phi, e]
-    x = 0
-    while x < 10:
-        variable_name = [k for k, v in locals().items() if v == conlist[x]][0]
-        if variable_name == con:
-            constant = conlist[x]
-            return constant
-        x += 1
-    return None
+def constTable(category=None):
+    headers = ["Name", "Symbol", "Value", "Unit"]
 
-def constTable():
-    G = 6.67384*10**(-11)
-    c = 2.99792458*10**(8)
-    h = 6.626070040*10**(-34)
-    k = 1.38064852*10**(-23)
-    F = 9.648533289*10**(4)
-    pi = 3.141592653589793238462643
-    e = 2.718281828459045235360287
-    π = pi
-    phi = 1.618033988749894848204586
-    φ = phi
-    conlist = [["The gravitational constant", "G", G], ["The speed of light in vacuum", "c", c], ["Planck's constant", "h", h], ["Boltzmann's constant", "k", k], ["Faraday's constant", "F", F], ["e", "e", e], ["pi", "φ", π], ["Phi", "φ", φ]]
-    headers = ["Name", "Symbol", "Value"]
-    constants = tabulate(conlist, headers = headers)
-    print(constants)
+    math_constants = [
+        ["pi", "π", pi, "dimensionless"],
+        ["e", "ℯ", e, "dimensionless"],
+        ["Golden Ratio", "ϕ", phi, "dimensionless"],
+        ["Imaginary Unit", "𝑖", i, "dimensionless"],
+        ["Euler-Mascheroni Constant", "γ", euler_mascheroni, "dimensionless"],
+        ["Apery's Constant", "ζ_3", apery, "dimensionless"],
+        ["Catalan's Constant", "G", catalan, "dimensionless"],
+        ["Square Root of 2", "sqrt2", sqrt2, "dimensionless"],
+        ["Square Root of 3", "sqrt3", sqrt3, "dimensionless"],
+        ["Natural Logarithm of 2", "ln2", ln2, "dimensionless"],
+        ["Natural Logarithm of 10", "ln10", ln10, "dimensionless"],
+        ["Khinchin's Constant", "khinchin", khinchin, "dimensionless"],
+        ["Twin Prime Constant", "twin_prime", twin_prime, "dimensionless"],
+        ["Conway's Constant", "conways_constant", conways_constant, "dimensionless"],
+        ["Feigenbaum Constant", "feigenbaum_constant", feigenbaum_constant, "dimensionless"],
+        ["Glaisher's Constant", "glaisher_constant", glaisher_constant, "dimensionless"],
+        ["Lehmer's Constant", "lehmer_constant", lehmer_constant, "dimensionless"],
+        ["Levy's Constant", "levy_constant", levy_constant, "dimensionless"],
+        ["Mills' Constant", "mills_constant", mills_constant, "dimensionless"],
+        ["MrB Constant", "mrB_constant", mrB_constant, "dimensionless"],
+        ["Odds Constant", "odds_constant", odds_constant, "dimensionless"],
+        ["Omega Constant", "omega_constant", omega_constant, "dimensionless"],
+        ["Sierpinski's Constant", "sierpinski_constant", sierpinski_constant, "dimensionless"],
+        ["Thue-Morse Constant", "thue_morse_constant", thue_morse_constant, "dimensionless"],
+        ["Universal Parabolic Constant", "universal_parabolic_constant", universal_parabolic_constant, "dimensionless"],
+        ["Viswanath's Constant", "viswanath_constant", viswanath_constant, "dimensionless"],
+    ]
+    physics_constants = [
+        ["Speed of Light", "𝑐", c, "m/s"],
+        ["Gravitational Constant", "𝐺", G, "m³/kg/s²"],
+        ["Planck Constant", "ℎ", h, "J⋅s"],
+        ["Reduced Planck Constant", "ℏ", h_bar, "J⋅s"],
+        ["Boltzmann Constant", "𝑘", k, "J/K"],
+        ["Avogadro Constant", "𝑁_A", N_A, "1/mol"],
+        ["Elementary Charge", "𝑒", e, "C"],
+        ["Gas Constant", "𝑅", R, "J/(mol⋅K)"],
+        ["Stefan-Boltzmann Constant", "σ", stefan_boltzmann, "W/(m²⋅K⁴)"],
+        ["Vacuum Permittivity", "ε_0", vacuum_permittivity, "F/m"],
+        ["Vacuum Permeability", "μ_0", vacuum_permeability, "H/m"],
+        ["Fine Structure Constant", "α", fine_structure, "dimensionless"],
+        ["Proton Mass", "m_p", proton_mass, "kg"],
+        ["Neutron Mass", "m_n", neutron_mass, "kg"],
+        ["Electron Mass", "m_e", electron_mass, "kg"],
+        ["Bohr Radius", "a_0", bohr_radius, "m"],
+        ["Rydberg Constant", "R_inf", rydberg_constant, "1/m"],
+        ["Atomic Mass Constant", "m_u", atomic_mass_constant, "kg"],
+        ["Faraday Constant", "F", faraday_constant, "C/mol"],
+        ["Wien Displacement Constant", "b", wien_displacement, "m⋅K"],
+        ["Hubble Constant", "H_0", hubble_constant, "km/(s⋅Mpc)"],
+        ["Cosmological Constant", "Λ", cosmological_constant, "1/m²"],
+        ["Giga Parsec", "Gpc", giga_parsec, "m"],
+        ["Solar Mass", "solar_mass", solar_mass, "kg"],
+        ["Solar Radius", "solar_radius", solar_radius, "m"],
+        ["Solar Luminosity", "solar_luminosity", solar_luminosity, "W"],
+        ["Astronomical Unit", "AU", astronomical_unit, "m"],
+        ["Light Year", "ly", light_year, "m"],
+        ["Parsec", "pc", parsec, "m"],
+        ["Sound Speed in Air", "c_air", sound_speed_air, "m/s"],
+        ["Sound Speed in Water", "c_water", sound_speed_water, "m/s"],
+        ["Sound Speed in Steel", "c_steel", sound_speed_steel, "m/s"],
+        ["Planck Length", "l_P", planck_length, "m"],
+        ["Planck Time", "t_P", planck_time, "s"],
+        ["Planck Temperature", "T_P", planck_temperature, "K"],
+    ]
+    mechanics_constants = [
+        ["Electron Volt", "eV", electron_volt, "J"],
+        ["Joule per Electronvolt", "joule_per_electronvolt", joule_per_electronvolt, "J/eV"],
+        ["Newton", "N", newton, "kg⋅m/s²"],
+        ["Pascal", "Pa", pascal, "N/m²"],
+        ["Atmosphere", "atm", atmosphere, "Pa"],
+        ["Bar", "bar", bar, "Pa"],
+        ["Torr", "torr", torr, "Pa"],
+        ["Dyne", "dyne", dyne, "N"],
+        ["Erg", "erg", erg, "J"],
+        ["Calorie", "cal", calorie, "J"],
+        ["British Thermal Unit", "btu", btu, "J"],
+        ["Horsepower", "hp", horsepower, "W"],
+        ["Watt", "W", watt, "J/s"],
+    ]
+    quantum_constants = [
+        ["Fine Structure Constant", "alpha", fine_structure_constant, ""],
+        ["Quantum of Circulation", "h_over_4pi", quantum_of_circulation, "m^2/kg"],
+        ["Quantum of Circulation Times 2", "h_over_2pi", quantum_of_circulation_times_2, "m^2/kg"],
+        ["Flux Quantum", "Phi_0", flux_quantum, "Wb"],
+        ["Josephson Constant", "K_J", josephson_constant, "Hz/V"],
+        ["Von Klitzing Constant", "R_K", von_klitzing_constant, "ohm"],
+        ["Bohr Magneton", "mu_B", bohr_magneton, "J/T"],
+        ["Nuclear Magneton", "mu_N", nuclear_magneton, "J/T"],
+        ["Compton Wavelength", "lambda_C", compton_wavelength, "m"],
+        ["Compton Wavelength Over 2pi", "lambda_C_over_2pi", compton_wavelength_over_2pi, "m"],
+        ["Classical Electron Radius", "r_e", classical_electron_radius, "m"],
+        ["Hartree Energy", "E_h", hartree_energy, "J"],
+        ["Conductance Quantum", "G_0", conductance_quantum, "S"],
+        ["Inverse Conductance Quantum", "R_0_inv", inverse_conductance_quantum, "ohm"],
+        ["Magnetic Constant", "mu_0", magnetic_constant, "N/A^2"],
+        ["Electric Constant", "epsilon_0", electric_constant, "F/m"],
+        ["Characteristic Impedance of Vacuum", "Z_0", characteristic_impedance_of_vacuum, "ohm"],
+        ["Elementary Charge", "e", elementary_charge, "C"],
+    ]
+    chemistry_constants = [
+        ["Electronvolt", "eV", electronvolt],
+        ["Molar Volume of Ideal Gas", "V_m", 22.414, "L/mol"],
+        ["Molar Gas Constant", "𝑅", 8.314, "J/mol·K"],
+        ["Ion product of water", "K_w", 1e-14, "mol^2/L^2"],
+        ["pKw of water", "pK_w", 14, "dimensionless"],
+        ["Boltzmann constant (Chemistry)", "K_b_chem", 1.380649e-23, "J/K"],
+        ["Planck constant (Chemistry)", "h_chem", 6.62607015e-34, "J·s"],
+        ["Molar Mass of Air", "M_air", 28.97e-3, "kg/mol"],
+        ["Density of Water", "ρ_water", 1e3, "kg/m^3"],
+        ["Gas Constant for Dry Air", "R_d", 287.05, "J/kg·K"],
+    ]
+    geophysics_constants = [
+        ["Earth Gravity", "𝑔", earth_gravity, "m/s^2"],
+        ["Earth Mass", "M_E", earth_mass, "kg"],
+        ["Earth Equatorial Radius", "R_E", earth_equatorial_radius, "km"],
+        ["Earth Polar Radius", "R_p", earth_polar_radius, "km"],
+        ["Earth Mean Radius", "R_m", earth_mean_radius, "km"],
+        ["Earth Oblateness", "f", earth_oblateness, "dimensionless"],
+        ["Sidereal Year", "P_sidereal", sidereal_year, "days"],
+        ["Tropical Year", "P_tropical", tropical_year, "days"],
+    ]
+    computer_constants = [
+        ["Bit", "bit", bit, "bit"],
+        ["Byte", "byte", byte, "bit"],
+        ["Kilobyte", "kB", kilobyte, "byte"],
+        ["Megabyte", "MB", megabyte, "byte"],
+        ["Gigabyte", "GB", gigabyte, "byte"],
+        ["Terabyte", "TB", terabyte, "byte"],
+        ["Petabyte", "PB", petabyte, "byte"],
+        ["Exabyte", "EB", exabyte, "byte"],
+        ["Zettabyte", "ZB", zettabyte, "byte"],
+        ["Yottabyte", "YB", yottabyte, "byte"],
+        ["Floating point operations per second", "fLOPS", floating_point_operations_per_second, "FLOPS"],
+        ["Million instructions per second", "MIPS", million_instructions_per_second, "instructions/s"],
+        ["Symbols per second", "Baud", symbols_per_second, "Baud"],
+        ["Bits per second", "bps", bits_per_second, "bps"],
+        ["Hertz", "Hz", hertz, "Hz"],
+    ]
+    constants_by_category = {
+        "Mathematics": math_constants,
+        "Physics": physics_constants,
+        "Mechanics": mechanics_constants,
+        "Quantum": quantum_constants,
+        "Chemistry": chemistry_constants,
+        "Geophysics": geophysics_constants,
+        "Computer": computer_constants,
+    }
+    
+    if category is None:
+        for cat, constants in constants_by_category.items():
+            print(f"{cat} Constants:")
+            print(tabulate(constants, headers=headers))
+            print("\n")
+    else:
+        if category in constants_by_category:
+            print(f"{category} Constants:")
+            print(tabulate(constants_by_category[category], headers=headers))
+        else:
+            print("Invalid category. Please choose a valid category ['Mathematics', 'Physics', 'Mechanics', 'Quantum', 'Chemistry', 'Geophysics', 'Computer'].")
+
+  
     
 def trigTable():
     identities = {"Quotient Identities": ["tanθ = sinθ/cosθ", "cotθ = cosθ/sinθ"],
@@ -1782,6 +2135,7 @@ CALCULUS
 def derivativeAt(f_of, x):
     h = 0.00001
     return round(1 / (12 * h) * (f_of(x - 2 * h) - 8 * f_of(x - h) + 8 * f_of(x + h) - f_of(x + 2 * h)), 7)
+    #1/12h * f(x-2 *h) - 8*f(x-h) + 8*f(x+h) - f(x+2*h)
 
 def derivative(f_of, solvefor):
     return diff(f_of, solvefor)
@@ -1877,7 +2231,7 @@ END OF LINEAR ALGEBRA
 COMPLEX
 """
 
-def complexLn(num):
+def complex_ln(num):
     principle = str(ln(-num)) + ' + iπ'
     general = str(ln(-num)) + 'iπ(2n+1) n ∊ ℤ'
     print(f"Principal Value: {principle}")
@@ -1892,11 +2246,103 @@ END OF COMPLEX
 
 
 
-
-
+    
 """
 PHYSICS
 """
+
+class Planet:
+    def __init__(self, name, mass, radius, semi_major_axis, orbital_period, eccentricity):
+        self.name = name
+        self.mass = mass
+        self.radius = radius
+        self.semi_major_axis = semi_major_axis
+        self.orbital_period = orbital_period
+        self.eccentricity = eccentricity
+
+    def as_dict(self):
+        return {
+            'Name': self.name,
+            'Mass (kg)': self.mass,
+            'Radius (km)': self.radius,
+            'Semi-major Axis (km)': self.semi_major_axis,
+            'Orbital Period (Earth days)': self.orbital_period,
+            'Eccentricity': self.eccentricity
+        }
+
+class SolarSystem:
+    def __init__(self):
+        self.planets = [
+            Planet('Mercury', 3.3011e23, 2439.7, 57_909_227, 87.9691, 0.2056),
+            Planet('Venus', 4.8675e24, 6051.8, 108_209_475, 224.70069, 0.0067),
+            Planet('Earth', 5.97237e24, 6371, 149_598_262, 365.25641, 0.0167),
+            Planet('Mars', 6.4171e23, 3389.5, 227_943_824, 687.0, 0.0934),
+            Planet('Jupiter', 1.8982e27, 69_911, 778_340_821, 4_332.59, 0.0489),
+            Planet('Saturn', 5.6834e26, 58_232, 1_426_666_422, 10_759.22, 0.0565),
+            Planet('Uranus', 8.6810e25, 25_362, 2_870_658_186, 30_688.5, 0.0463),
+            Planet('Neptune', 1.02413e26, 24_622, 4_498_396_441, 60_182, 0.0095),
+        ]
+
+    def display_planet(self, name):
+        planet = self.get_planet(name)
+        if planet:
+            table = tabulate([planet.as_dict()], headers='keys', tablefmt='pretty')
+            print(table)
+        else:
+            print("Planet not found.")
+
+    def get_planet(self, name):
+        for planet in self.planets:
+            if planet.name.lower() == name.lower():
+                return planet
+        return None
+            
+solar_system = SolarSystem()
+
+
+def event_horizon(mass):
+    """
+    Computes the schwarzschild radius of a schwarzschild black hole given the mass of the black hole
+    """
+    return (2*G*mass)/speed_of_light**2
+
+def grav_field(mass, distance):
+    """
+    Computes the gravitational field given the mass and distance. E.g. Earth: G*earth_mass / (earth_mean_radius*1000)^2 ≈ 9.82
+    """
+    return mass * G / distance ** 2
+
+def separate_vectors(vector, theta, deg=True):
+    if not deg:
+        theta = 180 * theta / pi
+    return (vector * cos(theta), vector * sin(theta))
+
+def electric_field(q, r):
+    return q * coulomb_constant / r ** 2
+
+def NewtonionGravity(m1, m2, d):
+    return (m1*m2)/(d**2) * G
+
+def SUVAT(s='s', u='u', v='v', a='a', t='t'):
+    allowedCombinations = ["atu", "asu", "vu", "atv"]
+    
+    suvDict = {"s": "s", "u": "u", "v": "v", "a": "a", "t":"t"}
+    givenVars = []
+    for i in range(0, len([s, u, v, a, t])):
+        if str(i).isdigit():
+            suvDict[list(suvDict)[i]] = [s, u, v, a, t][i]
+    for i in suvDict.keys():
+        if str(suvDict[i]).isdigit():
+            givenVars.append(i)
+    givenVars = "".join(sorted(givenVars))
+    
+    print(givenVars)
+    print(suvDict)
+
+    if givenVars not in allowedCombinations:
+        return "Cannot be solved"
+
+ 
 
 """
 END OF PHYSICS
@@ -1979,6 +2425,9 @@ def isPolydivisible(number):
                     polydiv = False
                 i += 1          
     return polydiv
+
+def pascalsTriangle(rows):
+    pass
 
 """
 END OF MISC
