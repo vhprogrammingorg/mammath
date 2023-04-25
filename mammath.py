@@ -803,10 +803,16 @@ END OF PRIME NUMBERS
 FIBONACCI
 """
 
-def fibonacciBinet(n):
+def fibonacci_binet(n):
+    """
+    Fast Fibonacci calculator using Binets formula
+    """
     x = (((((1+math.sqrt(5))/2)**n)-((((1-math.sqrt(5))/2)**n))))/math.sqrt(5)
     return round(x)
 def fibonacci(n):
+    """
+    Manual Fibonacci computation
+    """
     n0, n = n, abs(n)
     F = {}
     
@@ -837,9 +843,12 @@ def fibonacci(n):
         return negativeFib(n, r)
     return r
 
-def fibonacciCheck(n):
+def fibonacci_check(n):
+    """
+    Checks if a number is in the classic Fibonacci sequence
+    """
     return perfectSquareCheck(5*n*n + 4) or perfectSquareCheck(5*n*n - 4)
-def fibonacciPrinter(low, high):
+def fibonacci_printer(low, high):
     for i in range(low, high+1):
         if fibonacciCheck(i) == True:
             print(i)
@@ -854,37 +863,58 @@ END OF FIBONACCI
 NUMBER/SEQUENCE CHECKS AND PRINTERS
 """
 
-def perfectSquare(num):
+def perfect_square(num):
+    """
+    Checks if a number is perfect square
+    """
     root = math.sqrt(num)
 
     if math.trunc(root)-root==0:
         return True
     return False
 
-def perfectSquareCheck(num):
-    if perfectSquare(num) == True:
+def perfect_square_check(num):
+    """
+    Checks if a number is perfect a square
+    """
+    if perfect_square(num) == True:
         return True
     return False
 
-def perfectSquarePrinter(low, high):
+def perfect_square_printer(low, high):
+    """
+    Prints perfect squares
+    """
     for i in range(low, high):
-        if perfectSquare(i) == True:
+        if perfect_square(i) == True:
             print(i)
-def perfectRootCheck(a, b):
+def perfect_root_check(a, b):
+    """
+    Checks if a number is perfect in a given root
+    """
     x = root(a, b)
     if x % 1 == 0:
         return True
     return False
-def triangularCheck(n):
+def triangular_check(n):
+    """
+    Checks if a number is a triangular number
+    """
     for i in range(n):
         if i*(i+1)/2 == n:
             return True
     return False
-def triangularPrinter(low, high):
+def triangular_printer(low, high):
+    """
+    Prints triangular numbers
+    """
     for i in range(low, high):
-        if triangularCheck(i) == True:
+        if triangular_check(i) == True:
             print(i)
-def pentagonalCheck(n):
+def pentagonal_check(n):
+    """
+    Checks if a number is a pentagonal number
+    """
     i = 1
     while True:
         p = (3 * i * i - i) / 2
@@ -893,20 +923,29 @@ def pentagonalCheck(n):
             break
     return p == n
 
-def pentagonalPrinter(low, high):
+def pentagonal_printer(low, high):
+    """
+    Prints pentagonal numbers
+    """
     for i in range(low, high):
-        if pentagonalCheck(i) == True:
+        if pentagonal_check(i) == True:
             print(i)
 
-def perfectNumberCheck(n):
+def perfect_number_check(n):
+    """
+    Checks is a number is a perfect number
+    """
     pFactors = []
     for i in range(1, n):
         if not n % i:
             pFactors.append(i)
     return sum(pFactors) == n
 
-def perfectNumberPrinter(lower, upper, list = False):
-    perfects = [i for i in range(lower, upper+1) if perfectNumberCheck(i)]
+def perfect_number_printer(lower, upper, list = False):
+    """
+    Prints perfect numbers
+    """
+    perfects = [i for i in range(lower, upper+1) if perfect_number_check(i)]
     if list:
         return perfects
     for i in perfects:
@@ -925,53 +964,83 @@ DIVISIBILITY CHECKS
 """
 
 def div2Check(num):
+    """
+    Checks divisibility by 2
+    """
     if num % 2 == 0:
         return True
     else:
         return False
 def div3Check(num):
+    """
+    Checks divisibility by 3
+    """
     if num % 3 == 0:
         return True
     else:
         return False
 def div4Check(num):
+    """
+    Checks divisibility by 4
+    """
     if num % 4 == 0:
         return True
     else:
         return False
 def div5Check(num):
+    """
+    Checks divisibility by 5
+    """
     if num % 5 == 0:
         return True
     else:
         return False
 def div6Check(num):
+    """
+    Checks divisibility by 6
+    """
     if num % 6 == 0:
         return True
     else:
         return False
 def div7Check(num):
+    """
+    Checks divisibility by 7
+    """
     if num % 7 == 0:
         return True
     else:
         return False
 def div8Check(num):
+    """
+    Checks divisibility by 8
+    """
     if num % 8 == 0:
         return True
     else:
         return False
 def div9Check(num):
+    """
+    Checks divisibility by 9
+    """
     if num % 9 == 0:
         return True
     else:
         return False
 def divCheck(num, num2):
+    """
+    Checks divisibility by a given number
+    """
     if num % num2 == 0:
         return True
     else:
         return False
 
-def divCheckCreate(num, num2):
-    return num % num2
+def create_div_checker(num, num2):
+    """
+    Shorthand lambda method to create a divisibilty checker for many uses
+    """
+    return not num % num2
 
 """
 END OF DIVISIBILITY CHECKS
@@ -985,39 +1054,75 @@ END OF DIVISIBILITY CHECKS
 FRACTIONS
 """
 
-def addFraction(a, b):
+def add_fraction(a, b):
+    """
+    Adds Fractions
+    """
     ans = Fraction(a) + Fraction(b)
     return str(ans)
-def subtractFraction(a, b):
+def subtract_fraction(a, b):
+    """
+    Subtracts Fractions
+    """
     ans = Fraction(a) - Fraction(b)
     return str(ans)
-def multiplyFraction(a, b):
+def multiply_fraction(a, b):
+    """
+    Multiplies Fractions
+    """
     ans = Fraction(a) * Fraction(b)
     return str(ans)
-def divideFraction(a, b):
+def divide_fraction(a, b):
+    """
+    Divides Fractions
+    """
     ans = Fraction(a) / Fraction(b)
     return str(ans)
-def simplifyFraction(a):
+def simplify_fraction(a):
+    """
+    Simplifies Fractions
+    """
     return str(Fraction(a).limit_denominator())
 
-def PercentagetoDecimal(percentage):
+def percentage_decimal(percentage):
+    """
+    Converts percentages to decimals
+    """
     return percentage / 100
-def PerToFrac(p):
+def per_frac(p):
+    """
+    Converts percentages to fractions
+    """
     dec = p / 100
     fraction = Fraction(dec)
     return str(fraction)
-def PercentagetoFraction(percentage):
-    fracOutput = PerToFrac(percentage)
+def percentage_fraction(percentage):
+    """
+    Converts percentages to fractions
+    """
+    fracOutput = per_frac(percentage)
     return "{0}".format(fracOutput)
-def FractiontoDecimal(fraction):
+def fraction_decimal(fraction):
+    """
+    Converts fractions to decimals
+    """
     dec = f
     return str(round(dec, 5))
-def FractiontoPercentage(fraction):
+def fraction_percentage(fraction):
+    """
+    Converts fractions to percentages
+    """
     return f * 100
-def DecimaltoPercentage(decimal):
+def decimal_percentage(decimal):
+    """
+    Converts decimals to percentages
+    """
     percentage = "{:.0%}".format(decimal)
     return str(percentage)
-def DecimaltoFraction(decimal):
+def decimal_fraction(decimal):
+    """
+    Converts decimals to fractions
+    """
     return str(Fraction(decimal).limit_denominator())
 
 """
@@ -1031,34 +1136,65 @@ GEOMETRY
 """
 
 def valid_triangle(s1, s2, s3):
+    """
+    If a triangle with three given sides is valid
+    """
     if s1 + s2 >= s3 and s2 + s3 >= s1 and s1 + s3 >= s2:
         return True
     return False
 
-def triangleArea(l, w):
+def triangle_area(l, w):
+    """
+    Area of a triangle from base and vertical height
+    """
     return (l*w)/2
-def trapeziumArea(a, b, h):
+def trapezium_area(a, b, h):
+    """
+    Area of a trapezium from two parallel sides and vertical height
+    """
     return (a+b)/h
-def paraHeight(a, b):
-    return a/b
-def paraArea(b, h):
+def para_area(b, h):
+    """
+    Area of a parallelogram from base and vertical height
+    """
     return b*h
-def circleCircumference(r):
-    return 2*math.pi*r
-def circleArea(r):
-    return math.pi*(r**2)
-def sphereVolume(r):
-    return 4/3*math.pi*(r**3)
-def sphereArea(r):
-    return 4*math.pi*(r**2)
-def sphereDiametre(r):
+def circle_circumference(r):
+    """
+    Circumference of a circle from radius
+    """
+    return 2*pi*r
+def circle_area(r):
+    """
+    Area of a circle from radius
+    """
+    return pi*(r**2)
+def sphere_volume(r):
+    """
+    Volume of a sphere from radius
+    """
+    return 4/3*pi*(r**3)
+def sphere_area(r):
+    """
+    Surface area of a sphere from radius
+    """
+    return 4*pi*(r**2)
+def sphere_diametre(r):
+    """
+    Diameter of a sphere with radius
+    """
     return 2*r
-def surfaceArea(a, b, c):
+def surface_area(a, b, c):
+    """
+    Surface area of a cuboid with three side lengths
+    """
     d = a*b
     e = a*c
     f = b*c
     return 2*(d+e+f)
-def surfAreaPrism(farea, *args):
+def surf_area_prism(farea, *args):
+    """
+    Surface area of a prism with frontal area and length
+    """
     total = 2*farea
     i = 0
     while i < len(args):
@@ -1066,31 +1202,57 @@ def surfAreaPrism(farea, *args):
         i += 1
     return total
 def volume(a, b, c):
+    """
+    Volume of a cuboid with three side lengths
+    """
     return a*b*c
-def cylinderVolume(r, h):
-    return (math.pi*(r**2))*h
-def cylinderArea(r, h):
-    return (2*math.pi*r*h)+(2*math.pi*(r**2))
-def cylinderDiametre(v, h):
-    return 2*(math.sqrt(v/math.pi*h))
-def cylinderHeight(v, r):
-    return v/(math.pi*(r**2))
-def cylindeRadius(h, A):
-    return round(0.5*math.sqrt(h**2 + 2*(A/math.pi))-h/2, 5)
-def coneArea(r, h):
-    pi = math.pi
-    area = pi*r*(r + math.sqrt(h**2 + r**2))
+def cylinder_volume(r, h):
+    """
+    Volume of a cylinder with height and radius
+    """
+    return (pi*(r**2))*h
+def cylinder_area(r, h):
+    """
+    Surface area of a cylinder with height and radius
+    """
+    return (2*pi*r*h)+(2*pi*(r**2))
+def cylinder_diametre(v, h):
+    """
+    Diameter of a cylinder with volume and height
+    """
+    return 2*(sqrt(v/pi*h))
+def cylinder_height(v, r):
+    """
+    Height of a cylinder with volume and radius
+    """
+    return v/(pi*(r**2))
+def cylinder_radius(h, A):
+    """
+    radius of a cylinder from height and surface area
+    """
+    return round(0.5*sqrt(h**2 + 2*(A/pi))-h/2, 5)
+def cone_area(r, h):
+    """
+    Surface area of a cone
+    """
+    area = pi*r*(r + sqrt(h**2 + r**2))
     return round(area, 5)
-def coneVolume(r, h):
-    pi = math.pi
+def cone_volume(r, h):
+    """
+    Volume of a cone from radius and height
+    """
     vol = pi*r**2*(h/3)
     return round(vol, 5)
-def coneRadius(h, vol):
-    pi = math.pi
-    rad = math.sqrt(3*(vol/(pi*h)))
+def cone_radius(h, vol):
+    """
+    Radius of cone from height and volume
+    """
+    rad = sqrt(3*(vol/(pi*h)))
     return round(rad, 5)
-def coneHeight(r, vol):
-    pi = math.pi
+def cone_height(r, vol):
+    """
+    Height of a cone from radius and volume
+    """
     height = 3*(vol/(pi*r**2))
     return round(height, 5)
 
