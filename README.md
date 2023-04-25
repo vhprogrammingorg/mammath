@@ -1,7 +1,7 @@
 # Mamammath 
 [![Downloads](https://static.pepy.tech/personalized-badge/mammath?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Mammath%20downloads)](https://pepy.tech/project/mammath)
 <br>
-Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra and calculus. 
+Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra and calculus. We even have a constant for practically anything
 
 It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them. 
 
