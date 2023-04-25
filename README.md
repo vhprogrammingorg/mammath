@@ -7,6 +7,7 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 
 All categories: <br>
 Shunting Yard Algorithm <br>
+Constants <br>
 Math Teachers <br>
 Operations (logarithms, factorials, sums, hcf, lcm, etc.) <br>
 Prime Numbers <br>
@@ -23,7 +24,7 @@ Algebra <br>
 Linear Algebra <br>
 Calculus <br>
 Complex (complex ln, operations with complex numbers) <br>
-Physics (beta) <br>
+Physics <br>
 Miscellaneous (Equation parser, special numbers, tables, times tables) <br>
 <br>
 
