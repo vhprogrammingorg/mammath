@@ -519,11 +519,6 @@ def clear():
 """
 END OF MATH TEACHERS
 """
-
-
-def recLimit(a):
-    messagebox.askyesno("RECURSION SETTINGS", "Setting your recursion limit may slow your laptop or cause a crash. Proceed with caution. Do You wish to continue?")
-
     
 """
 OPERATIONS
@@ -747,27 +742,32 @@ END OF OPERATIONS
 PRIME NUMBERS
 """
 
-def primeFactors(n):
+def prime_factors(n, Print=False):
+    """
+    Returns a list of prime factors
+    """
+    l = []
     while n % 2 == 0:
-        print(2)
+        l.append(2)
+        if Print:
+            print(2)
         n = n / 2  
     for i in range(3,int(math.sqrt(n))+1,2):
         while n % i== 0:
-            print(i)
+            l.append(i)
+            if Print:
+                print(i)
             n = n / i
-    if n > 2:
-        print(n)
-
-def checkPrime(num):
-    x = False
-    for i in range(2, num):
-        if num % i == 0:
-            x = True
-    if x:
-        return False
-    return True
+    if n > 2 and prime_check(n):
+        l.append(n)
+        if Print:
+            print(n)
+    return l
 
 def primeNumberPrinter(low, high):
+    """
+    Prints prime numbers from x to y
+    """
     for num in range(low, high+1):
         if num > 1:
             for i in range(2, num):
@@ -777,7 +777,10 @@ def primeNumberPrinter(low, high):
                 print(num)
 
 
-def primeCheck(n):
+def prime_check(n):
+    """
+    Returns True is it is prime and vice versa
+    """
     if n == 1 or not n:
         return False
     if n == 2:
