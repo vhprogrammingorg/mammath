@@ -679,6 +679,25 @@ def remainder(a, b):
     
     return a % b
 
+def gamma(a):
+##    return math.gamma(a)
+    pass
+
+def lgamma(a):
+##    return math.lgamma(a)
+    pass
+
+def to_degrees(a):
+    """
+    Returns the angle in radians given converted into degrees
+    """
+    return math.degrees(a)
+def to_radians(a):
+    """
+    Returns the angle in degrees given converted into radians
+    """
+    return math.radians(a)
+
 def HCF(a, b):
     """
     Returns the highest common factor of a and b
@@ -1008,7 +1027,7 @@ END OF FRACTIONS
 GEOMETRY
 """
 
-def validTriangle(s1, s2, s3):
+def valid_triangle(s1, s2, s3):
     if s1 + s2 >= s3 and s2 + s3 >= s1 and s1 + s3 >= s2:
         return True
     return False
@@ -1104,54 +1123,21 @@ def mamcot(a):
     return round(1/tan(a), 5)
 
 
-def gamma(a):
-    return math.gamma(a)
-def lgamma(a):
-    return math.lgamma(a)
+def py_theorem_ab(a, b):
+    return sqrt(a**2+b**2)
 
-def toDegrees(a):
-    return math.degrees(a)
-def toRadians(a):
-    return math.radians(a)
+def py_theorem_c(c, a):
+    return sqrt(c**2-a**2)
 
-def pytheoromside(a, b):
-    if a > c:
-        a1 = a*a
-        b1 = b*b
-        c1 = a1 - b1
-        c = math.sqrt(c1)
-    else:
-        a1 = a*a
-        b1 = b*b
-        c1 = b1 - a1
-        c = math.sqrt(c1)
-    return c
-def pyTheoremAB(a, b):
-    a1 = a*a
-    b1 = b*b
-    c1 = a1 + b1
-    c = math.sqrt(c1)
-    return c
-def pyTheoremCA(c, a):
-    c1 = c*c
-    a1 = a*a
-    b1 = c1 - a1
-    b = math.sqrt(b1)
-    return b
-def pyTheoremCB(c, b):
-    c1 = c*c
-    b1 = a*a
-    a1 = c1 - b1
-    a = math.sqrt(a1)
-    return a
 def cos_rule(c, b, A):
-    c1 *= c
-    b1 *= b
-    a1 = math.cos(A)
+    c1 = c**2
+    b1 = b**2
+    a1 = mamcos(A)
     thing = a1*c*b
     ans = b1 + a1 - thing
-    answer = math.sqrt(answer)
+    answer = math.sqrt(ans)
     return answer
+
 def areabytan(n, s):
     s1 = s*s
     up = n*s1
@@ -1160,18 +1146,28 @@ def areabytan(n, s):
     down = 4*tanpart
     ans = up/down
     return ans
-def pythagoreanTriplets(n):
+
+def pythagorean_triplets(n):
   for b in range(n):
     for a in range(1, b):
         c = math.sqrt(a * a + b * b)
         if c % 1 == 0:
             print(a, b, int(c))
-def pythagoreanTripletsCheck(a, b, c):
-    return True if a * a + b * b == c * c else False
+            
+def pythagorean_triplets_check(a, b, c):
+    return True if a**2 + b**2 == c**2 else False
 
-def heronsFormula(a, b, c):
+def hex_area(a):
+    return 1.5 * sqrt(3) * a ** 2
+
+def pent_area(a):
+    return sqrt(5*(5+2*sqrt(5)))/4
+
+def herons_formula(a, b, c):
     s = (a+b+c)/2
     return sqrt(s*(s-a)*(s-b)*(s-c))
+
+
 
 """
 END OF OF GEOMETRY
@@ -2318,9 +2314,15 @@ def separate_vectors(vector, theta, deg=True):
     return (vector * cos(theta), vector * sin(theta))
 
 def electric_field(q, r):
+    """
+    Calculates the acceleration from a point on an electric field
+    """
     return q * coulomb_constant / r ** 2
 
 def centripetal(m, v, r):
+    """
+    Calculates the centripetal force of an object in a circular motion
+    """
     return m * v ** 2 / r
 
 def get_hookes(F, dx):
@@ -2330,10 +2332,16 @@ def get_hookes(F, dx):
     
     return F / dx
 
-def NewtonionGravity(m1, m2, d):
+def newtonion_gravity(m1, m2, d):
+    """
+    Returns the gravtitational force on two given objects of defined mass and centers d meters apart
+    """
     return (m1*m2)/(d**2) * G
 
 def suvat_solve(solve_for, s=None, u=None, v=None, a=None, t=None):
+    """
+    Uses the SUVAT equations to solve for s, u, v, a, t
+    """
     equations = {
         's': lambda u, v, a, t: (u + v) * t / 2 if u and v and t else u * t + 0.5 * a * t**2,
         'u': lambda s, v, a, t: (s - 0.5 * a * t ** 2) / t if s else v - a * t,
@@ -2358,15 +2366,42 @@ def suvat_solve(solve_for, s=None, u=None, v=None, a=None, t=None):
 
     return result
 
+def vis_viva_equation(r_au, a_au, m1, m2):
+    """
+    Returns the orbital velocity of a body in an orbital motion
+    """
+    r = r_au * 1.496*10**11
+    a = a_au * 1.496*10**11
+    standard_grav_param = G*(m1 + m2)
+    return sqrt(standard_grav_param*(2/r - 1/a))
 
+def einsteinian_force(mass, acceleration, v):
+    """
+    Returns the force taking into account Einstein's laws of motion
+    """
+    return mass * acceleration / (1 - v**2/c**2)**(3/2)
 
- 
+def terminal_velocity(m, cross_area, drag_coefficient=0.294, air_density=1.225, gravity=g):
+    """
+    Calculates the terminal velocity based on mass and cross sectional area, drag_coefficient pre defined to headfirst human.
+    """
+    return sqrt(2*m*gravity/(cross_area*air_density*drag_coefficient))
+
 
 """
 END OF PHYSICS
 """
 
+"""
+UNIT CONVERSIONS
+"""
 
+def convertDistance(fro, to, distance):
+    pass
+
+"""
+END OF UNIT CONVERSIONS
+"""
 
 
 """
