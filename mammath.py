@@ -948,8 +948,8 @@ def divCheck(num, num2):
     else:
         return False
 
-def divCheckCreate(num):
-    return lambda x: return not num % x
+def divCheckCreate(num, num2):
+    return num % num2
 
 """
 END OF DIVISIBILITY CHECKS
@@ -2313,34 +2313,52 @@ def grav_field(mass, distance):
     return mass * G / distance ** 2
 
 def separate_vectors(vector, theta, deg=True):
-    if not deg:
-        theta = 180 * theta / pi
-    return (vector * cos(theta), vector * sin(theta))
+    if not deg:
+        theta = 180 * theta / pi
+    return (vector * cos(theta), vector * sin(theta))
 
 def electric_field(q, r):
     return q * coulomb_constant / r ** 2
 
+def centripetal(m, v, r):
+    return m * v ** 2 / r
+
+def get_hookes(F, dx):
+    """
+    Returns the Hookes constant for the spring
+    """
+    
+    return F / dx
+
 def NewtonionGravity(m1, m2, d):
     return (m1*m2)/(d**2) * G
 
-def SUVAT(s='s', u='u', v='v', a='a', t='t'):
-    allowedCombinations = ["atu", "asu", "vu", "atv"]
-    
-    suvDict = {"s": "s", "u": "u", "v": "v", "a": "a", "t":"t"}
-    givenVars = []
-    for i in range(0, len([s, u, v, a, t])):
-        if str(i).isdigit():
-            suvDict[list(suvDict)[i]] = [s, u, v, a, t][i]
-    for i in suvDict.keys():
-        if str(suvDict[i]).isdigit():
-            givenVars.append(i)
-    givenVars = "".join(sorted(givenVars))
-    
-    print(givenVars)
-    print(suvDict)
+def suvat_solve(solve_for, s=None, u=None, v=None, a=None, t=None):
+    equations = {
+        's': lambda u, v, a, t: (u + v) * t / 2 if u and v and t else u * t + 0.5 * a * t**2,
+        'u': lambda s, v, a, t: (s - 0.5 * a * t ** 2) / t if s else v - a * t,
+        'v': lambda s, u, a, t: u + a * t,
+        'a': lambda s, u, v, t: 2 * (s - (u + v) * t / 2) / t ** 2,
+        't': lambda s, u, v, a: (v - u) / a,
+    }
 
-    if givenVars not in allowedCombinations:
-        return "Cannot be solved"
+    if solve_for not in equations:
+        raise ValueError("Invalid 'solve_for' value. Must be one of 's', 'u', 'v', 'a', or 't'.")
+
+    variables = {'s': s, 'u': u, 'v': v, 'a': a, 't': t}
+    known_vars = [var for var, value in variables.items() if value is not None]
+
+    if len(known_vars) < 3:
+        raise ValueError("There must be at least 3 known variables to solve the equation.")
+
+    try:
+        result = equations[solve_for](*[variables[var] for var in 'suvat' if var != solve_for])
+    except ZeroDivisionError:
+        raise ValueError("Cannot solve for the given variables, division by zero encountered.")
+
+    return result
+
+
 
  
 
