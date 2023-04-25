@@ -1,13 +1,16 @@
-# Mamammath 
 [![Downloads](https://static.pepy.tech/personalized-badge/mammath?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Mammath%20downloads)](https://pepy.tech/project/mammath)
 <br>
 Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra and calculus. We even have a constant for practically anything
+
+Release notes for 0.1.9:
+Bugs with the graphers all fixed. 
+Physics section new and expanding
+SUVAT equations
 
 It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them. 
 
 All categories: <br>
 Shunting Yard Algorithm <br>
-Constants <br>
 Math Teachers <br>
 Operations (logarithms, factorials, sums, hcf, lcm, etc.) <br>
 Prime Numbers <br>
@@ -24,7 +27,7 @@ Algebra <br>
 Linear Algebra <br>
 Calculus <br>
 Complex (complex ln, operations with complex numbers) <br>
-Physics <br>
+Physics (beta) <br>
 Miscellaneous (Equation parser, special numbers, tables, times tables) <br>
 <br>
 
