@@ -25,4 +25,6 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 
 We hope Mammath is a useful and reliable asset. Install via <code>pip install mammath</code>
 
+Check - <a href='https://pypi.org/project/mammath' target='_blank'>Pypi project site</a>
+
 Thank you!
