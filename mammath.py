@@ -2886,7 +2886,31 @@ def is_polydivisible(number):
                 i += 1          
     return polydiv
 
-def pascals_triangle(rows):
+def weighted_avg(*args):
+    """
+    Input any nmber of numbers with values and weights in tuple of that orders
+    """
+    t = 0
+    x = 0
+    for i in args:
+        t += i[1]
+        x += i[0] * i[1]
+    return x / t
+
+def to_standard_form(n):
+    """
+    Converts the integer n to standard form as a tuple, (a, b) where n = a * 10 ** b
+    """
+    t = 0
+    while n > 10:
+        n /= 10
+        t += 1
+    return n, t
+
+def pascals_triangle(n):
+    """
+    Returns the nth row of Pascal's triangle
+    """
     pass
 
 """
