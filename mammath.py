@@ -2907,11 +2907,23 @@ def to_standard_form(n):
         t += 1
     return n, t
 
-def pascals_triangle(n):
+def pascals_printer(n):
     """
-    Returns the nth row of Pascal's triangle
+    Gives the rows up to the nth row of Pascal's triangle
     """
-    pass
+    for i in range(n):
+        print('')
+        for j in range(i+1):
+            print(factorial(i)//(factorial(j)*factorial(i-j)), end=" ")
+            
+def pascals(n):
+    """
+    Gives the nth row of the pascals triangle
+    """
+    l = []
+    for i in range(n+1):
+        l.append(factorial(n)//(factorial(i)*factorial(n-i)))     
+    return l
 
 """
 END OF MISC
