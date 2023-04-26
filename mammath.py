@@ -1301,6 +1301,9 @@ def py_theorem_c(c, a):
     return sqrt(c**2-a**2)
 
 def cos_rule(c, b, A):
+    """
+    Finds the third side of a triangle given two sides and the angle between them
+    """
     c1 = c**2
     b1 = b**2
     a1 = mamcos(A)
@@ -1309,7 +1312,10 @@ def cos_rule(c, b, A):
     answer = math.sqrt(ans)
     return answer
 
-def areabytan(n, s):
+def area_tan(n, s):
+    """
+    Finds the third side of a triangle given two sides and the angle between them
+    """
     s1 = s*s
     up = n*s1
     intan = 180/n
@@ -1319,6 +1325,9 @@ def areabytan(n, s):
     return ans
 
 def pythagorean_triplets(n):
+   """
+   Prints pythagorean triplets
+   """
   for b in range(n):
     for a in range(1, b):
         c = math.sqrt(a * a + b * b)
@@ -1326,15 +1335,27 @@ def pythagorean_triplets(n):
             print(a, b, int(c))
             
 def pythagorean_triplets_check(a, b, c):
+    """
+    Checks if three numbers can be pythagorean triplets
+    """
     return True if a**2 + b**2 == c**2 else False
 
 def hex_area(a):
+    """
+    Finds the area of a regular hexagon given one side length
+    """
     return 1.5 * sqrt(3) * a ** 2
 
 def pent_area(a):
+    """
+    Finds the area of a regular pentagon given one side length
+    """
     return sqrt(5*(5+2*sqrt(5)))/4
 
 def herons_formula(a, b, c):
+    """
+    Finds the area of any triangle when given three valid sides
+    """
     s = (a+b+c)/2
     return sqrt(s*(s-a)*(s-b)*(s-c))
 
@@ -1350,7 +1371,7 @@ END OF OF GEOMETRY
 SEQUENCES
 """
 
-def sequenceChecker(a, b, c):
+def sequence_checker(a, b, c):
     while True:
         if b - a == c - b:
             print("Arithmetic")
@@ -1362,14 +1383,14 @@ def sequenceChecker(a, b, c):
             print("Quadratic")
             break
 
-def nthFinder(a, b):
+def nth_finder(a, b):
     a = str(a)
     b = str(b)
     x = a.replace("n", b)
     y = eval(x)
     return y
 
-def nthRange(a, b, c):
+def nth_range(a, b, c):
     ls = []
     a = str(a)
     b = str(b)
@@ -1391,7 +1412,8 @@ def nthRange(a, b, c):
             b=int(b)+1
             b = str(b)
     return list(ls)
-def nthTable(a, b, c):
+
+def nth_table(a, b, c):
     ls = []
     a = str(a)
     b = str(b)
@@ -1419,7 +1441,7 @@ def nthTable(a, b, c):
     thing = tabulate(ls, headers = headers)
     print(thing)
 
-def arithemeticSequence(term1, term2, term = 1):
+def arithemetic_sequence(term1, term2, term = 1):
     dif = term2 - term1
     before = term1 - dif
     newTerm = dif*term+before
@@ -1435,12 +1457,12 @@ def arithemeticSequence(term1, term2, term = 1):
             print("Nth Term:", str(dif) + "n" + " + " + str(before))
             print(str(term) + "th term:", str(newTerm))
 
-def removeDecimal(num):
+def remove_decimal(num):
         if(num == int(num)):
             return int(num)
         return num
     
-def Nth_Term_Quadratic(*series):
+def nth_term_quadratic(*series):
     
     r1d1 = series[1] - series[0]
     r1d2 = series[2] - series[1] 
@@ -1473,7 +1495,7 @@ END OF SEQUENCES
 
 
 
-def percentageChange(a, b):
+def percentage_change(a, b):
     if a == b:
         return 100.0
     try:
@@ -1490,22 +1512,22 @@ def average(*argv):
     total = np.sum(list(argv))
     length = len(argv)
     return total / length
-def consecutiveIntCalc(x):
+def consecutive_int_calc(x):
     a = (x/3)-1
     b = x/3
     c = (x/3)+1
     return [a, b, c]
 
-def ascendingSort(*args):
+def ascending_sort(*args):
     argList = list(args)
     argList.sort()
     return argList
-def descendingSort(*args):
+def descending_sort(*args):
     argList = list(args)
     argList.sort(reverse=True)
     return argList
 
-def ascendingPowers(a, *args):
+def ascending_powers(a, *args):
     args = list(args)
     i = '0'
     eq = ''
@@ -1516,7 +1538,7 @@ def ascendingPowers(a, *args):
         i = str(i)
     eq += '0'
     return nthFinder(eq, a)
-def ascendingPowersRange(a, b, *args):
+def ascending_powers_range(a, b, *args):
     args = list(args)
     i = '0'
     eq = ''
@@ -1527,7 +1549,7 @@ def ascendingPowersRange(a, b, *args):
         i = str(i)
     eq += '0'  
     return nthRange(eq, a, b)
-def ascendingpowersTable(a, b, *args):
+def ascendingpowers_table(a, b, *args):
     args = list(args)
     i = '0'
     eq = ''
@@ -1569,7 +1591,7 @@ END OF FORMULAS
 BASE CONVERSIONS
 """
 
-def baseConverter(x, base):
+def base_converter(x, base):
     if not isinstance(x, int):
         if x.isdigit():
             x = int(x)
@@ -1597,54 +1619,54 @@ def baseConverter(x, base):
     digits.reverse()
     return "".join(digits)
 
-def IntToBinary(num):
+def int_binary(num):
     return bin(num)[2:]
-def BinaryToInt(num):
+def binary_int(num):
     return int(str(num), 2)
 
-def IntToHexa(num):
+def int_hexa(num):
     return hex(num)[2:]
-def HexaToInt(num):
+def hex_int(num):
     return int(str(num, 2))
 
-def BinaryToHex(num):
+def binary_hex(num):
     return hex(int(str(num), 2))[2:]
 def HexToBinary(num):
     return bin(int(str(num), 2))[2:]
 
-def binaryAdd(a, b):
+def binary_add(a, b):
     sum = BinaryToInt(a) + BinaryToInt(b)
     print("Binary:", IntToBinary(sum))
     print("Base 10:", sum)
     
-def binarySubtract(a, b):
+def binary_subtract(a, b):
     sub = BinaryToInt(a) - BinaryToInt(b)
     print("Binary:", IntToBinary(sub))
     print("Base 10:", sub)
     
-def binaryMultiply(a, b):
+def binary_multiply(a, b):
     mult = BinaryToInt(a) * BinaryToInt(b)
     print("Binary:", IntToBinary(mult))
     print("Base 10:", mult)
     
-def binaryDivide(a, b):
+def binary_divide(a, b):
     div = BinaryToInt(a) / BinaryToInt(b)
     print("Binary:", IntToBinary(div))
     print("Base 10:", div)
     
-def hexaAdd(a, b):
+def hexa_add(a, b):
     sum = HexaToInt(a) + HexaToInt(b)
     print("Hexadecimal:", IntToHexa(sum))
     print("Base 10:", sum)
-def hexaSubtract(a, b):
+def hexa_subtract(a, b):
     sub = HexaToInt(a) - HexaToInt(b)
     print("Hexadecimal:", IntToHexa(sub))
     print("Base 10:", sub)
-def hexaMultiply(a, b):
+def hexa_multiply(a, b):
     mult = HexaToInt(a) * HexaToInt(b)
     print("Hexadecimal:", IntToHexa(mult))
     print("Base 10:", mult)
-def hexaDivide(a, b):
+def hex_divide(a, b):
     div = HexaToInt(a) / HexaToInt(b)
     print("Hexadecimal:", IntToHexa(div))
     print("Base 10:", div)
@@ -1659,7 +1681,7 @@ END OF BASE CONVERSIONS
 TABLES
 """
 
-def constTable(category=None):
+def const_table(category=None):
     headers = ["Name", "Symbol", "Value", "Unit"]
 
     math_constants = [
@@ -1825,7 +1847,7 @@ def constTable(category=None):
 
   
     
-def trigTable():
+def trig_table():
     identities = {"Quotient Identities": ["tanθ = sinθ/cosθ", "cotθ = cosθ/sinθ"],
            "Reciprocal Identities": ["cotθ = 1/tanθ", "cscθ = 1/sinθ", "sec = 1/cosθ"],
            "Pythagorean Identities": ["sin^2θ + cos^2θ = 1", "tan^2θ + 1 = sec^2θ", "1 + cot^2θ = csc^2θ"],
@@ -1849,7 +1871,7 @@ def f(fx, x, y):
     if type(eval(fx)) == np.ndarray:
         return eval(fx)
 
-def parseEquation(eq):
+def parse_equation(eq):
     pass
 
 """
@@ -1990,7 +2012,7 @@ END OF GRAPHING
 ALGEBRA
 """
 
-def quadraticSolver(a,b,c):
+def quadratic_solver(a,b,c):
     dis = b * b - 4 * a * c
     sqrt_val = math.sqrt(abs(dis))
     if dis > 0:
@@ -2004,7 +2026,7 @@ def quadraticSolver(a,b,c):
         print(- b / (2 * a), " - i", sqrt_val)
 
         
-def solveGaussElimination(*equations):              
+def solve_gauss_elimination(*equations):              
     equations = list(equations)
     for i in range(0, len(equations)):
         equations[i] = equations[i].replace(" ", "")
@@ -2172,7 +2194,7 @@ def solveGaussElimination(*equations):
         answer[varis[k]] = b[k]
     return answer
 
-def LinearSystem2x2(equation1, equation2):
+def linear_system_2x2(equation1, equation2):
     def preprocess_equation(eq):
         eq = eq.replace(" ", "")
         eq = eq.replace("+x", "+1x").replace("+y", "+1y")
@@ -2201,7 +2223,7 @@ def LinearSystem2x2(equation1, equation2):
 
     return print(f"x: {sols[0]}\ny: {sols[1]}") if check else None
 
-def LinearSystemNxN(*equations):
+def linear_system_NxN(*equations):
     n = len(equations)
 
     def preprocess_equation(eq):
@@ -2251,19 +2273,19 @@ def LinearSystemNxN(*equations):
         return None
     
 
-def discriminantQuadratic(a, b, c):
+def discriminant_quadratic(a, b, c):
     return b**2 - 4 * a * c
 
-def root1Quadratic(a, b, c, disc):
+def root1_quadratic(a, b, c, disc):
     return (-b + disc ** (1/2)) / (2 * a)
 
-def root2Quadratic(a, b, c, disc):
+def root2_quadratic(a, b, c, disc):
     return (-b - disc ** (1/2)) / (2 * a)
 
 def solve_first_degree(b, c):
     return -c / b
 
-def secondDegreeSolver(a, b, c):
+def second_degree_solver(a, b, c):
     if a == 0:
         if b == 0:
             return "The equation is indeterminate" if c == 0 else "Impossible situation. Wrong entries"
@@ -2299,7 +2321,7 @@ END OF ALGEBRA
 CALCULUS
 """
 
-def derivativeAt(f_of, x):
+def derivative_at(f_of, x):
     h = 0.00001
     return round(1 / (12 * h) * (f_of(x - 2 * h) - 8 * f_of(x - h) + 8 * f_of(x + h) - f_of(x + 2 * h)), 7)
     #1/12h * f(x-2 *h) - 8*f(x-h) + 8*f(x+h) - f(x+2*h)
@@ -2307,7 +2329,7 @@ def derivativeAt(f_of, x):
 def derivative(f_of, solvefor):
     return diff(f_of, solvefor)
     
-def defIntegral(f, lowerbound, upperbound, n = 10000):
+def def_integral(f, lowerbound, upperbound, n = 10000):
     stepLen = (upperbound - lowerbound) / n
     lb = lowerbound
     xRange = np.arange(lb, upperbound, stepLen)
@@ -2317,7 +2339,7 @@ def defIntegral(f, lowerbound, upperbound, n = 10000):
     integralVal = total * stepLen / 2
     return round(integralVal, 5)
 
-def indefIntegral(f_of, solvefor):
+def indef_integral(f_of, solvefor):
     integral = str(integrate(f_of, solvefor)) + " + C"
     return integral 
 
@@ -2332,7 +2354,7 @@ END OF CALCULUS
 """
 LINEAR ALGEBRA
 """
-def DiagonalSum(mat):
+def diagonal_sum(mat):
     left = 0
     right = 0
     for i in range(0, len(mat)):
@@ -2343,10 +2365,10 @@ def DiagonalSum(mat):
         return total - (mat[len(mat) // 2][len(mat) // 2])
     return total
 
-def Adjacent2x2(matrix):
+def adjacent2x2(matrix):
     return np.array([[matrix[1][1], -matrix[0][1]], [-matrix[1][0], matrix[0][0]]]).tolist()
 
-def Adjacent3x3(matrix):
+def adjacent3x3(matrix):
     a = np.array([[(matrix[1][1]*matrix[2][2]) - (matrix[1][2]*matrix[2][1]),
                    -((matrix[1][0]*matrix[2][2]) - (matrix[1][2]*matrix[2][0])),
                    ((matrix[1][0]*matrix[2][1]) - (matrix[1][1]*matrix[2][0]))],
@@ -2361,7 +2383,7 @@ def Adjacent3x3(matrix):
 
     return np.transpose(a)
 
-def cofactorMatrix(matrix, tempMatrix, row, col, order):
+def cofactor_matrix(matrix, tempMatrix, row, col, order):
     i = 0
     j = 0
     for r in range(order):
@@ -2672,23 +2694,23 @@ END OF UNIT CONVERSIONS
 MISC
 """
 
-def isInfinite(x):
+def is_infinite(x):
     return mpmath.isinf(x)
-def isFinite(x):
+def is_finite(x):
     return mpmath.isfinite(x)
-def isInt(x, gaussian = False): 
+def is_int(x, gaussian = False): 
     return mpmath.isint(x, gaussian)
 
-def Zeta(s):
+def zeta(s):
     return zeta(s)
 
-def timesTables(n):
+def times_tables(n):
     for i in range(1, n+1):
         for j in range(i, (n*i)+i, i):
             print(str(j) + " ", end="")
         print("")
 
-def CoefficientsQuadratic(string):
+def Ccefficients_quadratic(string):
     string = "".join(" " if i == "x" or i == "+" else i for i in string)
     string = string.replace("^2", " ")
     return list(map(int, string.split()))
@@ -2708,16 +2730,16 @@ def sumToPalindrome(num, stepsList = False):
   
     return "Final palindrome: " + num + ", Steps: " + str(steps) if not stepsList else "Final Palindrome: " + num + ", Steps: " + str(steps) + ", Step List: " + str([(i+1, int(j)) for i, j in enumerate(stepList)]).strip("[]")
         
-def prothPrimes(k):
+def proth_primes(k):
     n = 1
     while not primeCheck((k * 2**n) + 1):
         n += 1
     return "Number: " + str((k * 2**n) + 1) + ", n: " + str(n)
     
-def prothPrimesCheck(k, n):
+def proth_primes_check(k, n):
     return primeCheck((k * 2**n) + 1)
 
-def isPolydivisible(number):
+def is_polydivisible(number):
     """
     Returns whether a number is polydivisible or not - a number where the first to the nth digit in the number is divisible by n
     """
@@ -2750,7 +2772,7 @@ def isPolydivisible(number):
                 i += 1          
     return polydiv
 
-def pascalsTriangle(rows):
+def pascals_triangle(rows):
     pass
 
 """
