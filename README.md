@@ -3,9 +3,10 @@
 Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra and calculus. We even have a constant for practically anything
 
 Release notes for 0.1.9: <br>
-Bugs with the graphers all fixed. <br> 
-Physics section new and expanding <br>
-SUVAT equations <br>
+Changed from camelcase to underscore notation <br>
+Bugs with the graphers all fixed <br> 
+Physics and unit conversions sections new and expanding e.g SUVAT solver and cm to inches <br>
+Docnotes and instructions on all functions <br>
 
 It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them. 
 
@@ -20,8 +21,7 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 | Graphing                                         | Algebra          |
 | Linear Algebra                                   | Calculus         |
 | Complex (complex ln, etc.) | Physics (beta)      |
-|  Contact us    |  Miscellaneous (Equation parser, special numbers)|
-
+|  Connversions    |  Miscellaneous (Equation parser, special numbers)|
 
 We hope Mammath is a useful and reliable asset. Install via <code>pip install mammath</code>
 
