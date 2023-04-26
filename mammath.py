@@ -2954,8 +2954,8 @@ def is_finite(x):
 def is_int(x, gaussian = False): 
     return mpmath.isint(x, gaussian)
 
-def zeta(s):
-    return zeta(s)
+def Zeta(s):
+    pass
 
 def percentage_change(a, b):
     """
