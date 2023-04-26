@@ -124,6 +124,9 @@ e = elementary_charge = 1.602176634e-19
 # Chemistry
 V_m = molar_volume_ideal_gas = 22.414
 𝑅 = R = molar_gas_constant = 8.314462618
+M_air = molar_mass_of_air = 28.97e-3
+ρ_water = density_of_water = 1e3
+R_d = gas_constant_dry_air = 287.05
 eV = electronvolt = 1.602176634e-19
 K_w = ion_product_of_water = 1.0e-14  # at 25°C
 pK_w = 14  
@@ -652,7 +655,7 @@ def ln(num):
     
     return log(num, math.e)
 
-def sigFig(num, figs):
+def sig_fig(num, figs):
     """
     Rounds num to figs significant figures
     """
@@ -660,7 +663,7 @@ def sigFig(num, figs):
     rounded = round(num, figs - int(math.floor(math.log10(abs(num)))) - 1)
     return rounded
 
-def absVal(num):
+def abs_val(num):
     """
     Returns the absoltue value of num
     """
@@ -675,11 +678,10 @@ def remainder(a, b):
     return a % b
 
 def gamma(a):
-##    return math.gamma(a)
     pass
 
 def lgamma(a):
-##    return math.lgamma(a)
+    return math.lgamma(a)
     pass
 
 def to_degrees(a):
@@ -764,11 +766,11 @@ def prime_factors(n, Print=False):
             print(n)
     return l
 
-def primeNumberPrinter(low, high):
+def prime_number_printer(lower, upper):
     """
-    Prints prime numbers from x to y
+    Prints prime numbers from the lowerbound to the upperbound
     """
-    for num in range(low, high+1):
+    for num in range(lower, upper+1):
         if num > 1:
             for i in range(2, num):
                 if num % i == 0:
@@ -847,10 +849,11 @@ def fibonacci_check(n):
     """
     Checks if a number is in the classic Fibonacci sequence
     """
-    return perfectSquareCheck(5*n*n + 4) or perfectSquareCheck(5*n*n - 4)
+    return perfect_square_check(5*n*n + 4) or perfect_square_check(5*n*n - 4)
+
 def fibonacci_printer(low, high):
     for i in range(low, high+1):
-        if fibonacciCheck(i) == True:
+        if fibonacci_check(i) == True:
             print(i)
 
 """
@@ -888,6 +891,7 @@ def perfect_square_printer(low, high):
     for i in range(low, high):
         if perfect_square(i) == True:
             print(i)
+            
 def perfect_root_check(a, b):
     """
     Checks if a number is perfect in a given root
@@ -963,7 +967,7 @@ END OF NUMBER/SEQUENCE CHECKS AND PRINTERS
 DIVISIBILITY CHECKS
 """
 
-def div2Check(num):
+def div2_check(num):
     """
     Checks divisibility by 2
     """
@@ -971,7 +975,7 @@ def div2Check(num):
         return True
     else:
         return False
-def div3Check(num):
+def div3_check(num):
     """
     Checks divisibility by 3
     """
@@ -979,7 +983,7 @@ def div3Check(num):
         return True
     else:
         return False
-def div4Check(num):
+def div4_check(num):
     """
     Checks divisibility by 4
     """
@@ -987,7 +991,7 @@ def div4Check(num):
         return True
     else:
         return False
-def div5Check(num):
+def div5_check(num):
     """
     Checks divisibility by 5
     """
@@ -995,7 +999,7 @@ def div5Check(num):
         return True
     else:
         return False
-def div6Check(num):
+def div6_check(num):
     """
     Checks divisibility by 6
     """
@@ -1003,7 +1007,7 @@ def div6Check(num):
         return True
     else:
         return False
-def div7Check(num):
+def div7_check(num):
     """
     Checks divisibility by 7
     """
@@ -1011,7 +1015,7 @@ def div7Check(num):
         return True
     else:
         return False
-def div8Check(num):
+def div8_check(num):
     """
     Checks divisibility by 8
     """
@@ -1019,7 +1023,7 @@ def div8Check(num):
         return True
     else:
         return False
-def div9Check(num):
+def div9_check(num):
     """
     Checks divisibility by 9
     """
@@ -1027,7 +1031,7 @@ def div9Check(num):
         return True
     else:
         return False
-def divCheck(num, num2):
+def div_check(num, num2):
     """
     Checks divisibility by a given number
     """
@@ -1035,12 +1039,6 @@ def divCheck(num, num2):
         return True
     else:
         return False
-
-def create_div_checker(num, num2):
-    """
-    Shorthand lambda method to create a divisibilty checker for many uses
-    """
-    return not num % num2
 
 """
 END OF DIVISIBILITY CHECKS
@@ -1300,17 +1298,11 @@ def py_theorem_c(c, a):
     """
     return sqrt(c**2-a**2)
 
-def cos_rule(c, b, A):
+def cos_rule(a, b, A_rad):
     """
     Finds the third side of a triangle given two sides and the angle between them
     """
-    c1 = c**2
-    b1 = b**2
-    a1 = mamcos(A)
-    thing = a1*c*b
-    ans = b1 + a1 - thing
-    answer = math.sqrt(ans)
-    return answer
+    return a**2 + b**2 - 2*a*b*mamcos(A_rad)
 
 def area_tan(n, s):
     """
@@ -1504,66 +1496,6 @@ def nth_term_quadratic(*series):
     cSign = "+" if c > 0 else ""
 
     print(quadraticTerm + bSign + linearTerm + cSign + constantTerm)
-    
-"""
-END OF SEQUENCES
-"""
-
-
-
-
-def percentage_change(a, b):
-    """
-    Returns the percentage change from a to b
-    """
-    if a == b:
-        return 100.0
-    try:
-        return round(((b - a)/a)*100, 3)
-    except ZeroDivisionError:
-        return float("inf")
-    
-def percentage(a, b, integer = False):
-    """
-    Returns what percent a is of b
-    """
-    percent = a / b * 100
-    if integer:
-        return int(percent)
-    return percent
-
-def average(*numbers):
-    """
-    Returns the average of any amount of given numbers
-    """
-    total = np.sum(list(numbers))
-    length = len(numbers)
-    return total / length
-
-def consecutive_int_calc(x):
-    """
-    Returns three consecutive numbers that sum to the given number x
-    """
-    a = (x/3)-1
-    b = x/3
-    c = (x/3)+1
-    return [a, b, c]
-
-def ascending_sort(*args):
-    """
-    Sorts given values in ascending order
-    """
-    argList = list(args)
-    argList.sort()
-    return argList
-
-def descending_sort(*args):
-    """
-    Sorts given values in descending order
-    """
-    argList = list(args)
-    argList.sort(reverse=True)
-    return argList
 
 def ascending_powers(a, *args):
     args = list(args)
@@ -1600,6 +1532,10 @@ def ascendingpowers_table(a, b, *args):
         i = str(i)
     eq += '0'  
     return nth_table(eq, a, b)
+    
+"""
+END OF SEQUENCES
+"""
 
 
 
@@ -1878,15 +1814,15 @@ def const_table(category=None):
     ]
     chemistry_constants = [
         ["Electronvolt", "eV", electronvolt],
-        ["Molar Volume of Ideal Gas", "V_m", 22.414, "L/mol"],
-        ["Molar Gas Constant", "𝑅", 8.314, "J/mol·K"],
-        ["Ion product of water", "K_w", 1e-14, "mol^2/L^2"],
-        ["pKw of water", "pK_w", 14, "dimensionless"],
-        ["Boltzmann constant (Chemistry)", "K_b_chem", 1.380649e-23, "J/K"],
-        ["Planck constant (Chemistry)", "h_chem", 6.62607015e-34, "J·s"],
-        ["Molar Mass of Air", "M_air", 28.97e-3, "kg/mol"],
-        ["Density of Water", "ρ_water", 1e3, "kg/m^3"],
-        ["Gas Constant for Dry Air", "R_d", 287.05, "J/kg·K"],
+        ["Molar Volume of Ideal Gas", "V_m", V_m, "L/mol"],
+        ["Molar Gas Constant", "𝑅", R, "J/mol·K"],
+        ["Ion product of water", "K_w", K_w, "mol^2/L^2"],
+        ["pKw of water", "pK_w", pK_w, "dimensionless"],
+        ["Boltzmann constant (Chemistry)", "K_b_chem", k, "J/K"],
+        ["Planck constant (Chemistry)", "h_chem", h_chem, "J·s"],
+        ["Molar Mass of Air", "M_air", M_air, "kg/mol"],
+        ["Density of Water", "ρ_water", ρ_water, "kg/m^3"],
+        ["Gas Constant for Dry Air", "R_d", R_d, "J/kg·K"],
     ]
     geophysics_constants = [
         ["Earth Gravity", "𝑔", earth_gravity, "m/s^2"],
@@ -2014,7 +1950,7 @@ def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=
             plt.show()
 
     
-def graph3dcontour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
+def graph3d_contour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
     """
     Graphs any number of 3D functions given a string function of x equating to y as a contour. The first 6 keyword arguments change the axis of the graph.
     """
@@ -2040,7 +1976,7 @@ def graph3dcontour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lran
         ax.set_zlim(lrangey, urangey)
     return plt.show()
 
-def linein3d(*args, lrangex=-10, lrangey=-10, lrangez = -10, urangex=10, urangey=10, urangez = 10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, color='gray'):
+def graph3d_line(*args, lrangex=-10, lrangey=-10, lrangez = -10, urangex=10, urangey=10, urangez = 10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, color='gray'):
     """
     Graphs any number of 3D functions given a list of 2 elements - a function of x and a function of y, both equating to z. The first 6 keyword arguments change the axis of the graph.
     """
@@ -2075,7 +2011,7 @@ def linein3d(*args, lrangex=-10, lrangey=-10, lrangez = -10, urangex=10, urangey
         ax.set_zlim(lrangey, urangey)
     return plt.show()
 
-def graph3dwire(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, edgecolor=False, color='black', fill='viridis'):
+def graph3d_wire(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, edgecolor=False, color='black', fill='viridis'):
     """
     Graphs any number of 3D functions given a string function of x equating to y as a wire. The first 6 keyword arguments change the axis of the graph.
     """
@@ -2378,14 +2314,14 @@ def second_degree_solver(a, b, c):
             return "The equation is indeterminate" if c == 0 else "Impossible situation. Wrong entries"
         return f"It is a first degree equation. Solution: {'0.0' if c == 0 else solve_first_degree(b, c)}"
     else:
-        disc = discriminantQuadratic(a, b, c)
+        disc = discriminant_quadratic(a, b, c)
         if disc < 0:
             return "There are no real solutions"
         elif disc == 0:
-            root = root1Quadratic(a, b, c, disc)
+            root = rootm_quadratic(a, b, c, disc)
             return f"It has one double solution: {abs(root)}"
         else:
-            root1, root2 = root1Quadratic(a, b, c, disc), root2Quadratic(a, b, c, disc)
+            root1, root2 = rootm_quadratic(a, b, c, disc), roots_quadratic(a, b, c, disc)
             sorted_sol = sorted([abs(root1) if root1 == -0.0 else root1, abs(root2) if root2 == -0.0 else root2])
             return f"Two solutions: {sorted_sol[0]}, {sorted_sol[1]}"
 
@@ -2738,7 +2674,7 @@ def impulse_momentum_theorem(f, delta_t):
     """
     return f * delta_t
 
-def ideal_gas_law(p, v, n, R, T):
+def ideal_gas_law(p, v, n, T):
     """
     Returns the result of the ideal gas law equation for given pressure, volume, moles, gas constant, and temperature.
     """
@@ -2778,13 +2714,91 @@ def time_dilation(delta_t0, v, c):
     """
     Returns the time dilation for a given proper time, relative velocity, and speed of light.
     """
-    return delta_t0 / math.sqrt(1 - v**2 / c**2)
+    return delta_t0 / sqrt(1 - v**2 / c**2)
 
 def length_contraction(length, v):
     """
     Returns the length contraction for a given proper length, relative velocity, and speed of light.
     """
-    return length * math.sqrt((1 - v**2 / c**2))
+    return length * sqrt((1 - v**2 / c**2))
+
+def wave_speed(frequency, wavelength):
+    """
+    Returns the wave speed given the frequency and wavelength.
+    """
+    return frequency * wavelength
+
+def boltzmann_entropy(W):
+    """
+    Returns the entropy according to Boltzmann's entropy formula.
+    """
+    return boltzmanns_constant * ln(W)
+
+def particle_in_box_energy(n, L, m):
+    """
+    Returns the energy of a particle in a one-dimensional box for the given quantum number.
+    """
+    return (n**2 * pi**2 * h_bar**2) / (2 * m * L**2)
+
+def planck_law(wavelength, T):
+    """
+    Returns the spectral radiance for a blackbody at a given temperature and wavelength.
+    """
+    return (2 * pi * h * c**2) / (wavelength**5 * (np.exp((h * c) / (wavelength * k * T)) - 1))
+
+def lorentz_force(q, E, B, v):
+    """
+    Returns the Lorentz force experienced by a charged particle in an electric and magnetic field.
+    """
+    return q * (E + np.cross(v, B))
+
+def lorentz_factor(v):
+    """
+    Returns the Lorentz factor for a given velocity.
+    """
+    return 1 / sqrt(1 - v**2 / c**2)
+
+def decay_law(N0, lambda_, t):
+    """
+    Returns the number of radioactive nuclei remaining after a given time.
+    """
+    return N0 * np.exp(-lambda_ * t)
+
+def relativistic_doppler_shift(wavelength, v):
+    """
+    Returns the shifted wavelength due to the relativistic Doppler effect.
+    """
+    return wavelength * sqrt((1 + v/c) / (1 - v/c))
+
+def escape_velocity(m, r):
+    """
+    Returns the escape velocity for a celestial body of mass m and radius r.
+    """
+    return sqrt(2 * G * m / r)
+
+def heat_engine_efficiency(W, Qh):
+    """
+    Returns the efficiency of a heat engine given the work done and heat input.
+    """
+    return W / Qh
+
+def first_law_of_thermodynamics(Q, W, U1, U2):
+    """
+    Returns the relationship between heat, work, and internal energy changes in a thermodynamic process.
+    """
+    return Q - W == U2 - U1
+
+def de_broglie_wavelength(m, v):
+    """
+    Returns the de Broglie wavelength of a particle with a given mass and velocity.
+    """
+    return h_bar / (m * v)
+
+def photon_energy(frequency):
+    """
+    Returns the energy of a photon given its frequency.
+    """
+    return h * frequency
 
 
 
@@ -2796,8 +2810,133 @@ END OF PHYSICS
 UNIT CONVERSIONS
 """
 
-def convertDistance(fro, to, distance):
-    pass
+def distance_converter(value, from_unit, to_unit):
+    """
+    Converts between any two distance units
+    """
+    units = {
+        "m": 1,                       # meter
+        "km": 1000,                   # kilometer
+        "cm": 0.01,                   # centimeter
+        "mm": 0.001,                  # millimeter
+        "um": 1e-6,                   # micrometer
+        "nm": 1e-9,                   # nanometer
+        "angstrom": 1e-10,            # angstrom
+        "mi": 1609.34,                # mile
+        "yd": 0.9144,                 # yard
+        "ft": 0.3048,                 # foot
+        "in": 0.0254,                 # inch
+        "nmi": 1852,                  # nautical mile
+        "au": 149597870700,           # astronomical unit
+        "ly": 9.4607e15,              # light year
+        "pc": 3.08567758149137e16,    # parsec
+    }
+
+    if from_unit not in units or to_unit not in units:
+        raise ValueError("Invalid unit. Supported units: m, km, cm, mm, um, nm, angstrom, mi, yd, ft, in, nmi, au, ly, pc")
+
+    meters = value * units[from_unit]
+    converted_value = meters / units[to_unit]
+
+    return converted_value
+
+def area_converter(value, from_unit, to_unit):
+    """
+    Converts between any two area units
+    """
+    units = {
+        "sq_m": 1,                           # square meter
+        "sq_km": 1e6,                        # square kilometer
+        "sq_cm": 1e-4,                       # square centimeter
+        "sq_mm": 1e-6,                       # square millimeter
+        "sq_um": 1e-12,                      # square micrometer
+        "sq_nm": 1e-18,                      # square nanometer
+        "sq_angstrom": 1e-20,                # square angstrom
+        "sq_mi": 2.589988110336e6,           # square mile
+        "sq_yd": 0.83612736,                 # square yard
+        "sq_ft": 0.09290304,                 # square foot
+        "sq_in": 6.4516e-4,                  # square inch
+        "acre": 4046.8564224,                # acre
+        "hectare": 10000,                    # hectare
+        "sq_nmi": 3.4299039988274e6,         # square nautical mile
+        "sq_au": 2.2379529036721e22,         # square astronomical unit
+        "sq_ly": 8.9505421074819e31,         # square light year
+        "sq_pc": 9.5214088218406e32,         # square parsec
+    }
+
+    if from_unit not in units or to_unit not in units:
+        raise ValueError("Invalid unit. Supported units: sq_m, sq_km, sq_cm, sq_mm, sq_um, sq_nm, sq_angstrom, sq_mi, sq_yd, sq_ft, sq_in, acre, hectare, sq_nmi, sq_au, sq_ly, sq_pc")
+
+    sq_meters = value * units[from_unit]
+    converted_value = sq_meters / units[to_unit]
+
+    return converted_value
+
+def volume_converter(value, from_unit, to_unit):
+    """
+    Converts between any two volume units
+    """
+    units = {
+        "cu_m": 1,                          # cubic meter
+        "cu_km": 1e9,                       # cubic kilometer
+        "cu_cm": 1e-6,                      # cubic centimeter
+        "cu_mm": 1e-9,                      # cubic millimeter
+        "cu_um": 1e-18,                     # cubic micrometer
+        "cu_nm": 1e-27,                     # cubic nanometer
+        "cu_angstrom": 1e-30,               # cubic angstrom
+        "cu_mi": 4.16818183e9,              # cubic mile
+        "cu_yd": 0.764554857984,            # cubic yard
+        "cu_ft": 0.028316846592,            # cubic foot
+        "cu_in": 1.6387064e-5,              # cubic inch
+        "l": 0.001,                         # liter
+        "ml": 1e-6,                         # milliliter
+        "gal": 0.00378541,                  # US gallon
+        "qt": 0.000946353,                  # US quart
+        "pt": 0.000473176,                  # US pint
+        "cup": 0.000236588,                 # US cup
+        "floz": 2.957353e-5,                # US fluid ounce
+        "tbsp": 1.47867648e-5,              # US tablespoon
+        "tsp": 4.92892159e-6,               # US teaspoon
+        "imp_gal": 0.00454609,              # imperial gallon
+        "imp_qt": 0.001136523,              # imperial quart
+        "imp_pt": 0.000568261,              # imperial pint
+        "imp_floz": 2.841306e-5,            # imperial fluid ounce
+    }
+
+    if from_unit not in units or to_unit not in units:
+        raise ValueError("Invalid unit. Supported units: cu_m, cu_km, cu_cm, cu_mm, cu_um, cu_nm, cu_angstrom, cu_mi, cu_yd, cu_ft, cu_in, l, ml, gal, qt, pt, cup, floz, tbsp, tsp, imp_gal, imp_qt, imp_pt, imp_floz")
+
+    cu_meters = value * units[from_unit]
+    converted_value = cu_meters / units[to_unit]
+
+    return converted_value
+
+def mass_converter(value, from_unit, to_unit):
+    units = {
+        "kg": 1,                     # kilogram
+        "g": 0.001,                  # gram
+        "mg": 1e-6,                  # milligram
+        "ug": 1e-9,                  # microgram
+        "ng": 1e-12,                 # nanogram
+        "pg": 1e-15,                 # picogram
+        "lb": 0.45359237,            # pound
+        "oz": 0.028349523125,        # ounce
+        "st": 6.35029318,            # stone
+        "ton": 907.18474,            # short ton (US ton)
+        "long_ton": 1016.0469088,    # long ton (UK ton)
+        "t": 1000,                   # metric ton
+        "ct": 0.0002,                # carat
+        "gr": 0.00006479891,         # grain
+        "amu": 1.66053904e-27,       # atomic mass unit
+    }
+
+    if from_unit not in units or to_unit not in units:
+        raise ValueError("Invalid unit. Supported units: kg, g, mg, ug, ng, pg, lb, oz, st, ton, long_ton, t, ct, gr, amu")
+
+    kilograms = value * units[from_unit]
+    converted_value = kilograms / units[to_unit]
+
+    return converted_value
 
 """
 END OF UNIT CONVERSIONS
@@ -2818,20 +2957,79 @@ def is_int(x, gaussian = False):
 def zeta(s):
     return zeta(s)
 
+def percentage_change(a, b):
+    """
+    Returns the percentage change from a to b
+    """
+    if a == b:
+        return 100.0
+    try:
+        return round(((b - a)/a)*100, 3)
+    except ZeroDivisionError:
+        return float("inf")
+    
+def percentage(a, b, integer = False):
+    """
+    Returns what percent a is of b
+    """
+    percent = a / b * 100
+    if integer:
+        return int(percent)
+    return percent
+
+def average(*numbers):
+    """
+    Returns the average of any amount of given numbers
+    """
+    total = np.sum(list(numbers))
+    length = len(numbers)
+    return total / length
+
+def consecutive_int_calc(x):
+    """
+    Returns three consecutive numbers that sum to the given number x
+    """
+    a = (x/3)-1
+    b = x/3
+    c = (x/3)+1
+    return [a, b, c]
+
+def ascending_sort(*args):
+    """
+    Sorts given values in ascending order
+    """
+    argList = list(args)
+    argList.sort()
+    return argList
+
+def descending_sort(*args):
+    """
+    Sorts given values in descending order
+    """
+    argList = list(args)
+    argList.sort(reverse=True)
+    return argList
+
 def times_tables(n):
+    """
+    Prints times tables until n
+    """
     for i in range(1, n+1):
         for j in range(i, (n*i)+i, i):
             print(str(j) + " ", end="")
         print("")
 
-def Ccefficients_quadratic(string):
+def coefficients_quadratic(string):
+    """
+    Returns the coefficients of a quadratic equation in a list given in the form of ax^2 + bx + c
+    """
     string = "".join(" " if i == "x" or i == "+" else i for i in string)
     string = string.replace("^2", " ")
     return list(map(int, string.split()))
 
-def sumToPalindrome(num, stepsList = False):
+def sum_to_palindrome(num, stepsList = False):
     """
-    Returns the amount of iterations it takes for the reverse of a number, added to the number to be a palindrome
+    Returns the amount of iterations it takes for the reverse of a number, added to the number to be a palindrome, and the resulting palindrome
     """
     isPalindrome = lambda num: num == num[::-1]
     steps = 0
@@ -2845,13 +3043,19 @@ def sumToPalindrome(num, stepsList = False):
     return "Final palindrome: " + num + ", Steps: " + str(steps) if not stepsList else "Final Palindrome: " + num + ", Steps: " + str(steps) + ", Step List: " + str([(i+1, int(j)) for i, j in enumerate(stepList)]).strip("[]")
         
 def proth_primes(k):
+    """
+    Returns the next Proth prime (k*2^n + 1) with k given 
+    """
     n = 1
-    while not primeCheck((k * 2**n) + 1):
+    while not prime_check((k * 2**n) + 1):
         n += 1
     return "Number: " + str((k * 2**n) + 1) + ", n: " + str(n)
     
 def proth_primes_check(k, n):
-    return primeCheck((k * 2**n) + 1)
+    """
+    Checks if a number is in the form of a Proth prime
+    """
+    return prime_check((k * 2**n) + 1)
 
 def is_polydivisible(number):
     """
