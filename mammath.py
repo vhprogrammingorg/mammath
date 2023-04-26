@@ -1289,9 +1289,15 @@ def mamcot(a):
 
 
 def py_theorem_ab(a, b):
+    """
+    Returns the hypotenuse of a triangle given a and b sides
+    """
     return sqrt(a**2+b**2)
 
 def py_theorem_c(c, a):
+    """
+    Returns the missing side length given one leg and the hypotenuse
+    """
     return sqrt(c**2-a**2)
 
 def cos_rule(c, b, A):
@@ -2321,6 +2327,8 @@ END OF CALCULUS
 
 
 
+
+
 """
 LINEAR ALGEBRA
 """
@@ -2484,7 +2492,13 @@ def electric_field(q, r):
     """
     return q * coulomb_constant / r ** 2
 
-def centripetal(m, v, r):
+def centripetal_acceleration(v, r):
+    """
+    Returns the centripetal acceleration for the given velocity and radius.
+    """
+    return v**2 / r
+
+def centripetal_force(m, v, r):
     """
     Calculates the centripetal force of an object in a circular motion
     """
@@ -2552,6 +2566,91 @@ def terminal_velocity(m, cross_area, drag_coefficient=0.294, air_density=1.225, 
     """
     return sqrt(2*m*gravity/(cross_area*air_density*drag_coefficient))
 
+def acceleration_constant(v, u, t):
+    """
+    Returns the acceleration when given v (final velocity), u (initial velocity, and t (time).
+    """
+    return (v-u)/t
+
+def kinetic_energy(m, v):
+    """
+    Returns the kinetic energy for the given mass and velocity.
+    """
+    return 0.5 * m * v**2
+
+def potential_energy(m, g, h):
+    """
+    Returns the potential energy for the given mass, gravity, and height.
+    """
+    return m * g * h
+
+def power(w, t):
+    """
+    Returns the power as the ratio of work done to time.
+    """
+    return w / t
+
+def momentum(m, v):
+    """
+    Returns the momentum for the given mass and velocity.
+    """
+    return m * v
+
+def impulse_momentum_theorem(f, delta_t):
+    """
+    Returns the impulse, equal to the product of force and time interval.
+    """
+    return f * delta_t
+
+def ideal_gas_law(p, v, n, R, T):
+    """
+    Returns the result of the ideal gas law equation for given pressure, volume, moles, gas constant, and temperature.
+    """
+    return p * v - n * R * T
+
+def heat_capacity(m, c, delta_t):
+    """
+    Returns the heat capacity for the given mass, specific heat capacity, and temperature change.
+    """
+    return m * c * delta_t
+
+def ohms_law(v, I, R):
+    """
+    Returns the result of Ohm's Law for the given voltage, current, and resistance.
+    """
+    return v - I * R
+
+def coulombs_law(k, q1, q2, r):
+    """
+    Returns the electrostatic force between two charges according to Coulomb's Law.
+    """
+    return coulomb_constant * q1 * q2 / r**2
+
+def faradays_law_em_induction(d_phi_b, dt):
+    """
+    Returns the induced electromotive force according to Faraday's Law of Electromagnetic Induction.
+    """
+    return -d_phi_b / dt
+
+def lensmakers_equation(n, R1, R2):
+    """
+    Returns the focal length of a lens using the lensmaker's equation.
+    """
+    return (n - 1) * (1 / R1 - 1 / R2)
+
+def time_dilation(delta_t0, v, c):
+    """
+    Returns the time dilation for a given proper time, relative velocity, and speed of light.
+    """
+    return delta_t0 / math.sqrt(1 - v**2 / c**2)
+
+def length_contraction(l0, v, c):
+    """
+    Returns the length contraction for a given proper length, relative velocity, and speed of light.
+    """
+    return l0 * math.sqrt((1 - v**2 / c**2))
+
+
 
 """
 END OF PHYSICS
@@ -2595,6 +2694,9 @@ def CoefficientsQuadratic(string):
     return list(map(int, string.split()))
 
 def sumToPalindrome(num, stepsList = False):
+    """
+    Returns the amount of iterations it takes for the reverse of a number, added to the number to be a palindrome
+    """
     isPalindrome = lambda num: num == num[::-1]
     steps = 0
     stepList = [] if stepsList else None
@@ -2603,6 +2705,7 @@ def sumToPalindrome(num, stepsList = False):
         num = str(int(num) + int(str(num)[::-1]))
         steps += 1
         stepList.append(num) if stepsList else None
+  
     return "Final palindrome: " + num + ", Steps: " + str(steps) if not stepsList else "Final Palindrome: " + num + ", Steps: " + str(steps) + ", Step List: " + str([(i+1, int(j)) for i, j in enumerate(stepList)]).strip("[]")
         
 def prothPrimes(k):
@@ -2615,6 +2718,9 @@ def prothPrimesCheck(k, n):
     return primeCheck((k * 2**n) + 1)
 
 def isPolydivisible(number):
+    """
+    Returns whether a number is polydivisible or not - a number where the first to the nth digit in the number is divisible by n
+    """
     polydiv = False
     if number > 0:
         n = number
