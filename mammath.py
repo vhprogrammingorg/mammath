@@ -1984,6 +1984,9 @@ GRAPHING
 
 #graph("2*x", "3*x")
 def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
+    """
+    Graphs any number of 2D functions given a string function of x equating to y. The first 4 keyword arguments change the axis of the graph.
+    """
     i = 0
     x = np.linspace(lrangex, urangex, graph_points)
     fig = plt.figure()
@@ -2012,6 +2015,9 @@ def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=
 
     
 def graph3dcontour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
+    """
+    Graphs any number of 3D functions given a string function of x equating to y as a contour. The first 6 keyword arguments change the axis of the graph.
+    """
     x = np.linspace(lrangex, urangex, graph_points)
     y = np.linspace(lrangey, urangey, graph_points)
     fig = plt.figure()
@@ -2035,6 +2041,9 @@ def graph3dcontour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lran
     return plt.show()
 
 def linein3d(*args, lrangex=-10, lrangey=-10, lrangez = -10, urangex=10, urangey=10, urangez = 10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, color='gray'):
+    """
+    Graphs any number of 3D functions given a list of 2 elements - a function of x and a function of y, both equating to z. The first 6 keyword arguments change the axis of the graph.
+    """
     x = np.linspace(lrangex, urangex, graph_points)
     y = np.linspace(lrangey, urangey, graph_points)
     fig = plt.figure()
@@ -2067,6 +2076,9 @@ def linein3d(*args, lrangex=-10, lrangey=-10, lrangez = -10, urangex=10, urangey
     return plt.show()
 
 def graph3dwire(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, edgecolor=False, color='black', fill='viridis'):
+    """
+    Graphs any number of 3D functions given a string function of x equating to y as a wire. The first 6 keyword arguments change the axis of the graph.
+    """
     x = np.linspace(lrangex, urangex, graph_points)
     y = np.linspace(lrangey, urangey, graph_points)
     ax = plt.axes(projection='3d')
@@ -2613,7 +2625,7 @@ def separate_vectors(vector, theta, deg=True):
 
 def electric_field(q, r):
     """
-    Calculates the acceleration from a point on an electric field
+    Calculates the acceleration from a point on an electromagnetic field
     """
     return q * coulomb_constant / r ** 2
 
@@ -2633,10 +2645,9 @@ def get_hookes(F, dx):
     """
     Returns the Hookes constant for the spring
     """
-    
     return F / dx
 
-def newtonion_gravity(m1, m2, d):
+def newtonian_gravity(m1, m2, d):
     """
     Returns the gravtitational force on two given objects of defined mass and centers d meters apart
     """
