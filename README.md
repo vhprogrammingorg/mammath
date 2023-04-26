@@ -21,7 +21,7 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 | Graphing                                         | Algebra          |
 | Linear Algebra                                   | Calculus         |
 | Complex (complex ln, etc.) | Physics (beta)      |
-|  Connversions    |  Miscellaneous (Equation parser, special numbers)|
+| Unit conversions    |  Miscellaneous (Equation parser, special numbers)|
 
 We hope Mammath is a useful and reliable asset. Install via <code>pip install mammath</code>
 
