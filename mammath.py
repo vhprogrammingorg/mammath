@@ -506,7 +506,7 @@ def bt(x):
     data.set(val)
 def do_it():
     global val
-    y = evaluateExpression(val)
+    y = eval(val)
     data.set(y)
     ans = val
     val=""
@@ -711,10 +711,10 @@ def LCM(a, b):
     return (a*b)/HCF(a, b)
     
 def summate(n, a, b):
-    return sum(nthRange(n, a, b))
+    return sum(nth_range(n, a, b))
 
 def product(n, a, b):
-    return listMultiply(nthRange(n, a, b))
+    return listMultiply(nth_range(n, a, b))
 
 def nchoosek(n, k):
     """
@@ -1325,14 +1325,14 @@ def area_tan(n, s):
     return ans
 
 def pythagorean_triplets(n):
-   """
-   Prints pythagorean triplets
-   """
-  for b in range(n):
-    for a in range(1, b):
-        c = math.sqrt(a * a + b * b)
-        if c % 1 == 0:
-            print(a, b, int(c))
+    """
+    Prints pythagorean triplets until n
+    """
+    for b in range(n):
+        for a in range(1, b):
+            c = math.sqrt(a * a + b * b)
+            if c % 1 == 0:
+                print(a, b, int(c))
             
 def pythagorean_triplets_check(a, b, c):
     """
@@ -1342,13 +1342,13 @@ def pythagorean_triplets_check(a, b, c):
 
 def hex_area(a):
     """
-    Finds the area of a regular hexagon given one side length
+    Finds the area of a regular hexagon given the side length
     """
     return 1.5 * sqrt(3) * a ** 2
 
 def pent_area(a):
     """
-    Finds the area of a regular pentagon given one side length
+    Finds the area of a regular pentagon given the side length
     """
     return sqrt(5*(5+2*sqrt(5)))/4
 
@@ -1372,6 +1372,9 @@ SEQUENCES
 """
 
 def sequence_checker(a, b, c):
+    """
+    Checks the degree / type of sequence
+    """
     while True:
         if b - a == c - b:
             print("Arithmetic")
@@ -1384,6 +1387,9 @@ def sequence_checker(a, b, c):
             break
 
 def nth_finder(a, b):
+    """
+    Returns the value of the bth term in a sequence whose formula is a
+    """
     a = str(a)
     b = str(b)
     x = a.replace("n", b)
@@ -1391,6 +1397,9 @@ def nth_finder(a, b):
     return y
 
 def nth_range(a, b, c):
+    """
+    Returns the terms b-c of a sequence defined by the formula a
+    """
     ls = []
     a = str(a)
     b = str(b)
@@ -1398,7 +1407,7 @@ def nth_range(a, b, c):
     if int(b) > int(c):
         while int(c) < int(b)+1:
             x = a.replace("n", c)
-            y = int(evaluateExpression(x))
+            y = int(eval(x))
             ls.append(y)
             c = int(c)
             c=int(c)+1
@@ -1406,7 +1415,7 @@ def nth_range(a, b, c):
     elif int(c) > int(b):
         while int(b) < int(c)+1:
             x = a.replace("n", b)
-            y = int(evaluateExpression(x))
+            y = int(eval(x))
             ls.append(y)
             b = int(b)
             b=int(b)+1
@@ -1414,6 +1423,9 @@ def nth_range(a, b, c):
     return list(ls)
 
 def nth_table(a, b, c):
+    """
+    Returns the terms b-c of a sequence defined by the formula a in a table format
+    """
     ls = []
     a = str(a)
     b = str(b)
@@ -1421,7 +1433,7 @@ def nth_table(a, b, c):
     if int(b) > int(c):
         while int(c) < int(b)+1:
             x = a.replace("n", c)
-            y = evaluateExpression(x)
+            y = eval(x)
             q = [c, y]
             ls.append(q)
             ls.append(q)
@@ -1431,17 +1443,20 @@ def nth_table(a, b, c):
     elif int(c) > int(b):
         while int(b) < int(c)+1:
             x = a.replace("n", b)
-            y = evaluateExpression(x)
+            y = eval(x)
             q = [b, y]
             ls.append(q)
             b = int(b)
             b=int(b)+1
             b = str(b)
-    headers = ["term", "value"]
-    thing = tabulate(ls, headers = headers)
-    print(thing)
+    headers = ["Term", "Value"]
+    terms = tabulate(ls, headers = headers)
+    print(terms)
 
 def arithemetic_sequence(term1, term2, term = 1):
+    """
+    Returns the general formula and nth term for a given arithmetic sequence
+    """
     dif = term2 - term1
     before = term1 - dif
     newTerm = dif*term+before
@@ -1463,7 +1478,9 @@ def remove_decimal(num):
         return num
     
 def nth_term_quadratic(*series):
-    
+    """
+    Returns the general formula for a quadratic sequence
+    """
     r1d1 = series[1] - series[0]
     r1d2 = series[2] - series[1] 
     d2 = r1d2 - r1d1 
@@ -1496,33 +1513,54 @@ END OF SEQUENCES
 
 
 def percentage_change(a, b):
+    """
+    Returns the percentage change from a to b
+    """
     if a == b:
         return 100.0
     try:
         return round(((b - a)/a)*100, 3)
     except ZeroDivisionError:
         return float("inf")
+    
 def percentage(a, b, integer = False):
+    """
+    Returns what percent a is of b
+    """
     percent = a / b * 100
     if integer:
         return int(percent)
     return percent
 
-def average(*argv):
-    total = np.sum(list(argv))
-    length = len(argv)
+def average(*numbers):
+    """
+    Returns the average of any amount of given numbers
+    """
+    total = np.sum(list(numbers))
+    length = len(numbers)
     return total / length
+
 def consecutive_int_calc(x):
+    """
+    Returns three consecutive numbers that sum to the given number x
+    """
     a = (x/3)-1
     b = x/3
     c = (x/3)+1
     return [a, b, c]
 
 def ascending_sort(*args):
+    """
+    Sorts given values in ascending order
+    """
     argList = list(args)
     argList.sort()
     return argList
+
 def descending_sort(*args):
+    """
+    Sorts given values in descending order
+    """
     argList = list(args)
     argList.sort(reverse=True)
     return argList
@@ -1537,7 +1575,8 @@ def ascending_powers(a, *args):
         i += 1
         i = str(i)
     eq += '0'
-    return nthFinder(eq, a)
+    return nth_finder(eq, a)
+
 def ascending_powers_range(a, b, *args):
     args = list(args)
     i = '0'
@@ -1548,7 +1587,8 @@ def ascending_powers_range(a, b, *args):
         i += 1
         i = str(i)
     eq += '0'  
-    return nthRange(eq, a, b)
+    return nth_range(eq, a, b)
+
 def ascendingpowers_table(a, b, *args):
     args = list(args)
     i = '0'
@@ -1559,7 +1599,7 @@ def ascendingpowers_table(a, b, *args):
         i += 1
         i = str(i)
     eq += '0'  
-    return nthTable(eq, a, b)
+    return nth_table(eq, a, b)
 
 
 
@@ -1592,6 +1632,9 @@ BASE CONVERSIONS
 """
 
 def base_converter(x, base):
+    """
+    Converts number x to any given base
+    """
     if not isinstance(x, int):
         if x.isdigit():
             x = int(x)
@@ -1619,56 +1662,102 @@ def base_converter(x, base):
     digits.reverse()
     return "".join(digits)
 
-def int_binary(num):
+def int_to_binary(num):
+    """
+    Converts an integer in base 10 to binary number in base 2
+    """
     return bin(num)[2:]
-def binary_int(num):
+def binary_to_int(num):
+    """
+    Converts binary number in base 2 to integer in base 10
+    """
     return int(str(num), 2)
 
-def int_hexa(num):
+def int_to_hex(num):
+    """
+    Converts an integer in base 10 to hexadecimal in base 16
+    """
     return hex(num)[2:]
-def hex_int(num):
+def hex_to_int(num):
+    """
+    Converts hexadecimal value in base 16 to integer in base 10
+    """
     return int(str(num, 2))
 
-def binary_hex(num):
+def binary_to_hex(num):
+    """
+    Converts binary number in base 2 to hexadecimal in base 16
+    """
     return hex(int(str(num), 2))[2:]
-def HexToBinary(num):
+def hex_to_binary(num):
+    """
+    Converts hexadecimal value in base 16 to to binary number in base 2
+    """
     return bin(int(str(num), 2))[2:]
 
 def binary_add(a, b):
-    sum = BinaryToInt(a) + BinaryToInt(b)
-    print("Binary:", IntToBinary(sum))
+    """
+    Adds two binary numbers in base two and prints the base 10 result as well
+    """
+    sum = binary_to_int(a) + binary_to_int(b)
+    print("Binary:", int_to_binary(sum))
     print("Base 10:", sum)
+    return int_to_binary(sum)
     
 def binary_subtract(a, b):
-    sub = BinaryToInt(a) - BinaryToInt(b)
-    print("Binary:", IntToBinary(sub))
+    """
+    Subtracts two binary numbers in base two and prints the base 10 result as well
+    """
+    sub = binary_to_int(a) - binary_to_int(b)
+    print("Binary:", int_to_binary(sub))
     print("Base 10:", sub)
+    return int_to_binary(sub)
     
 def binary_multiply(a, b):
-    mult = BinaryToInt(a) * BinaryToInt(b)
-    print("Binary:", IntToBinary(mult))
+    """
+    Multiplies two binary numbers in base two and prints the base 10 result as well
+    """
+    mult = binary_to_int(a) * binary_to_int(b)
+    print("Binary:", int_to_binary(mult))
     print("Base 10:", mult)
+    return int_to_binary(mult)
     
 def binary_divide(a, b):
-    div = BinaryToInt(a) / BinaryToInt(b)
-    print("Binary:", IntToBinary(div))
+    """
+    Divides two binary numbers in base two and prints the base 10 result as well
+    """
+    div = binary_to_int(a) / binary_to_int(b)
+    print("Binary:", int_to_binary(div))
     print("Base 10:", div)
+    return int_to_binary(div)
     
-def hexa_add(a, b):
-    sum = HexaToInt(a) + HexaToInt(b)
-    print("Hexadecimal:", IntToHexa(sum))
+def hex_add(a, b):
+    """
+    Adds two hexadecimal numbers in base 16 and prints the base 10 result as well
+    """
+    sum = hex_to_int(a) + hex_to_int(b)
+    print("Hexadecimal:", int_to_hex(sum))
     print("Base 10:", sum)
-def hexa_subtract(a, b):
-    sub = HexaToInt(a) - HexaToInt(b)
-    print("Hexadecimal:", IntToHexa(sub))
+def hex_subtract(a, b):
+    """
+    Subtracts two hexadecimal numbers in base 16 and prints the base 10 result as well
+    """
+    sub = hex_to_int(a) - hex_to_int(b)
+    print("Hexadecimal:", int_to_hex(sub))
     print("Base 10:", sub)
-def hexa_multiply(a, b):
-    mult = HexaToInt(a) * HexaToInt(b)
-    print("Hexadecimal:", IntToHexa(mult))
+def hex_multiply(a, b):
+    """
+    Multiplies two hexadecimal numbers in base 16 and prints the base 10 result as well
+    """
+    mult = hex_to_int(a) * hex_to_int(b)
+    print("Hexadecimal:", int_to_hex(mult))
     print("Base 10:", mult)
 def hex_divide(a, b):
-    div = HexaToInt(a) / HexaToInt(b)
-    print("Hexadecimal:", IntToHexa(div))
+    """
+    Divides two hexadecimal numbers in base 16 and prints the base 10 result as well
+    """
+    div = hex_to_int(a) / hex_to_int(b)
+    print("Hexadecimal:", int_to_hex(div))
     print("Base 10:", div)
 
 """
@@ -1682,6 +1771,9 @@ TABLES
 """
 
 def const_table(category=None):
+    """
+    Prints a table of all constants, with the option to choose a category
+    """
     headers = ["Name", "Symbol", "Value", "Unit"]
 
     math_constants = [
@@ -1848,6 +1940,9 @@ def const_table(category=None):
   
     
 def trig_table():
+    """
+    Prints a table of the most useful trigonometric identities
+    """
     identities = {"Quotient Identities": ["tanθ = sinθ/cosθ", "cotθ = cosθ/sinθ"],
            "Reciprocal Identities": ["cotθ = 1/tanθ", "cscθ = 1/sinθ", "sec = 1/cosθ"],
            "Pythagorean Identities": ["sin^2θ + cos^2θ = 1", "tan^2θ + 1 = sec^2θ", "1 + cot^2θ = csc^2θ"],
@@ -2013,6 +2108,9 @@ ALGEBRA
 """
 
 def quadratic_solver(a,b,c):
+    """
+    Prints the roots of a quadratic function in the form of ax^2 + bx + c = 0
+    """
     dis = b * b - 4 * a * c
     sqrt_val = math.sqrt(abs(dis))
     if dis > 0:
@@ -2026,7 +2124,10 @@ def quadratic_solver(a,b,c):
         print(- b / (2 * a), " - i", sqrt_val)
 
         
-def solve_gauss_elimination(*equations):              
+def solve_gauss_elimination(*equations):
+    """
+    Solves any system of equations using Gaussian Elimination
+    """
     equations = list(equations)
     for i in range(0, len(equations)):
         equations[i] = equations[i].replace(" ", "")
@@ -2195,6 +2296,9 @@ def solve_gauss_elimination(*equations):
     return answer
 
 def linear_system_2x2(equation1, equation2):
+    """
+    Solves any 2x2 system of equations
+    """
     def preprocess_equation(eq):
         eq = eq.replace(" ", "")
         eq = eq.replace("+x", "+1x").replace("+y", "+1y")
@@ -2221,71 +2325,42 @@ def linear_system_2x2(equation1, equation2):
     sols = [round(float(x), 1) if round(float(x)) == float(x) else "%0.4f" % x for x in solMatrix.flatten()]
     check = np.allclose(np.dot(coMatrix, solMatrix), productMatrix)
 
-    return print(f"x: {sols[0]}\ny: {sols[1]}") if check else None
-
-def linear_system_NxN(*equations):
-    n = len(equations)
-
-    def preprocess_equation(eq):
-        eq = eq.replace(" ", "")
-        return eq
-
-    preprocessed_equations = [preprocess_equation(eq) for eq in equations]
-
-    def parse_variables(eqs):
-        var_set = set()
-        for eq in eqs:
-            var_set.update(re.findall(r"[a-zA-Z]+", eq))
-        return sorted(list(var_set))
-
-    variables = parse_variables(preprocessed_equations)
-
-    def parse_equation(eq, n, variables):
-        coeffs = [0.0] * n
-        for i, var in enumerate(variables):
-            match = re.search(f"[-+]?\d*\.?\d*{var}", eq)
-            if match:
-                coeff = re.search("[-+]?\d*\.?\d+", match.group(0))
-                if coeff:
-                    coeffs[i] = float(coeff.group(0))
-                else:
-                    coeffs[i] = 1.0 if match.group(0)[0] == '+' else -1.0
-        product = float(re.search("[-+]?\d*\.?\d*$", eq).group(0))
-        return coeffs, product
-
-    coefficients, products = [], []
-
-    for eq in preprocessed_equations:
-        coeffs, product = parse_equation(eq, n, variables)
-        coefficients.append(coeffs)
-        products.append(product)
-
-    coMatrix = np.array(coefficients)
-    productMatrix = np.array(products).reshape(n, 1)
-
-    solMatrix, residuals, rank, s = np.linalg.lstsq(coMatrix, productMatrix, rcond=None)
-    sols = [round(float(x), 4) for x in solMatrix.flatten()]
-    check = np.allclose(np.dot(coMatrix, solMatrix), productMatrix)
-
-    if check:
-        return {var: sol for var, sol in zip(variables, sols)}
-    else:
-        return None
-    
+    return print(f"x: {sols[0]}\ny: {sols[1]}") if check else None    
 
 def discriminant_quadratic(a, b, c):
+    """
+    Discriminant of a quadratic equation in the form of ax^2 + bx + c = 0
+    """
     return b**2 - 4 * a * c
 
-def root1_quadratic(a, b, c, disc):
+def rootp_quadratic(a, b, c, disc):
+    """
+    Returns the plus root of a quadratic equation in the form of ax^2 + bx + c = 0
+    """
     return (-b + disc ** (1/2)) / (2 * a)
 
-def root2_quadratic(a, b, c, disc):
+def rootm_quadratic(a, b, c, disc):
+    """
+    Returns the minus root of a quadratic equation in the form of ax^2 + bx + c = 0
+    """
     return (-b - disc ** (1/2)) / (2 * a)
 
+def roots_quadratic(a, b, c):
+    """
+    Returns the roots of a quadratic equation in the form of ax^2 + bx + c = 0 as a tuple
+    """
+    return (rootp_quadratic(a, b, c, discriminant_quadratic(a, b, c), rootm_quadratic(a, b, c, discriminant_quadratic(a, b, c))))
+            
 def solve_first_degree(b, c):
+    """
+    Returns the solution of a first degree equation in the form of bx+c=0
+    """
     return -c / b
 
 def second_degree_solver(a, b, c):
+    """
+    Prints the solutions up to a second degree equation
+    """
     if a == 0:
         if b == 0:
             return "The equation is indeterminate" if c == 0 else "Impossible situation. Wrong entries"
@@ -2322,14 +2397,23 @@ CALCULUS
 """
 
 def derivative_at(f_of, x):
+    """
+    Returns the derivative of any function at a point x
+    """
     h = 0.00001
     return round(1 / (12 * h) * (f_of(x - 2 * h) - 8 * f_of(x - h) + 8 * f_of(x + h) - f_of(x + 2 * h)), 7)
     #1/12h * f(x-2 *h) - 8*f(x-h) + 8*f(x+h) - f(x+2*h)
 
 def derivative(f_of, solvefor):
+    """
+    Returns the symbolic derivative of any function
+    """
     return diff(f_of, solvefor)
     
 def def_integral(f, lowerbound, upperbound, n = 10000):
+    """
+    Returns the definite integral of any function with the lower and upper bounds specified
+    """
     stepLen = (upperbound - lowerbound) / n
     lb = lowerbound
     xRange = np.arange(lb, upperbound, stepLen)
@@ -2340,15 +2424,15 @@ def def_integral(f, lowerbound, upperbound, n = 10000):
     return round(integralVal, 5)
 
 def indef_integral(f_of, solvefor):
+    """
+    Returns the symbolic integral of any function
+    """
     integral = str(integrate(f_of, solvefor)) + " + C"
     return integral 
 
 """
 END OF CALCULUS
 """
-
-
-
 
 
 """
@@ -2666,11 +2750,11 @@ def time_dilation(delta_t0, v, c):
     """
     return delta_t0 / math.sqrt(1 - v**2 / c**2)
 
-def length_contraction(l0, v, c):
+def length_contraction(length, v):
     """
     Returns the length contraction for a given proper length, relative velocity, and speed of light.
     """
-    return l0 * math.sqrt((1 - v**2 / c**2))
+    return length * math.sqrt((1 - v**2 / c**2))
 
 
 
