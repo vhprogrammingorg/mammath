@@ -18,7 +18,6 @@ from mpl_toolkits import mplot3d
 import inspect
 import re
 import mpmath
-import scipy
 
 # Mathematics
 π = pi = 3.14159265359
@@ -635,7 +634,7 @@ def factorial(a):
     """
     Returns the factorial (n*factorial(n-1)) of a
     """
-    
+    a = int(a)
     x = 1
     while a > 0:
         x *=a
@@ -677,24 +676,6 @@ def remainder(a, b):
     """
     
     return a % b
-
-def gamma(a):
-    pass
-
-def lgamma(a):
-    return math.lgamma(a)
-    pass
-
-def to_degrees(a):
-    """
-    Returns the angle in radians given converted into degrees
-    """
-    return math.degrees(a)
-def to_radians(a):
-    """
-    Returns the angle in degrees given converted into radians
-    """
-    return math.radians(a)
 
 def HCF(a, b):
     """
@@ -1134,6 +1115,18 @@ END OF FRACTIONS
 GEOMETRY
 """
 
+def rad_to_deg(rad):
+    """
+    Converts radians to degrees
+    """
+    return rad * 180/pi
+
+def deg_to_rad(deg):
+    """
+    Converts degrees to radians
+    """
+    return deg * pi/180
+
 def valid_triangle(s1, s2, s3):
     """
     If a triangle with three given sides is valid
@@ -1254,18 +1247,6 @@ def cone_height(r, vol):
     """
     height = 3*(vol/(pi*r**2))
     return round(height, 5)
-
-def rad_to_deg(rad):
-    """
-    Converts radians to degrees
-    """
-    return rad * 180/pi
-
-def deg_to_rad(deg):
-    """
-    Converts degrees to radians
-    """
-    return deg * pi/180
 
 def mamsin(a):
     return math.sin(a)
@@ -2391,6 +2372,13 @@ def indef_integral(f_of, solvefor):
     integral = str(integrate(f_of, solvefor)) + " + C"
     return integral 
 
+def gamma(x):
+    gammaF = lambda t: t**(x) * exp(-t)
+    return def_integral(gammaF, 0.001, 1000)
+
+def lgamma(a):
+    return math.lgamma(a)
+
 """
 END OF CALCULUS
 """
@@ -2813,11 +2801,11 @@ def photon_energy(frequency):
     """
     return h * frequency
 
-
-
 """
 END OF PHYSICS
 """
+
+
 
 """
 UNIT CONVERSIONS
