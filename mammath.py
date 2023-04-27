@@ -522,6 +522,40 @@ def clear():
 """
 END OF MATH TEACHERS
 """
+
+
+
+"""
+HELPER FUNCTIONS
+"""
+
+def f(fx, x, y):
+    if type(eval(fx)) == np.ndarray:
+        return eval(fx)
+
+def parse_equation(eq):
+    pass
+
+def standard_form_float(n):
+    """
+    Converts a standard for tuple of type (a, b) = a * 10 ** b to a float
+    """
+    return n[0] * 10 ** n[1]
+
+def parse_standard(sf):
+    #3 * 10^5
+    sf = sf.replace(" ", "").split("*")
+    sf[-1] = sf[-1][3:]
+    return tuple(map(int, sf))
+
+def parse_to_standard(tup):
+    return f"{tup[0]} * 10^{tup[1]}"
+
+"""
+END OF HELPER FUNCTIONS
+"""
+
+
     
 """
 OPERATIONS
@@ -554,7 +588,7 @@ def divide(a, *args):
     """
     Divides any amount of numbers
     """
-    return a / listMultiply(args)
+    return a / multiply(*args)
 
 
 def listMultiply(lis):
@@ -563,8 +597,8 @@ def listMultiply(lis):
     """
     x = 1
     y = 0
-    while y < len(List):
-        x = x*List[y]
+    while y < len(lis):
+        x = x*lis[y]
         y+=1
     return x
 
@@ -704,15 +738,73 @@ def nchoosek(n, k):
     """
     Returns nCk given by the formula n!/k!(n-k)!
     """
-    
     return factorial(n)/(factorial(n-k)*factorial(k))
 
 def permutations(n, r):
     """
     Returns nPr given by the formula n!/(n-k)!
     """
-    
     return factorial(n)/factorial(n-r)
+
+def to_standard_form(n):
+    """
+    Converts the integer n to standard form as a tuple, (a, b) where n = a * 10 ** b
+    """
+    t = 0
+    while n > 10:
+        n /= 10
+        t += 1
+    return n, t
+
+def standard_add(*args, rt=to_standard_form):
+    """
+    Adds any number of numbers in standard form, given in (a, b) where a * 10 ** b
+    """
+    if isinstance(args[0], tuple):        
+        return parse_to_standard(rt(add(*[i[0] * 10 ** i[1] for i in args])))
+    else:
+        args = list(args)
+        for i in range(0, len(args)):
+            args[i] = parse_standard(args[i])
+        return parse_to_standard(rt(add(*[i[0] * 10 ** i[1] for i in args])))
+
+def standard_mult(*args, rt=to_standard_form):
+    """
+    Multiplies any number of numbers in standard form, given in (a, b) where a * 10 ** b
+    """
+    if isinstance(args[0], tuple):        
+        return parse_to_standard(rt(multiply(*[i[0] * 10 ** i[1] for i in args])))
+    else:
+        args = list(args)
+        for i in range(0, len(args)):
+            args[i] = parse_standard(args[i])
+        return parse_to_standard(rt(multiply(*[i[0] * 10 ** i[1] for i in args])))
+
+def standard_div(a, *args, rt=to_standard_form):
+    """
+    Divides one number by any number of numbers, all in standard form, given in (a, b) where a * 10 ** b
+    """
+    if isinstance(args[0], tuple):
+        print(a[0] * 10 ** a[1])
+        return parse_to_standard(rt(divide(a[0] * 10 ** a[1], *[i[0] * 10 ** i[1] for i in args])))
+    else:
+        args = list(args)
+        for i in range(0, len(args)):
+            args[i] = parse_standard(args[i])
+        return parse_to_standard(rt(divide(parse_standard(a)[0] * 10 ** parse_standard(a)[1], *[i[0] * 10 ** i[1] for i in args])))
+
+def standard_sub(a, *args, rt=to_standard_form):
+    """
+    Subtracts one number by any number of numbers, all in standard form, given in (a, b) where a * 10 ** b
+    """
+    if isinstance(args[0], tuple):        
+        return parse_to_standard(rt(subtract(a[0] * 10 ** a[1], *[i[0] * 10 ** i[1] for i in args])))
+    else:
+        args = list(args)
+        for i in range(0, len(args)):
+            args[i] = parse_standard(args[i])
+        
+        return parse_to_standard(rt(subtract(parse_standard(a)[0]*10**parse_standard(a)[1], *[i[0] * 10 ** i[1] for i in args])))
 
 
     
@@ -936,6 +1028,25 @@ def perfect_number_printer(lower, upper, list = False):
         return perfects
     for i in perfects:
         print(i)
+
+def pascals_printer(n):
+    """
+    Gives the rows up to the nth row of Pascal's triangle
+    """
+    for i in range(n):
+        print('')
+        for j in range(i+1):
+            print(factorial(i)//(factorial(j)*factorial(i-j)), end=" ")
+            
+def pascals(n):
+    """
+    Gives the nth row of the pascals triangle
+    """
+    l = []
+    for i in range(n+1):
+        l.append(factorial(n)//(factorial(i)*factorial(n-i)))     
+    return l
+
 
 
 """
@@ -1885,26 +1996,6 @@ def trig_table():
 """
 END OF TABLES
 """
-
-
-
-"""
-HELPER FUNCTIONS
-"""
-
-def f(fx, x, y):
-    if type(eval(fx)) == np.ndarray:
-        return eval(fx)
-
-def parse_equation(eq):
-    pass
-
-"""
-END OF HELPER FUNCTIONS
-"""
-
-
-
 
 
 
@@ -3101,34 +3192,6 @@ def weighted_avg(*args):
         t += i[1]
         x += i[0] * i[1]
     return x / t
-
-def to_standard_form(n):
-    """
-    Converts the integer n to standard form as a tuple, (a, b) where n = a * 10 ** b
-    """
-    t = 0
-    while n > 10:
-        n /= 10
-        t += 1
-    return n, t
-
-def pascals_printer(n):
-    """
-    Gives the rows up to the nth row of Pascal's triangle
-    """
-    for i in range(n):
-        print('')
-        for j in range(i+1):
-            print(factorial(i)//(factorial(j)*factorial(i-j)), end=" ")
-            
-def pascals(n):
-    """
-    Gives the nth row of the pascals triangle
-    """
-    l = []
-    for i in range(n+1):
-        l.append(factorial(n)//(factorial(i)*factorial(n-i)))     
-    return l
 
 def reflect_num(n, rn):
     """
