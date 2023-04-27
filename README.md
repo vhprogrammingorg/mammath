@@ -11,7 +11,7 @@ Mammath is the python library with all the functions you need to do complicated 
     <li>Fixed all general functions bugs that we were aware of</li>
     <li>Added docstrings to all functions</li>
     <li>Added 120 new constants</li>
-    <li>Added unit conversion functions with distance, area and volume</li>
+    <li>Added unit conversion functions with distance, area, volume and mass</li>
     <li>Many new maths functions, including equation solvers and linear algebra functions, populated each category with many more functions</li>
     <li>Added a new physics section with 40+ functions already. This includes utilities like a Solar System class to access planets, implementations of many popular and useful physics formulas, such as a SUVAT equation solver, a Schwarzschild radius calculator, and many others. This section is still expanding. </li>
 </ul>
