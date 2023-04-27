@@ -1226,6 +1226,7 @@ END OF FRACTIONS
 GEOMETRY
 """
 
+
 def rad_to_deg(rad):
     """
     Converts radians to degrees
@@ -1359,95 +1360,78 @@ def cone_height(r, vol):
     height = 3*(vol/(pi*r**2))
     return round(height, 5)
 
-def b(x):
-    return x
 
 def sin(theta, radians=False):
-	"""
-	Computes the value of sin(theta)
-	"""
-	f = b if radians else deg_to_rad
-	return math.sin(f(theta))
+    """
+    Computes the value of sin(theta)
+    """
+    return rad_to_deg(math.sin(n)) if radians else math.sin(n)
 
 def cos(theta, radians=False):
-	"""
-	Computes the value of cos(theta)
-	"""
-	f = b if radians else deg_to_rad
-	return math.cos(f(theta))
-	
+    """
+    Computes the value of cos(theta)
+    """
+    return rad_to_deg(math.cos(n)) if radians else math.cos(n)
+    
 def tan(theta, radians=False):
-	"""
-	Computes the value of tan(theta)
-	"""
-	f = b if radians else deg_to_rad
-	return math.tan(f(theta))
-	
+    """
+    Computes the value of tan(theta)
+    """
+    return rad_to_deg(math.tan(n)) if radians else math.tan(n)
+    
 def csc(theta, radians=False):
-	"""
-	Computes the value of cosecant(theta)
-	"""
-	f = b if radians else deg_to_rad
-	return 1/math.sin(f(theta))
+    """
+    Computes the value of cosecant(theta)
+    """
+    return rad_to_deg(1/math.sin(1/n)) if radians else 1/math.sin(n)
 
 def sec(theta, radians=False):
-	"""
-	Computes the value of secant(theta)
-	"""
-	f = b if radians else deg_to_rad
-	return 1/math.cos(f(theta))
-	
+    """
+    Computes the value of secant(theta)
+    """
+    return rad_to_deg(1/math.cos(n)) if radians else 1/math.cos(n)
+    
 def cot(theta, radians=False):
-	"""
-	Computes the value of cotangent(theta)
-	"""
-	f = b if radians else deg_to_rad
-	return 1/math.tan(f(theta))
-	
+    """
+    Computes the value of cotangent(theta)
+    """
+    return rad_to_deg(1/math.atan(n)) if radians else 1/math.atan(n)
 	
 def acsc(n, radians=False):
-	"""
-	Computes the value of arccosecant(n)
-	"""
-	f = b if radians else rad_to_deg
-	return f(math.asin(1/n))
+    """
+    Computes the value of arccosecant(n)
+    """
+    return rad_to_deg(math.asin(1/n)) if radians else math.asin(1/n)
 
 def asec(theta, radians=False):
-	"""
-	Computes the value of arcsecant(n)
-	"""
-	f = b if radians else rad_to_deg
-	return f(math.acos(1/n))
+    """
+    Computes the value of arcsecant(n)
+    """
+    return rad_to_deg(math.acos(1/n)) if radians else math.acos(1/n)
 	
 def acot(theta, radians=False):
-	"""
-	Computes the value of arccotangent(n)
-	"""
-	f = b if radians else rad_to_deg
-	return f(math.atan(1/n))
-	
-	
+    """
+    Computes the value of arccotangent(n)
+    """
+    return rad_to_deg(math.atan(1/n)) if radians else math.atan(1/n)
 	
 def asin(n, radians=False):
-	"""
-	Computes the value of arcsin(n)
-	"""
-	f = b if radians else rad_to_deg
-	return f(math.asin(n))
+    """
+    Computes the value of arcsin(n)
+    """
+    return rad_to_deg(math.asin(n)) if radians else math.asin(n)
 
 def acos(n, radians=False):
-	"""
-	Computes the value of arccos(n)
-	"""
-	f = b if radians else rad_to_deg
-	return f(math.acos(n))
+    """
+    Computes the value of arccos(n)
+    """
+    return rad_to_deg(math.acos(n)) if radians else math.acos(n)
 	
 def atan(n, radians=False):
-	"""
-	Computes the value of arctan(n)
-	"""
-	f = b if radians else rad_to_deg
-	return f(math.atan(n))
+    """
+    Computes the value of arctan(n)
+    """
+    return rad_to_deg(math.atan(n)) if radians else math.atan(n)
 
 def sinh(a):
     return math.sinh(a)
@@ -1526,7 +1510,6 @@ def herons_formula(a, b, c):
     """
     s = (a+b+c)/2
     return sqrt(s*(s-a)*(s-b)*(s-c))
-
 
 
 """
@@ -2537,9 +2520,6 @@ def indef_integral(f_of, solvefor):
 def gamma(x):
     gammaF = lambda t: t**(x) * exp(-t)
     return def_integral(gammaF, 0.001, 1000)
-
-def lgamma(a):
-    return math.lgamma(a)
 
 """
 END OF CALCULUS
