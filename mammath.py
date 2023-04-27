@@ -18,6 +18,7 @@ from mpl_toolkits import mplot3d
 import inspect
 import re
 import mpmath
+import scipy
 
 # Mathematics
 π = pi = 3.14159265359
@@ -1253,6 +1254,18 @@ def cone_height(r, vol):
     """
     height = 3*(vol/(pi*r**2))
     return round(height, 5)
+
+def rad_to_deg(rad):
+    """
+    Converts radians to degrees
+    """
+    return rad * 180/pi
+
+def deg_to_rad(deg):
+    """
+    Converts degrees to radians
+    """
+    return deg * pi/180
 
 def mamsin(a):
     return math.sin(a)
@@ -3128,6 +3141,12 @@ def pascals(n):
     for i in range(n+1):
         l.append(factorial(n)//(factorial(i)*factorial(n-i)))     
     return l
+
+def reflect_num(n, rn):
+    """
+    Reflects a number over another number on a number line
+    """
+    return rn * 2 - n
 
 """
 END OF MISC
