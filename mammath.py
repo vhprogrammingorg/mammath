@@ -533,8 +533,27 @@ def f(fx, x, y):
     if type(eval(fx)) == np.ndarray:
         return eval(fx)
 
+def preprocess_equation(eq):
+    """
+    Helper function for adding the appropriate coefficients to equations 
+    """
+    eq = eq.replace(" ", "")
+    eq = eq.replace("+x", "+1x").replace("+y", "+1y")
+    eq = eq.replace("-x", "-1x").replace("-y", "-1y")
+    if eq[0] == "x" or eq[0] == "y":
+        eq = "1" + eq
+    return eq
+
 def parse_equation(eq):
-    pass
+    """
+    Parses a linear equation in the form of ax+by=c into its coefficients and product 
+    """
+    equation = preprocess_equation(eq)
+    equation = equation.replace("x", " ").replace("y", " ").replace("=", " ").replace("+", "").split()
+    coefficients = list(map(float, equation[:2]))
+    product = float(equation[2])
+
+    return coefficients, product
 
 def standard_form_float(n):
     """
@@ -543,13 +562,26 @@ def standard_form_float(n):
     return n[0] * 10 ** n[1]
 
 def parse_standard(sf):
-    #3 * 10^5
+    """
+    Converts a standard form equation in the form of n*10^m into a tuple of (n, m)
+    """
     sf = sf.replace(" ", "").split("*")
     sf[-1] = sf[-1][3:]
     return tuple(map(int, sf))
 
 def parse_to_standard(tup):
+    """
+    Converts a tuple in the form of (n, m) into standard form in the form of n * 10^m
+    """
     return f"{tup[0]} * 10^{tup[1]}"
+
+def remove_decimal(num):
+    """
+    Removes the .0 from a floating point number
+    """
+    if(num == int(num)):
+        return int(num)
+    return num
 
 """
 END OF HELPER FUNCTIONS
@@ -1622,11 +1654,6 @@ def arithemetic_sequence(term1, term2, term = 1):
         else:
             print("Nth Term:", str(dif) + "n" + " + " + str(before))
             print(str(term) + "th term:", str(newTerm))
-
-def remove_decimal(num):
-        if(num == int(num)):
-            return int(num)
-        return num
     
 def nth_term_quadratic(*series):
     """
@@ -2607,15 +2634,30 @@ END OF LINEAR ALGEBRA
 COMPLEX
 """
 
-def complex_ln(num):
+def negative_log(base, argument):
+    pass
+
+def negative_ln(num, show_general = True):
+    """
+    Returns the natural log of a negative number
+    """
+    if show_general:
+        principle = str(ln(-num)) + ' + iπ'
+        general = str(ln(-num)) + 'iπ(2n+1) n ∊ ℤ'
+        print(f"Principal Value: {principle}")
+        print(f"General: {general}")
+        
+    return complex(ln(-num), pi)
+
+def complex_ln(a, b, show_general = True):
     """
     Returns the natural log of a complex number
-    """
-    principle = str(ln(-num)) + ' + iπ'
-    general = str(ln(-num)) + 'iπ(2n+1) n ∊ ℤ'
-    print(f"Principal Value: {principle}")
-    print(f"General: {general}")
-    return str(ln(-num)) + " + " + str(math.pi) + 'i'
+    """        
+    return ln(a) * complex(ln(b), pi)
+
+def root_i(root):
+    return sqrt(2)/2 + sqrt(2)/2j, -sqrt(2)/2-sqrt(2)/2j
+
 
 
 """
