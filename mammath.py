@@ -1359,37 +1359,108 @@ def cone_height(r, vol):
     height = 3*(vol/(pi*r**2))
     return round(height, 5)
 
-def mamsin(a):
-    return math.sin(a)
-def mamcos(a):
-    return math.cos(a)
-def mamtan(a):
-    return math.tan(a)
-def mamasin(a):
-    return math.asin(a)
-def mamacos(a):
-    return math.acos(a)
-def mamatan(a):
-    return math.atan(a)
-def mamsinh(a):
-    return math.sinh(a)
-def mamcosh(a):
-    return math.cosh(a)
-def mamtanh(a):
-    return math.tanh(a)
-def mamasinh(a):
-    return math.asinh(a)
-def mamacosh(a):
-    return math.acosh(a)
-def mamatanh(a):
-    return math.atanh(a)
-def mamsec(a):
-    return round(1/cos(a), 5)
-def mamcsc(a):
-    return round(1/sin(a), 5)
-def mamcot(a):
-    return round(1/tan(a), 5)
+def b(x):
+    return x
 
+def sin(theta, radians=False):
+	"""
+	Computes the value of sin(theta)
+	"""
+	f = b if radians else deg_to_rad
+	return math.sin(f(theta))
+
+def cos(theta, radians=False):
+	"""
+	Computes the value of cos(theta)
+	"""
+	f = b if radians else deg_to_rad
+	return math.cos(f(theta))
+	
+def tan(theta, radians=False):
+	"""
+	Computes the value of tan(theta)
+	"""
+	f = b if radians else deg_to_rad
+	return math.tan(f(theta))
+	
+def csc(theta, radians=False):
+	"""
+	Computes the value of cosecant(theta)
+	"""
+	f = b if radians else deg_to_rad
+	return 1/math.sin(f(theta))
+
+def sec(theta, radians=False):
+	"""
+	Computes the value of secant(theta)
+	"""
+	f = b if radians else deg_to_rad
+	return 1/math.cos(f(theta))
+	
+def cot(theta, radians=False):
+	"""
+	Computes the value of cotangent(theta)
+	"""
+	f = b if radians else deg_to_rad
+	return 1/math.tan(f(theta))
+	
+	
+def acsc(n, radians=False):
+	"""
+	Computes the value of arccosecant(n)
+	"""
+	f = b if radians else rad_to_deg
+	return f(math.asin(1/n))
+
+def asec(theta, radians=False):
+	"""
+	Computes the value of arcsecant(n)
+	"""
+	f = b if radians else rad_to_deg
+	return f(math.acos(1/n))
+	
+def acot(theta, radians=False):
+	"""
+	Computes the value of arccotangent(n)
+	"""
+	f = b if radians else rad_to_deg
+	return f(math.atan(1/n))
+	
+	
+	
+def asin(n, radians=False):
+	"""
+	Computes the value of arcsin(n)
+	"""
+	f = b if radians else rad_to_deg
+	return f(math.asin(n))
+
+def acos(n, radians=False):
+	"""
+	Computes the value of arccos(n)
+	"""
+	f = b if radians else rad_to_deg
+	return f(math.acos(n))
+	
+def atan(n, radians=False):
+	"""
+	Computes the value of arctan(n)
+	"""
+	f = b if radians else rad_to_deg
+	return f(math.atan(n))
+
+def sinh(a):
+    return math.sinh(a)
+def cosh(a):
+    return math.cosh(a)
+def tanh(a):
+    return math.tanh(a)
+def asinh(a):
+    return math.asinh(a)
+def acosh(a):
+    return math.acosh(a)
+def atanh(a):
+    return math.atanh(a)
 
 def py_theorem_ab(a, b):
     """
