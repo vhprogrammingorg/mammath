@@ -567,7 +567,7 @@ def parse_standard(sf):
     """
     sf = sf.replace(" ", "").split("*")
     sf[-1] = sf[-1][3:]
-    return tuple(map(int, sf))
+    return tuple(map(float, sf))
 
 def parse_to_standard(tup):
     """
@@ -1397,37 +1397,37 @@ def sin(theta, radians=False):
     """
     Computes the value of sin(theta)
     """
-    return rad_to_deg(math.sin(n)) if radians else math.sin(n)
+    return rad_to_deg(math.sin((theta))) if radians else math.sin((theta))
 
 def cos(theta, radians=False):
     """
     Computes the value of cos(theta)
     """
-    return rad_to_deg(math.cos(n)) if radians else math.cos(n)
+    return rad_to_deg(math.cos((theta))) if radians else math.cos((theta))
     
 def tan(theta, radians=False):
     """
     Computes the value of tan(theta)
     """
-    return rad_to_deg(math.tan(n)) if radians else math.tan(n)
+    return rad_to_deg(math.tan((theta))) if radians else math.tan((theta))
     
 def csc(theta, radians=False):
     """
     Computes the value of cosecant(theta)
     """
-    return rad_to_deg(1/math.sin(1/n)) if radians else 1/math.sin(n)
+    return rad_to_deg(1/math.sin(theta)) if radians else 1/math.sin((theta))
 
 def sec(theta, radians=False):
     """
     Computes the value of secant(theta)
     """
-    return rad_to_deg(1/math.cos(n)) if radians else 1/math.cos(n)
+    return rad_to_deg(1/math.cos((theta))) if radians else 1/math.cos((theta))
     
 def cot(theta, radians=False):
     """
     Computes the value of cotangent(theta)
     """
-    return rad_to_deg(1/math.atan(n)) if radians else 1/math.atan(n)
+    return rad_to_deg(1/math.atan((theta))) if radians else 1/math.atan((theta))
 	
 def acsc(n, radians=False):
     """
@@ -2413,22 +2413,6 @@ def linear_system_2x2(equation1, equation2):
     """
     Solves any 2x2 system of equations
     """
-    def preprocess_equation(eq):
-        eq = eq.replace(" ", "")
-        eq = eq.replace("+x", "+1x").replace("+y", "+1y")
-        eq = eq.replace("-x", "-1x").replace("-y", "-1y")
-        if eq[0] == "x" or eq[0] == "y":
-            eq = "1" + eq
-        return eq
-
-    equation1, equation2 = preprocess_equation(equation1), preprocess_equation(equation2)
-
-    def parse_equation(eq):
-        eq = eq.replace("x", " ").replace("y", " ").replace("=", " ").replace("+", "").split()
-        coefficients = list(map(float, eq[:2]))
-        product = float(eq[2])
-        return coefficients, product
-
     coefficients1, product1 = parse_equation(equation1)
     coefficients2, product2 = parse_equation(equation2)
 
@@ -2492,8 +2476,11 @@ def second_degree_solver(a, b, c):
             return f"Two solutions: {sorted_sol[0]}, {sorted_sol[1]}"
 
 def inequality(eq):
+    #2x > 10
     pass
 
+def euler_formula(num):
+    return exp(x)
 """
 END OF ALGEBRA
 """
@@ -2634,13 +2621,13 @@ END OF LINEAR ALGEBRA
 COMPLEX
 """
 
-def negative_log(base, argument):
-    pass
-
-def negative_ln(num, show_general = True):
+def negative_ln(num, show_general = False):
     """
     Returns the natural log of a negative number
     """
+    if num > 0:
+        return "Please enter a number < 0"
+    
     if show_general:
         principle = str(ln(-num)) + ' + iπ'
         general = str(ln(-num)) + 'iπ(2n+1) n ∊ ℤ'
@@ -2649,14 +2636,35 @@ def negative_ln(num, show_general = True):
         
     return complex(ln(-num), pi)
 
+def negative_log(base, argument, show_general = False):
+    argument_ln = negative_ln(argument)
+    base_ln = negative_ln(base)
+    principle_value = (argument_ln.real / base_ln.real)
+
+    if show_general == True:
+        print(f"(ln({-argument}) + iπ(2n+1))/(ln({-base}) + iπ(2m+1))")
+        
+    return principle_value
+    
+
 def complex_ln(a, b, show_general = True):
     """
     Returns the natural log of a complex number
     """        
     return ln(a) * complex(ln(b), pi)
 
-def root_i(root):
-    return sqrt(2)/2 + sqrt(2)/2j, -sqrt(2)/2-sqrt(2)/2j
+def root_i(n):
+    root = n
+    """
+    Returns the nth root of i
+    """
+    solutions= []
+    for x in range(0, root):
+        cos_theta = round(cos((pi/(2*root))+((2*x*pi)/3)), 6)
+        i_sin_theta = 1j * round(sin((pi/(2*root))+((2*x*pi)/3)), 6)
+        solutions.append(cos_theta + i_sin_theta)
+    return solutions
+
 
 
 
