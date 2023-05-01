@@ -5,6 +5,20 @@ from geometry import *
 COMPLEX
 """
 
+def stacked_pwr(x, a, b):
+    """
+    Gives the proper solutions for (x**a)**b using the improved formula
+    """
+    n = 0
+    t = x ** (a*b)
+    sols = []
+    while True:
+        sol = t * (round(cos(2*n*b*pi), 6) + i*round(sin(2*n*b*pi), 6))
+        if sol in sols:
+            return sols
+        sols.append(sol)
+        n += 1
+
 def negative_ln(num, show_general = False):
     """
     Returns the natural log of a negative number
