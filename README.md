@@ -3,17 +3,13 @@
 Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra, calculus and even physics. We even have a constant and function for practically everything
 <br>
 
-<h1><b> Release notes 0.1.9 - What's new </b></h1>
+<h1><b> Release notes 0.2.0 - What's new </b></h1>
 <ul>
-    <li>Fixed bugs with graphing </li>
-    <li>Changed primary function notation to underscore notation from camel case</li>
-    <li>Fixed the calculus functions and added custom derivative and integral formula functions.</li>
-    <li>Fixed all general functions bugs that we were aware of</li>
-    <li>Added docstrings to all functions</li>
-    <li>Added 120 new constants</li>
-    <li>Added unit conversion functions with distance, area, volume and mass</li>
-    <li>Many new maths functions, including equation solvers and linear algebra functions, populated each category with many more functions</li>
-    <li>Added a new physics section with 40+ functions already. This includes utilities like a Solar System class to access planets, implementations of many popular and useful physics formulas, such as a SUVAT equation solver, a Schwarzschild radius calculator, and many others. This section is still expanding. </li>
+    <li>Parser implemented with graphing </li>
+    <li>Removed a few unnessecary functions and modules for amuch faster impirt and install time</li>
+    <li>Fixed all general functions bugs that we found</li>
+    <li>Added many complex functions</li>
+    <li>Many new maths functions, including more support for 2D list matrices</li>
 </ul>
 
 Install via <code> pip install mammath </code>
