@@ -1,4 +1,5 @@
 import numpy as np
+import re
 
 """
 HELPER FUNCTIONS
@@ -29,6 +30,27 @@ def parse_equation(eq):
     product = float(equation[2])
 
     return coefficients, product
+
+def parse_graphing(eq):
+    """
+    Parses a graphing equation and returns it in a more explicit format
+    """
+    eq = eq.replace(" ", "")
+    eq = eq.replace("^", "**")
+
+    # Add a multiplication symbol between the coefficient and the variable
+    terms = re.split(r'([+-])', eq)
+    parsed_terms = []
+    for term in terms:
+        match = re.match(r'(\d+)([a-zA-Z]+(\*\*[\d]+)?)', term)
+        if match:
+            coefficient, variable = match.groups()[0], match.groups()[1]
+            parsed_term = f"{coefficient}*{variable}"
+        else:
+            parsed_term = term
+        parsed_terms.append(parsed_term)
+    
+    return "".join(parsed_terms)
 
 def standard_form_float(n):
     """

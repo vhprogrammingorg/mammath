@@ -1,7 +1,3 @@
-"""
-This is the Mammath library's primary source. Below is the code that imports the many files that make up the Mammath library
-"""
-
 from constants import *
 from shunting_yard import evaluate_expression, re
 from operations import *
@@ -22,3 +18,5 @@ from calculus import *
 from Complex import *
 from helper import *
 from misc import *
+
+

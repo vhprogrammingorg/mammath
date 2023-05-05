@@ -46,7 +46,7 @@ def const_table(category=None):
         ["Reduced Planck Constant", "ℏ", h_bar, "J⋅s"],
         ["Boltzmann Constant", "𝑘", k, "J/K"],
         ["Avogadro Constant", "𝑁_A", N_A, "1/mol"],
-        ["Elementary Charge", "𝑒", e, "C"],
+        ["Elementary Charge", "𝑒", e_c, "C"],
         ["Gas Constant", "𝑅", R, "J/(mol⋅K)"],
         ["Stefan-Boltzmann Constant", "σ", stefan_boltzmann, "W/(m²⋅K⁴)"],
         ["Vacuum Permittivity", "ε_0", vacuum_permittivity, "F/m"],

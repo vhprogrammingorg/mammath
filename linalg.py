@@ -50,25 +50,67 @@ def cofactor_matrix(matrix, tempMatrix, row, col, order):
                     j = 0
                     i += 1
 
-def determinant(matrix, order=1):
+def adjoint_matrix(matrix):
     """
-    Returns the determinant of an nxn matrix
+    Computes the adjoint of an NxN matrix.
+
+    Args:
+        matrix: An NxN list of lists representing the matrix.
+
+    Returns:
+        The adjoint of the matrix as an NxN list of lists.
     """
-    det = 0
-    order = len(matrix[0])-1
-    print(order)
-    if order == 1:
+    n = len(matrix)
+    adj = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            sign = (-1) ** (i + j)
+            sub_matrix = [row[:j] + row[j+1:] for row in matrix[:i] + matrix[i+1:]]
+            adj[j][i] = sign * determinant(sub_matrix)
+    return adj
+
+def determinant(matrix):
+    """
+    Computes the determinant of an NxN matrix.
+
+    Args:
+        matrix: An NxN list of lists representing the matrix.
+
+    Returns:
+        The determinant of the matrix.
+    """
+    n = len(matrix)
+    if n == 1:
         return matrix[0][0]
-    tempMatrix = [[None for i in range(order)] for i in range(order)]
-    sign = 1
+    elif n == 2:
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+    else:
+        det = 0
+        for i in range(n):
+            sub_matrix = [row[:i] + row[i+1:] for row in matrix[1:]]
+            sign = (-1) ** i
+            det += sign * matrix[0][i] * determinant(sub_matrix)
+        return det
 
-    for f in range(order):
-        cofactor_matrix(matrix, tempMatrix, 0, f, order)
-        det += sign * matrix[0][f] * determinant(tempMatrix, order = order - 1)
-        sign = -sign
+def inverse(matrix):
+    """
+    Computes the inverse of an NxN matrix.
 
-    return det    
+    Args:
+        matrix: An NxN list of lists representing the matrix.
 
+    Returns:
+        The inverse of the matrix as an NxN list of lists.
+    """
+    det = determinant(matrix)
+    if det == 0:
+        raise ValueError("The matrix is not invertible")
+    adj = adjoint(matrix)
+    inv = [[adj[i][j] / det for j in range(len(adj))] for i in range(len(adj))]
+    return inv
+
+
+    
 """
 END OF LINEAR ALGEBRA
 """

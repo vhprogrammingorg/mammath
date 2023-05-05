@@ -33,7 +33,6 @@ viswanath_constant = 1.13198824
 ℏ = h_bar = reduced_plancks_constant = 1.054571817e-34
 𝑘 = k = boltzmanns_constant = 1.380649e-23
 𝑁_A = N_A = avogadros_number = 6.02214076e23
-𝑒 = e = elementary_charge = 1.602176634e-19
 𝑅 = R = gas_constant = 8.314462618
 σ = stefan_boltzmann = 5.670374419e-8
 ε_0 = vacuum_permittivity = 8.8541878128e-12
@@ -97,8 +96,7 @@ R_0_inv = inverse_conductance_quantum = 12906.40372
 mu_0 = magnetic_constant = 1.25663706212e-6
 epsilon_0 = electric_constant = 8.8541878128e-12
 Z_0 = characteristic_impedance_of_vacuum = 376.730313461
-e = elementary_charge = 1.602176634e-19
-
+e_c = elementary_charge = 1.602176634e-19
 
 # Chemistry
 V_m = molar_volume_ideal_gas = 22.414
