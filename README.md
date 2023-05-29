@@ -23,7 +23,7 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 | Number / Sequence Checks                         | Fibonacci        |
 | Divisibility checks + learn tricks (beta)        | Fractions        |
 | Geometry                                         | Sequences        |
-| Formulas                                         | Base conversions |
+| Constants                                         | Base conversions |
 | Graphing                                         | Algebra          |
 | Linear Algebra                                   | Calculus         |
 | Complex (complex ln, etc.) | Physics             |
