@@ -256,6 +256,12 @@ def area_tan(n, s):
     ans = up / down
     return ans
 
+def polygon_area_nxn(n, s):
+    """
+    Computes the area of a regular n-sided polygon with lengths s
+    """
+    return round((n*s**2)/(4*tan(pi/n)), 6)
+
 def pythagorean_triplets(n):
     """
     Prints pythagorean triplets until n
