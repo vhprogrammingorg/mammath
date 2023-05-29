@@ -87,6 +87,18 @@ def grav_acceleration(m1, m2, distance):
     """
     return (G*m1*m2)/(distance**2)
 
+def temperature_pressure(pressure, mass, density):
+    """
+    Calculates the temperature of a body given the pressure, mass, and density of the body using the rearranged version of the ideal gas law - T(p) = (pm)/(dk)
+    """
+    return (pressure*mass)/(density*boltzmanns_constant)
+
+def force_acceleration(m, v, u, t):
+    """
+    Uses the alternative equation to solve for force by subsitution acceleration = (v-u)/t into f = ma to get f = (m*(v-u))/t
+    """
+    return (m*(v-u))/t
+
 def event_horizon(mass):
     """
     Computes the schwarzschild radius of a schwarzschild black hole given the mass of the black hole
