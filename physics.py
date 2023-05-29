@@ -5,11 +5,6 @@ import numpy as np
 from geometry import *
 from tabulate import tabulate
 
-"""
-F = ma
-S = d/t
-
-"""
 
 """
 PHYSICS
@@ -85,6 +80,12 @@ class SolarSystem:
             
 solar_system = SolarSystem()
 
+
+def grav_acceleration(m1, m2, distance):
+    """
+    Uses F = (G*M1*M2)/(r**2)
+    """
+    return (G*m1*m2)/(distance**2)
 
 def event_horizon(mass):
     """
