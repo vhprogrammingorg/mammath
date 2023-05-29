@@ -118,9 +118,17 @@ def complex_root_complex(a, b, c, d):
     pass
 
 def complex_sin(a, b):
-    return
+    """
+    Returns the sine of a complex number using the complex definition of sine
+    """
+    #e^x = cosx+ isinx
+    #e^-x = cosx - isinx
+    
     #sinx = (e^x + e^-x)/2
-    #cosx = (e
+    #cosx = (e^x - e^-x)/2i
+    
+    return eulers_formula(b)
+    
     
 """
 END OF COMPLEX

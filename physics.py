@@ -6,6 +6,12 @@ from geometry import *
 from tabulate import tabulate
 
 """
+F = ma
+S = d/t
+
+"""
+
+"""
 PHYSICS
 """
 
