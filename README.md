@@ -19,7 +19,7 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 | All categories                                    | All categories    |
 | :----------------------------------------------- | :-------------- |
 | Shunting Yard Algorithm                          | Math Teachers (beta ascii courses)   |
-| Operations (logs, factorials, sums, hcf, lcm, etc.) | Prime Numbers|
+| Operations (logs, factorials, standard form, sums, hcf, lcm, etc.) | Prime Numbers|
 | Number / Sequence Checks                         | Fibonacci        |
 | Divisibility checks + learn tricks (beta)        | Fractions        |
 | Geometry                                         | Sequences        |
