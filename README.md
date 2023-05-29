@@ -6,7 +6,7 @@ Mammath is the python library with all the functions you need to do complicated 
 <h1><b> Release notes 0.2.0 - What's new at 20k downloads</b></h1>
 <ul>
     <li>Parser implemented with graphing </li>
-    <li>Removed a few unnessecary functions and modules for amuch faster impirt and install time</li>
+    <li>Removed a few unnessecary functions and modules for much faster import and install time</li>
     <li>Fixed all general functions bugs that we found</li>
     <li>Added many complex functions</li>
     <li>Many new maths functions, including more support for 2D list matrices</li>
