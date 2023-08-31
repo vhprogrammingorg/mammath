@@ -51,18 +51,24 @@ def negative_log(base, argument, show_general = False):
     return principle_value
     
 
-def complex_ln(a, b, show_general = True):
+def complex_ln(a, b, n = 0, show_general = False):
     """
-    Returns the natural log of a complex number
+    Returns the natural log of a complex number given by the formula ln(r)+i*theta
     """
     #ln(a+bi) =
     #ln(r) + i*theta
-    r = sqrt(a**2+b**2)
-    theta = math.atan2(b, a)
-    i_theta = 1j * theta
-    return ln(r) + i_theta
+    r = math.sqrt(a**2 + b**2)
+    theta = math.atan2(b,a)
+        
+    if show_general == False:
+        return math.log(r) + 1j*(theta+2*pi*n)
+    else:
+        if n:
+            print(f"ln({r})+({theta}+2πn)i \nn ∊ ℤ")
+            return math.log(r) + 1j*(theta+2*pi*n)
+        else:
+            print(f"ln({r})+({theta}+2πn)i \nn ∊ ℤ")
     
-
 def root_i(n):
     root = n
     """
@@ -104,31 +110,48 @@ def complex_power(a, b, c, d):
     return r**c*e**(-d*arg)*(eulers_formula(theta))
 
 def root_complex(n, a, b):
+    """
+    Returns the nth root of a complex number where n is an real number
+    """
     r = sqrt(a**2+b**2)
     theta = math.atan2(b, a)
     return r**(1/n)*eulers_formula(theta/n)
 
-def unit_complex_root_complex(a, b):
-    r = sqrt(a**2+b**2)
-    theta = math.atan2(b, a)
-    ith_r = eulers_formula(-ln(r))
-    return ith_r * e**theta
+def sinh(theta):
+    return (e**theta - e**(-theta))/2
 
-def complex_root_complex(a, b, c, d):
-    pass
+def cosh(theta):
+    return (e**theta + e**(-theta))/2
+
+def tanh(theta):
+    return sinh(theta)/cosh(theta)
+
+def cosech(theta):
+    return 1/sinh(theta)
+
+def sech(theta):
+    return 1/cosh(theta)
+
+def coth(theta):
+    return 1/tanh(theta)
 
 def complex_sin(a, b):
     """
-    Returns the sine of a complex number using the complex definition of sine
+    Returns the sine of a complex number using the complex definition of sine derived from Euler's formula
     """
     #e^x = cosx+ isinx
     #e^-x = cosx - isinx
     
-    #sinx = (e^x + e^-x)/2
-    #cosx = (e^x - e^-x)/2i
+    #sinx = (e^ix - e^-ix)/2i
+    #cosx = (e^ix + e^-ix)/2
     
-    return eulers_formula(b)
-    
+    if b == 0:
+        return sin(a)
+    elif a == 0:
+        return sinh(b) * 1j
+    else:
+        #e^i(a+bi) = e^-b+ia
+        return 1/e**b*eulers_formula(a)
     
 """
 END OF COMPLEX
