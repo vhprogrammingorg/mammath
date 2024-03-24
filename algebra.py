@@ -26,7 +26,7 @@ def quadratic_solver(a,b,c):
         
 def solve_gauss_elimination(*equations):
     """
-    Solves any system of equations using Gaussian Elimination
+    Solves any system of equations using Gaussian Elimination. Standard equation input supported.
     """
     equations = list(equations)
     for i in range(0, len(equations)):
