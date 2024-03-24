@@ -117,41 +117,19 @@ def root_complex(n, a, b):
     theta = math.atan2(b, a)
     return r**(1/n)*eulers_formula(theta/n)
 
-def sinh(theta):
-    return (e**theta - e**(-theta))/2
-
-def cosh(theta):
-    return (e**theta + e**(-theta))/2
-
-def tanh(theta):
-    return sinh(theta)/cosh(theta)
-
-def cosech(theta):
-    return 1/sinh(theta)
-
-def sech(theta):
-    return 1/cosh(theta)
-
-def coth(theta):
-    return 1/tanh(theta)
-
-def complex_sin(a, b):
+def complex_sin(theta):
     """
     Returns the sine of a complex number using the complex definition of sine derived from Euler's formula
     """
-    #e^x = cosx+ isinx
-    #e^-x = cosx - isinx
-    
-    #sinx = (e^ix - e^-ix)/2i
-    #cosx = (e^ix + e^-ix)/2
-    
-    if b == 0:
-        return sin(a)
-    elif a == 0:
-        return sinh(b) * 1j
-    else:
-        #e^i(a+bi) = e^-b+ia
-        return 1/e**b*eulers_formula(a)
+    i = complex(0, 1)
+    return (exp(1 * theta) - exp(-i * theta))/(2i)
+
+def complex_cos(theta):
+    """
+    Returns the cosine of a complex number using the complex definition of sine derived from Euler's formula
+    """
+    i = complex(0, 1)
+    return (exp(1 * theta) + exp(-i * theta))/2
     
 """
 END OF COMPLEX
