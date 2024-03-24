@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from operations import *
+from constants import pi, e
 
 """
 CALCULUS
