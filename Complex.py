@@ -1,7 +1,6 @@
 from operations import *
 from geometry import *
 from constants import e, pi, i
-import cmath
 import math
 
 """
@@ -98,7 +97,7 @@ def real_complex_power(a, c, d):
     """
     Returns a^(c+di) where a ∊ ℤ and c+di is the standard form of a complex number
     """
-    return a**c * cmath.exp(1j * d * ln(a))
+    return a ** c * e ** (1j * d * ln(a))
 
 def complex_power(a, b, c, d):
     """
