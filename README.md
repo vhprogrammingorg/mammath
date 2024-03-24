@@ -1,4 +1,4 @@
-[![Downloads](https://static.pepy.tech/personalized-badge/mammath?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Mammath%20downloads)](https://pepy.tech/project/mammath) - <a href="https://pypi.org/project/mammath/" target="_blank">Mammath on PyPI</a>
+[![Downloads](https://static.pepy.tech/personalized-badge/mammath?period=total&units=international_system&left_color=grey&right_color=brightgreen&left_text=Mammath%20downloads)](https://pepy.tech/project/mammath) - <a href="https://github.com/vhprogrammingorg/mammath" target="_blank">Mammath on Github</a>
 <br>
 Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra, calculus and even physics. We even have a constant and function for practically everything
 <br>
