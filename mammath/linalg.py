@@ -10,7 +10,7 @@ def diagonal_sum(mat):
     left = 0
     right = 0
     for i in range(0, len(mat)):
-        left += mat[i][i]
+        left += mat[i][i];
         right += mat[i][len(mat) - i - 1]
     total = left + right
     if len(mat) % 2 != 0:
