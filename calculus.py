@@ -1,5 +1,5 @@
 import numpy as np
-import math
+from math import log as ln
 from constants import pi, e
 
 """
