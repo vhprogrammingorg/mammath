@@ -109,7 +109,7 @@ def inverse(matrix):
     inv = [[adj[i][j] / det for j in range(len(adj))] for i in range(len(adj))]
     return inv
 
-def gauss_elim(mat, sol):
+def mat_gauss_elim(mat, sol):
     """
     Enter an nxn 2D list of coefficients and n length list of solutions such as:
     3x + 5y + z = 3, y + z = 8, x + 4y + 2z = 4
