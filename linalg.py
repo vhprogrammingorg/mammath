@@ -109,7 +109,17 @@ def inverse(matrix):
     inv = [[adj[i][j] / det for j in range(len(adj))] for i in range(len(adj))]
     return inv
 
-
+def gauss_elim(mat, sol):
+    """
+    Enter an nxn 2D list of coefficients and n length list of solutions such as:
+    3x + 5y + z = 3, y + z = 8, x + 4y + 2z = 4
+    to 3x3 list
+    [[3, 5, 1], [0, 1, 1], [1, 4, 2]]
+    and [3, 8, 4]
+    """
+    a = np.linalg.inv(mat)
+    new = np.matmul(a, [[i] for i in sol])
+    return [i[0] for i in new]
     
 """
 END OF LINEAR ALGEBRA
