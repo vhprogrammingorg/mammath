@@ -213,18 +213,77 @@ def atan(n, radians=False):
     """
     return rad_to_deg(math.atan(n)) if radians else math.atan(n)
 
-def sinh(a):
-    return math.sinh(a)
-def cosh(a):
-    return math.cosh(a)
-def tanh(a):
-    return math.tanh(a)
-def asinh(a):
-    return math.asinh(a)
-def acosh(a):
-    return math.acosh(a)
-def atanh(a):
-    return math.atanh(a)
+def sinh(theta):
+    """
+    The hyperbolic sine of theta.
+    """
+    return (e ** theta - e ** -theta)/2
+
+def asinh(x):
+    """
+    Inverse hyperbolic sine of x.
+    """
+    return ln(x + (x ** 2 + 1) ** (1/2))
+
+def cosh(theta):
+    """
+    The hyperbolic cosine of theta.
+    """
+    return (e ** theta + e ** -theta)/2
+
+def acosh(x):
+    """
+    Inverse hyperbolic cosine of x.
+    """
+    return ln(x + (x ** 2 - 1) ** (1/2))
+
+def tanh(theta):
+    """
+    The hyperbolic tangent of theta.
+    """
+    return sinh(theta)/cosh(theta)
+
+def atanh(x):
+    """
+    Inverse hyperbolic tangent of x.
+    """
+    return 0.5 * ln((1 + x)/(1 - x))
+
+def csch(theta):
+    """
+    The hyperbolic cosecant of theta.
+    """
+    return 1/sinh(theta)
+
+def acsch(x):
+    """
+    Inverse hyperbolic cosecant of x.
+    """
+    return asinh(1/x)
+
+def sech(theta):
+    """
+    The hyperbolic secant of theta.
+    """
+    return 1/cosh(theta)
+
+def asech(x):
+    """
+    Inverse hyperbolic secant of x.
+    """
+    return acosh(1/x)
+
+def coth(theta):
+    """
+    The hyperbolic cotangent of theta
+    """
+    return 1/tanh(theta)
+
+def acoth(x):
+    """
+    Inverse hyperbolic cotangent of x.
+    """
+    return atanh(1/x)
 
 def py_theorem_ab(a, b):
     """
