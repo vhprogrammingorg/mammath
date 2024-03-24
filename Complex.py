@@ -131,9 +131,9 @@ def complex_cos(theta):
     i = complex(0, 1)
     return (exp(1 * theta) + exp(-i * theta))/2
 
-def all_roots(n, r):
+def roots_of_unity(n, r):
     """
-    Returns all solutions for x ** n = r
+    Returns all solutions for x ** n = r as the offset roots of unity.
     """
     return [r ** (1/n) * e ** (2 * i * pi * complex(0, 1)/n) for i in range(n)]
 
