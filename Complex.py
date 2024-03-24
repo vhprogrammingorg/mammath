@@ -130,6 +130,14 @@ def complex_cos(theta):
     """
     i = complex(0, 1)
     return (exp(1 * theta) + exp(-i * theta))/2
+
+def all_roots(n, r):
+    """
+    Returns all solutions for x ** n = r
+    """
+    return [r ** (1/n) * e ** (2 * i * pi * complex(0, 1)/n) for i in range(n)]
+
+all_roots_of = all_roots
     
 """
 END OF COMPLEX
