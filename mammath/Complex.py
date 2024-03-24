@@ -32,7 +32,7 @@ def negative_ln(num, show_general = False):
     Returns the natural log of a negative number
     """
     if num > 0:
-        return ln(num);
+        return ln(num)
     if show_general:
         principle = str(ln(-num)) + ' + iπ'
         general = str(ln(-num)) + '+ iπ(2n+1) n ∊ ℤ'
