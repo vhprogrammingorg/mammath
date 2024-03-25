@@ -1,5 +1,6 @@
 import numpy as np
 from .prime_numbers import *
+from .calculus import point_derivative, limit_derivative
 
 """
 MISC
@@ -154,6 +155,16 @@ def reflect_num(n, rn):
     Reflects a number over another number on a number line
     """
     return rn * 2 - n
+    
+def collatz(n):
+    c = 0
+    while n != 1:
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3 * n + 1
+        c += 1
+    return c
 
 """
 END OF MISC
