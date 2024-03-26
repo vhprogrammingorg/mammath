@@ -68,16 +68,14 @@ def root(a, b):
 
     return a**(1/b)
 
-def factorial(a):
+def factorial(n):
     """
-    Returns the factorial (n*factorial(n-1)) of a
-    """
-    a = int(a)
-    x = 1
-    while a > 0:
-        x *=a
-        a -=1
-    return x
+    Performs the factorial operation on any real number. 
+    For the extended domain of this function, the the Gamma and Pi functions.
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
 
 def log(num, base):
     """
