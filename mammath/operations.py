@@ -72,6 +72,7 @@ def factorial(n):
     """
     Performs the factorial operation on any real number. 
     For the extended domain of this function, the the Gamma and Pi functions.
+    """
     if n == 0 or n == 1:
         return 1
     else:
