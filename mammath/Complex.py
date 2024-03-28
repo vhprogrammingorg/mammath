@@ -138,7 +138,17 @@ def roots_of_unity(n, r):
     Returns all solutions for x ** n = r as the offset roots of unity.
     """
     return [r ** (1/n) * e ** (2 * i * pi * complex(0, 1)/n) for i in range(n)]
+    
+def W(x, n=100):
+    """
+    Calculates the the LambertW function of x. Larger n is more accurate.
+    """
+    ans = ln(x)
+    for i in range(n):
+        ans -= (ans * e ** ans - x)/((ans + 1) * e ** ans)
+    return ans
 
+lambertW = product_log = W
     
 """
 END OF COMPLEX
