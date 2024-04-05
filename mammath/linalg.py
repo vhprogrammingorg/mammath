@@ -120,7 +120,64 @@ def mat_gauss_elim(mat, sol):
     a = np.linalg.inv(mat)
     new = np.matmul(a, [[i] for i in sol])
     return [i[0] for i in new]
-    
+
+from numpy import sin, cos, atan
+
+class vector:
+    def __init__(self):
+        self.init = False
+    def ij(self, i, j):
+        self.ihat, self.jhat, self.mag, self.theta = i, j, (i ** 2 + j ** 2) ** (1 / 2), atan(j / i)
+        self.init = True
+    def magtheta(self, mag, theta):
+        self.ihat, self.jhat, self.mag, self.theta = mag * cos(theta), mag * sin(theta), mag, theta
+        self.init = True
+
+def addvec(v1, v2):
+    '''
+    Vector v1 plus vector v2.
+    '''
+    if not v1.init or not v2.init:
+        raise Exception("Vector not initialized")
+    new = vector()
+    new.ij(v1.ihat + v2.ihat, v1.jhat + v2.jhat)
+    return new
+
+def scalarvec(v, s):
+    '''
+    Vector v multiplied by scalar s.
+    '''
+    if not v.init=:
+        raise Exception("Vector not initialized")
+    new = vector()
+    new.ij(v.ihat * scalar, v.jhat * scalar)
+    return new
+
+def subvec(v1, v2):
+    '''
+    Vector v1 minus Vector v1.
+    '''
+    if not v1.init or not v2.init:
+        raise Exception("Vector not initialized")
+    return addvec(v1, scalarvec(v2, -1))
+
+def crossprod(v1, v2):
+    '''
+    Returns the magnitude of the v1 cross v2 along the z axis.
+    '''
+    if not v1.init or not v2.init:
+        raise Exception("Vector not initialized")
+    return v1.ihat * v2.jhat - v1.jhat * v2.ihat
+
+def dotprod(v1, v2):
+    '''
+    Returns the dot product of v1 and v2.
+    '''
+    if not v1.init or not v2.init:
+        raise Exception("Vector not initialized")
+    return v1.ihat * v2.ihat + v1.jhat * v2.jhat
+
+
 """
 END OF LINEAR ALGEBRA
 """
