@@ -79,12 +79,17 @@ class SolarSystem:
             
 solar_system = SolarSystem()
 
-
-def grav_acceleration(m1, m2, distance):
+def grav_f(m1, m2, distance):
     """
     Uses F = (G*M1*M2)/(r**2)
     """
     return (G*m1*m2)/(distance**2)
+
+def grav_field(m, distance):
+    """
+   Gravitational field strength of the mass at the given distance.
+    """
+    return grav_f(m, 1, distance)
 
 def temperature_pressure(pressure, mass, density):
     """
@@ -103,12 +108,6 @@ def event_horizon(mass):
     Computes the schwarzschild radius of a schwarzschild black hole given the mass of the black hole
     """
     return (2*G*mass)/speed_of_light**2
-
-def grav_field(mass, distance):
-    """
-    Computes the gravitational field given the mass and distance. E.g. Earth: G*earth_mass / (earth_mean_radius*1000)^2 ≈ 9.82
-    """
-    return mass * G / distance ** 2
 
 def separate_vectors(vector, theta, deg=True):
     if not deg:
@@ -318,7 +317,7 @@ def decay_law(N0, lambda_, t):
     """
     Returns the number of radioactive nuclei remaining after a given time.
     """
-    return N0 * np.exp(-lambda_ * t)
+    return N0 * e ** (-lambda_ * t)
 
 def relativistic_doppler_shift(wavelength, v):
     """
