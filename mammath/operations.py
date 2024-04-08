@@ -209,7 +209,11 @@ def standard_sub(a, *args, rt=to_standard_form):
         
         return parse_to_standard(rt(subtract(parse_standard(a)[0]*10**parse_standard(a)[1], *[i[0] * 10 ** i[1] for i in args])))
 
-
+def binomialdist(n, x, p):
+    """
+    The probability of x successful events in n attempts where the probability of success is p.
+    """
+    return factorial(n) * p ** x * (1 - p) ** (n - x) / (factorial(x) * factorial(n - x))
     
 """
 END OF OPERATIONS
