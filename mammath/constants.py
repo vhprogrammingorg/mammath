@@ -35,7 +35,7 @@ viswanath_constant = 1.13198824
 𝑁_A = N_A = avogadros_number = 6.02214076e23
 𝑅 = R = gas_constant = 8.314462618
 σ = stefan_boltzmann = 5.670374419e-8
-ε_0 = epsilon_0 = vacuum_permittivity = 8.8541878128e-12
+ε_0 = vacuum_permittivity = 8.8541878128e-12
 μ_0 = vacuum_permeability = 4 * pi * 1e-7
 k_e = coulomb_constant = 1/(4*pi*vacuum_permittivity)
 α = fine_structure = 1 / 137
