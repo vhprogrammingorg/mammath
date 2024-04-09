@@ -355,6 +355,18 @@ def photon_energy(frequency):
     """
     return h * frequency
 
+def efs_line(d, L, lmd):
+    """
+    Perpendicular electric field strength L away from a line of uniform charge lmd and length L
+    """
+    return k_e * (L * lmd / (d * (d ** 2 + (L ** 2) / 4) ** (1/2)))
+
+def efs_disk(d, R, lmd):
+    """
+    Perpendicular electric field strength L away from a disk of uniform charge lmd and radius R
+    """
+    return (lmd / (2 * epsilon_0)) * (1 - (d / (R ** 2 + d ** 2) ** (1/2)))
+
 """
 END OF PHYSICS
 """
