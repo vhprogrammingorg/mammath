@@ -367,6 +367,12 @@ def efs_disk(d, R, lmd):
     """
     return (lmd / (2 * epsilon_0)) * (1 - (d / (R ** 2 + d ** 2) ** (1/2)))
 
+def orbital_v(d, m):
+    """
+    The orbital velocity of a body d distance away from mass m
+    """
+    return (G * m / d) ** (1/2)
+
 """
 END OF PHYSICS
 """
