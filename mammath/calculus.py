@@ -1,5 +1,5 @@
 from .constants import pi, e
-from operations import factorial
+from .operations import factorial
 
 """
 CALCULUS
