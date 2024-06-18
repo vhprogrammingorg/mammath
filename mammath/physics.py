@@ -373,6 +373,60 @@ def orbital_v(d, m):
     """
     return (G * m / d) ** (1/2)
 
+def magnetic_field_solenoid(I, L, N):
+    """
+    Magnetic field at center of coils given current, length, and number of coils.
+    """
+    return vacuum_permeability * N * I / L
+
+def magnetic_field_toroid(I, R, N):
+    """
+    Magnetic field at center of coils given current, radius, and number of coils.
+    """
+    return vacuum_permeability * N * I / R
+
+def biot_savart_law(I, r):
+    """
+    Magnetic field r away from conductor enclosing current I.
+    """
+    return I * 10 ** -7 / r
+
+def mutual_inductance(N1, N2, A1, L1):
+    """
+    Solenoid 1 of cross section A1 with N1 Loops over length L1 surrounded by N2 loops.
+    """
+    return vacuum_permeability * N1 * N2 * A1 / L1
+
+def self_inductance(N, L, A):
+    """
+    Self inductance of solenoid with N loops, length L, and cross sectional area A.
+    """
+    return vacuum_permeability * N ** 2 * A  / L
+
+def induced_emf(change_flux, N):
+    """
+    Faraday's Law in a solenoid.
+    """
+    return -N * change_flux
+
+def change_magnetic_flux(A, theta_normal, dBdt):
+    """
+    Change in magnetic flux over surface of area A with field changing at angle theta.
+    """
+    return A * cos(theta_normal) * dBdt
+
+def time_dilation_lorentz(t, lorentz_factor):
+    """
+    Dilation of time t (change in t) given the lorentz factor.
+    """
+    return t * lorentz_factor
+
+def length_contraction_lorentz(l, lorentz_factor):
+    """
+    Change in length l (l shortens) given the lorentz factor from stationary reference frame.
+    """
+    return l / lorentz_factor
+
 """
 END OF PHYSICS
 """
