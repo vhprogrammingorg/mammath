@@ -1,4 +1,5 @@
 from .constants import pi, e
+from operations import factorial
 
 """
 CALCULUS
@@ -116,6 +117,63 @@ def local_maxima(f, a, b, h = 0.00001):
             l.append(x)
         x += h
     return l
+
+def partial_derivative(var_idx, inputs, function, h = 0.0001):
+    """
+    Partial derivative with respect to the variable whose index is specified.
+    """
+    fi = function(*inputs)
+    inputs[var_idx] += h
+    return (function(*inputs) - fi) / h
+
+def del_operator(function, inputs, h = 0.0001):
+    """
+    The vector at the location of the inputs.
+    """
+    vec = []
+    for i in range(len(inputs)):
+        vec.append(partial_derivative(i, inputs, function, h = h))
+    return vec
+
+def directional_derivative(vec, inputs, function, h = 0.0001):
+    """
+    Dot product of the del operator with the corresponding unit vector.
+    """
+    mag = (vec[0] ** 2 + vec[1] ** 2) ** (1/2)
+    vec = [i / mag for i in vec]
+    delop = del_operator(function, inputs, h = h)
+    new = list(zip(vec, delop))
+    for i in range(len(new)):
+        new[i] = new[i][0] * new[i][1]
+    return new
+
+def tangent_line(function, x, h = 0.001, derivative = point_derivative):
+    """
+    Tangent line to a function at point x
+    """
+    return lambda X: derivative(function, x, h = h) * (X - x) + function(x)
+
+def tangent_plane(function, x, y, h = 0.001):
+    """
+    Tangent plane to a function at point x, y
+    """
+    return lambda X, Y: partial_derivative(0, [x, y], function, h = 0.0001) * (X - x) + partial_derivative(1, [x, y], function, h = 0.0001) * (Y - y) + function(x, y)
+
+def nth_derivative(n, function, x, h = 0.0001, derivative = point_derivative):
+    """
+    Finds the nth derivative at a point for a given function
+    """
+    if n < 1:
+        raise ValueError
+    if n == 1:
+        return derivative(function, x, h = h)
+    return nth_derivative(n - 1, lambda X: derivative(function, X, h = h))
+
+def taylor_approx(function, x, terms = 10, h = 0.001):
+    """
+    Numerical Taylor series approximation
+    """
+    return lambda X: sum([(1 / factorial(i)) * nth_derivative(i, function, x, h = h) * (X - x) for i in range(1, terms + 1)]) + function(x)
 
 """
 END OF CALCULUS
