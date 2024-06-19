@@ -1,6 +1,7 @@
 import numpy as np
 from .prime_numbers import *
 from .calculus import point_derivative, limit_derivative
+from .constants import pi, e
 
 """
 MISC
@@ -165,6 +166,22 @@ def collatz(n):
             n = 3 * n + 1
         c += 1
     return c
+
+def number_of_partitions(n):
+    '''
+    Gives the number of partitions for some number n.
+    '''
+    partitions = [1] + [0] * n
+    for i in range(1, n + 1):
+        for j in range(i, n + 1):
+            partitions[j] += partitions[j - i]
+    return partitions[n]
+
+def partition_approx(n):
+    '''
+    Gives the approximate number of partitions by the first term of Ramanujan's series
+    '''
+    return 1 / (4 * 3 ** 0.5 * n) * 2.7182 ** (pi * (2 * n / 3) ** 0.5)
 
 """
 END OF MISC
