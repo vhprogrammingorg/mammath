@@ -169,11 +169,31 @@ def nth_derivative(n, function, x, h = 0.0001, derivative = point_derivative):
         return derivative(function, x, h = h)
     return nth_derivative(n - 1, lambda X: derivative(function, X, h = h))
 
-def taylor_approx(function, x, terms = 10, h = 0.001):
+def taylor_approx(function, x, terms, h = 0.001):
     """
-    Numerical Taylor series approximation
+    Numerical Taylor series approximation accurate at x for accuracy analysis.
     """
-    return lambda X: sum([(1 / factorial(i)) * nth_derivative(i, function, x, h = h) * (X - x) for i in range(1, terms + 1)]) + function(x)
+    return lambda X: sum([(1 / factorial(i)) * nth_derivative(i, function, x, h = h) * (X - x) ** i for i in range(1, terms + 1)]) + function(x)
+   
+def taylor_coefficients(function, x, terms, h = 0.001, with_factorial = True):
+    """
+    Numerical Taylor series coefficients. Choose to ignore factorial for speed.
+    """
+    if with_factorial:
+        return [(1 / factorial(i)) * nth_derivative(i, function, x, h = h) for i in range(1, terms + 1)]
+    return [nth_derivative(i, function, x, h = h) for i in range(1, terms + 1)]
+
+def maclaurin_approx(function, terms, h = 0.001, taylor_alg = taylor_approx):
+    """
+    Numerical Maclaurin series approximation for accuracy analysis.
+    """
+    return taylor_alg(function, 0, terms, h = h)
+
+def maclaurin_coefficients(function, terms, h = 0.001, with_factorial = True, taylor_alg = taylor_coefficients):
+    """
+    Numerical Taylor series coefficients. Choose to ignore factorial for speed.
+    """
+    return taylor_alg(function, x, terms, h = h, with_factorial = with_factorial)
 
 """
 END OF CALCULUS
