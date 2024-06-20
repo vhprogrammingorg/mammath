@@ -118,13 +118,13 @@ def local_maxima(f, a, b, h = 0.00001):
         x += h
     return l
 
-def partial_derivative(var_idx, inputs, function, h = 0.0001):
+def partial_derivative(function, inputs, var_idx, h = 0.0001):
     """
     Partial derivative with respect to the variable whose index is specified.
     """
     fi = function(*inputs)
     inputs[var_idx] += h
-    return (function(*inputs) - fi) / h
+    return round((function(*inputs) - fi) / h, 7)
 
 def del_operator(function, inputs, h = 0.0001):
     """
@@ -132,7 +132,7 @@ def del_operator(function, inputs, h = 0.0001):
     """
     vec = []
     for i in range(len(inputs)):
-        vec.append(partial_derivative(i, inputs, function, h = h))
+        vec.append(partial_derivative(function, inputs, i, h = h))
     return vec
 
 def directional_derivative(vec, inputs, function, h = 0.0001):
@@ -153,11 +153,11 @@ def tangent_line(function, x, h = 0.001, derivative = point_derivative):
     """
     return lambda X: derivative(function, x, h = h) * (X - x) + function(x)
 
-def tangent_plane(function, x, y, h = 0.001):
+def tangent_plane(function, x, y, h = 0.001, partial = partial_derivative):
     """
     Tangent plane to a function at point x, y
     """
-    return lambda X, Y: partial_derivative(0, [x, y], function, h = 0.0001) * (X - x) + partial_derivative(1, [x, y], function, h = 0.0001) * (Y - y) + function(x, y)
+    return lambda X, Y: partial(function, [x, y], 0, h = h) * (X - x) + partial(function, [x, y], 1, h = h)) * (Y - y) + function(x, y)
 
 def nth_derivative(n, function, x, h = 0.0001, derivative = point_derivative):
     """
@@ -171,7 +171,7 @@ def nth_derivative(n, function, x, h = 0.0001, derivative = point_derivative):
 
 def taylor_approx(function, x, terms, h = 0.001):
     """
-    Numerical Taylor series approximation accurate at x for accuracy analysis.
+    Numerical Taylor series approximation accurate at x.
     """
     return lambda X: sum([(1 / factorial(i)) * nth_derivative(i, function, x, h = h) * (X - x) ** i for i in range(1, terms + 1)]) + function(x)
    
@@ -194,6 +194,115 @@ def maclaurin_coefficients(function, terms, h = 0.001, with_factorial = True, ta
     Numerical Taylor series coefficients. Choose to ignore factorial for speed.
     """
     return taylor_alg(function, x, terms, h = h, with_factorial = with_factorial)
+
+def divergence(functions, inputs, h = 0.001, partial = partial_derivative):
+    """
+    The divergence of the vector field composed of many functions and a set of coordinates
+    """
+    s = 0
+    for i in range(len(inputs)):
+        s += parital(i, inputs, functions[i], h = h)
+    return s
+
+def curl(functions, inputs, h = 0.001, partial = partial_derivative):
+    """
+    The curl of the vector field composed of many functions and a set of coordinates
+    """
+    curl_matrix = [[0] * inputs for _ in range(inputs)]
+    for i in range(inputs):
+        for j in range(i + 1, inputs):
+            partial_i = lambda *args: partial(i, args, functions[j])
+            partial_j = lambda *args: partial(j, args, functions[i])
+            curl_matrix[i][j] = partial_i(*[0]*inputs) - partial_j(*[0]*inputs)
+            curl_matrix[j][i] = -curl_matrix[i][j]
+    return curl_matrix
+
+def curl(functions, inputs, h = 0.001):
+    """
+    Computes the curl of an n-dimensional vector field composed of many functions
+    and a set of coordinates.
+    """
+    n = len(functions)
+    curl_matrix = [[0] * n for _ in range(n)]
+    
+    for i in range(n):
+        for j in range(i + 1, n):
+            partial_i = partial_derivative(functions[j], inputs, i, h = h)
+            partial_j = partial_derivative(functions[i], inputs, j, h = h)
+            curl_matrix[i][j] = partial_i - partial_j
+            curl_matrix[j][i] = -curl_matrix[i][j]
+    
+    return curl_matrix
+
+def curl_3d(vector_field, point, h = 0.0001):
+    """
+    Computes the curl of a 3-dimensional vector field at a given point.
+    """
+    F1, F2, F3 = vector_field
+    x, y, z = point
+
+    dF3_dy = partial(F3, [x, y, z], 1, h)
+    dF2_dz = partial(F2, [x, y, z], 2, h)
+    
+    dF1_dz = partial(F1, [x, y, z], 2, h)
+    dF3_dx = partial(F3, [x, y, z], 0, h)
+    
+    dF2_dx = partial(F2, [x, y, z], 0, h)
+    dF1_dy = (F1, [x, y, z], 1, h)
+
+    curl_x = dF3_dy - dF2_dz
+    curl_y = dF1_dz - dF3_dx
+    curl_z = dF2_dx - dF1_dy
+
+    return [curl_x, curl_y, curl_z]
+
+def f_derivative(f_of, h = 0.00001):
+    """
+    The function for the derivative of f(x)
+    """
+    return lambda x: point_derivative(f_of, x, h = h)
+
+def f_partial_derivative(function, var_idx, h = 0.0001):
+    """
+    The function for the partial derivative of any function
+    """
+    return lambda *args: partial_derivative(function, args, var_idx, h = h)
+
+def f_del_operator(function, h = 0.0001):
+    """
+    The function for the del operator of any function
+    """
+    return lambda *args: (function, args, h = h)
+
+def f_directional_derivative(vec, inputs, function, h = h):
+    """
+    The function for the directional derivative of any function
+    """
+    return lambda *args: directional_derivative(vec, args, function, h = 0.0001)
+
+def f_nth_derivative(n, function, h = 0.0001, derivative = point_derivative):
+    """
+    The function for the nth derivative of f(x)
+    """
+    return lambda x: nth_derivative(n, function, x, h = h, derivative = derivative)
+
+def f_divergence(functions, h = 0.001, partial = partial_derivative):
+    """
+    The function for the divergence of any function
+    """
+    return lambda *args: divergence(functions, args, h = h, partial = partial)
+
+def f_curl(functions, h = h):
+    """
+    The function for the curl of any function
+    """
+    return lambda *args: curl(functions, args, h = h)
+
+def f_curl_3d(vector_field, h = 0.0001):
+    """
+    The function for the curl of f(x, y)
+    """
+    return lambda *args: curl_3d(vector_field, point, h = h)
 
 """
 END OF CALCULUS
