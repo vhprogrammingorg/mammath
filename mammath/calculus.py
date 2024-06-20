@@ -304,6 +304,67 @@ def f_curl_3d(vector_field, h = 0.0001):
     """
     return lambda *args: curl_3d(vector_field, point, h = h)
 
+def nth_partial_derivative(n, f_of, inputs, var_idx, h = 0.0001):
+    """
+    nth Partial derivative with respect to the variable whose index is specified.
+    """
+    if n < 1:
+        raise ValueError
+    if n == 1:
+        return partial_derivative(f_of, inputs, var_idx, h = h)
+    return nth_partial_derivative(n, f_partial_derivative(f_of, var_idx), inputs, var_idx, h = h)
+
+def double_partial_xy(f_of, x, y, h = 0.0001):
+    """
+    Computes partial squared f / (partial x partial y)
+    """
+    return partial_derivative(f_partial_derivative(function, 0, h = h), [x, y], 1, h = h)
+
+def f_double_partial_xy(f_of, h = 0.0001):
+    """
+    Computes the function partial squared f / (partial x partial y)
+    """
+    return lambda x, y: double_partial_xy(f_of, x, y, h = h)
+
+def max_min_saddle(f_of, x, y):
+    """
+    Calculates (second partial x)(second partial y) - (second partial x, y) ** 2
+    """
+    return nth_partial_derivative(2, f_of, [x, y], 0, h = h) * nth_partial_derivative(2, f_of, [x, y], 1, h = h) - double_partial_xy(f_of, x, y, h = h) ** 2
+
+def jacobian_matrix(functions, point, h = 0.0001):
+    """
+    Computes the Jacobian matrix of a vector function at a given point.
+    """
+    n = len(functions)
+    m = len(point)
+    jacobian = [[0] * m for _ in range(n)]
+    
+    for i in range(n):
+        for j in range(m):
+            jacobian[i][j] = partial_derivative(functions[i], point, j, h)
+    
+    return jacobian
+
+def jacobian_determinant(functions, point, h = 0.0001):
+    """
+    Computes the determinant of the Jacobian matrix of a vector function at a given point.
+    """
+    jacobian = jacobian_matrix(functions, point, h)
+    return jacobian[0][0] * jacobian[1][1] - jacobian[0][1] * jacobian[1][0]
+
+def f_jacobian_matrix(functions, h = 0.0001):
+    """
+    Jacobian matrix as a function
+    """
+    return lambda point: jacobian_matrix(functions, point, h = h)
+
+def f_jacobian_determinant(functions, h = 0.0001):
+    """
+    Jacobian determinant as a function
+    """
+    return lambda point: jacobian_determinant(functions, point, h = h)
+
 """
 END OF CALCULUS
 """
