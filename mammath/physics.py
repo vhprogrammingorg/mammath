@@ -427,6 +427,12 @@ def length_contraction_lorentz(l, lorentz_factor):
     """
     return l / lorentz_factor
 
+def v_from_lorentz(lorentz_factor):
+    """
+    Returns velocity when given the lorentz factor
+    """
+    return c * (1 - lorentz_factor ** -2) ** 0.5
+
 """
 END OF PHYSICS
 """
