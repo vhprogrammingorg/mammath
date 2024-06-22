@@ -157,7 +157,7 @@ def tangent_plane(function, x, y, h = 0.001, partial = partial_derivative):
     """
     Tangent plane to a function at point x, y
     """
-    return lambda X, Y: partial(function, [x, y], 0, h = h) * (X - x) + partial(function, [x, y], 1, h = h)) * (Y - y) + function(x, y)
+    return lambda X, Y: partial(function, [x, y], 0, h = h) * (X - x) + partial(function, [x, y], 1, h = h) * (Y - y) + function(x, y)
 
 def nth_derivative(n, function, x, h = 0.0001, derivative = point_derivative):
     """
@@ -272,13 +272,13 @@ def f_del_operator(function, h = 0.0001):
     """
     The function for the del operator of any function
     """
-    return lambda *args: (function, args, h = h)
+    return lambda *args: del_operator(function, args, h = h)
 
-def f_directional_derivative(vec, inputs, function, h = h):
+def f_directional_derivative(vec, inputs, function, h = 0.0001):
     """
     The function for the directional derivative of any function
     """
-    return lambda *args: directional_derivative(vec, args, function, h = 0.0001)
+    return lambda *args: directional_derivative(vec, args, function, h = h)
 
 def f_nth_derivative(n, function, h = 0.0001, derivative = point_derivative):
     """
@@ -292,7 +292,7 @@ def f_divergence(functions, h = 0.001, partial = partial_derivative):
     """
     return lambda *args: divergence(functions, args, h = h, partial = partial)
 
-def f_curl(functions, h = h):
+def f_curl(functions, h = 0.0001):
     """
     The function for the curl of any function
     """
@@ -364,6 +364,29 @@ def f_jacobian_determinant(functions, h = 0.0001):
     Jacobian determinant as a function
     """
     return lambda point: jacobian_determinant(functions, point, h = h)
+
+def double_integral(f, a, b, c, d, nx=100, ny=100):
+    """
+    Approximate the volume under the surface f(x, y) over the rectangular region [a, b] x [c, d]
+    using the double trapezoidal rule.
+    """
+    hx = (b - a) / nx
+    hy = (d - c) / ny
+    volume = 0
+
+    for i in range(nx + 1):
+        for j in range(ny + 1):
+            x = a + i * hx
+            y = c + j * hy
+            weight = 1
+            if i == 0 or i == nx:
+                weight *= 0.5
+            if j == 0 or j == ny:
+                weight *= 0.5
+            volume += weight * f(x, y)
+
+    volume *= hx * hy
+    return round(volume, 7)
 
 """
 END OF CALCULUS
