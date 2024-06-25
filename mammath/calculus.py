@@ -217,23 +217,6 @@ def curl(functions, inputs, h = 0.001, partial = partial_derivative):
             curl_matrix[j][i] = -curl_matrix[i][j]
     return curl_matrix
 
-def curl(functions, inputs, h = 0.001):
-    """
-    Computes the curl of an n-dimensional vector field composed of many functions
-    and a set of coordinates.
-    """
-    n = len(functions)
-    curl_matrix = [[0] * n for _ in range(n)]
-    
-    for i in range(n):
-        for j in range(i + 1, n):
-            partial_i = partial_derivative(functions[j], inputs, i, h = h)
-            partial_j = partial_derivative(functions[i], inputs, j, h = h)
-            curl_matrix[i][j] = partial_i - partial_j
-            curl_matrix[j][i] = -curl_matrix[i][j]
-    
-    return curl_matrix
-
 def curl_3d(vector_field, point, h = 0.0001):
     """
     Computes the curl of a 3-dimensional vector field at a given point.
