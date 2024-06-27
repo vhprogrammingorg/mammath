@@ -201,7 +201,7 @@ def divergence(functions, inputs, h = 0.001, partial = partial_derivative):
     """
     s = 0
     for i in range(len(inputs)):
-        s += parital(i, inputs, functions[i], h = h)
+        s += partial(i, inputs, functions[i], h = h)
     return s
 
 def curl(functions, inputs, h = 0.001, partial = partial_derivative):

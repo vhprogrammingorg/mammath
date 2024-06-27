@@ -5,7 +5,7 @@ from tabulate import tabulate
 TABLES
 """
 
-def const_table(category=None):
+def constants_table(category=None):
     """
     Prints a table of all constants, with the option to choose a category
     """
@@ -186,6 +186,58 @@ def trig_table():
            "Double-Angle Formulas": ["sin(2a) = 2sin(a)cos(a)", "cos(2a) = 2cos^2 a - 1 = 1 - 2sin^2 a", "tan(2a) = 2tan(a)/1-tan^2 a"]
            }
     print(tabulate(identities, headers = "keys"))
+
+def algebraic_identities_table():
+    """
+    Prints a table of commonly used algebraic identities
+    """
+    identities = {
+        "Basic Identities": [
+            "a^2 - b^2 = (a - b)(a + b)",
+            "(a + b)^2 = a^2 + 2ab + b^2",
+            "(a - b)^2 = a^2 - 2ab + b^2"
+        ],
+        "Sum and Difference of Cubes": [
+            "a^3 + b^3 = (a + b)(a^2 - ab + b^2)",
+            "a^3 - b^3 = (a - b)(a^2 + ab + b^2)"
+        ],
+        "Polynomial Identities": [
+            "(a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca",
+            "(a + b + c)^3 = a^3 + b^3 + c^3 + 3(a + b)(b + c)(c + a)"
+        ]
+    }
+    print(tabulate(identities, headers="keys"))
+
+def calculus_formulas_table():
+    """
+    Prints a table of fundamental calculus formulas
+    """
+    formulas = {
+        "Derivatives": [
+            "d/dx [c] = 0",
+            "d/dx [x^n] = nx^(n-1)",
+            "d/dx [sin(x)] = cos(x)",
+            "d/dx [cos(x)] = -sin(x)",
+            "d/dx [e^x] = e^x",
+            "d/dx [ln(x)] = 1/x"
+        ],
+        "Integrals": [
+            "∫ c dx = cx + C",
+            "∫ x^n dx = (x^(n+1))/(n+1) + C (n ≠ -1)",
+            "∫ e^x dx = e^x + C",
+            "∫ 1/x dx = ln|x| + C",
+            "∫ sin(x) dx = -cos(x) + C",
+            "∫ cos(x) dx = sin(x) + C"
+        ],
+        "Limits": [
+            "lim (x→a) c = c",
+            "lim (x→a) x = a",
+            "lim (x→0) (sin(x)/x) = 1",
+            "lim (x→∞) (1/x) = 0",
+            "lim (x→∞) (1/x^n) = 0 (n > 0)"
+        ]
+    }
+    print(tabulate(formulas, headers="keys"))
 
 """
 END OF TABLES

@@ -50,7 +50,7 @@ def cofactor_matrix(matrix, tempMatrix, row, col, order):
                     j = 0
                     i += 1
 
-def adjoint_matrix(matrix):
+def adjoint(matrix):
     """
     Computes the adjoint of an NxN matrix.
 
@@ -147,10 +147,10 @@ def scalarvec(v, s):
     '''
     Vector v multiplied by scalar s.
     '''
-    if not v.init=:
+    if not v.init:
         raise Exception("Vector not initialized")
     new = vector()
-    new.ij(v.ihat * scalar, v.jhat * scalar)
+    new.ij(v.ihat * s, v.jhat * s)
     return new
 
 def subvec(v1, v2):
