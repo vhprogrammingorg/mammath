@@ -259,12 +259,6 @@ def f_curl(functions, h = 0.0001):
     """
     return lambda *args: curl(functions, args, h = h)
 
-def f_curl_3d(vector_field, h = 0.0001):
-    """
-    The function for the curl of f(x, y)
-    """
-    return lambda *args: curl_3d(vector_field, point, h = h)
-
 def nth_partial_derivative(n, f_of, inputs, var_idx, h = 0.0001):
     """
     nth Partial derivative with respect to the variable whose index is specified.
