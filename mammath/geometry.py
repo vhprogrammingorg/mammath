@@ -212,13 +212,13 @@ def pythagorean_triplets_check(a, b, c):
     """
     return True if a**2 + b**2 == c**2 else False
 
-def hex_area(a):
+def hexagon_area(a):
     """
     Finds the area of a regular hexagon given the side length
     """
     return 1.5 * sqrt(3) * a ** 2
 
-def pent_area(a):
+def pentagon_area(a):
     """
     Finds the area of a regular pentagon given the side length
     """
@@ -231,6 +231,128 @@ def herons_formula(a, b, c):
     s = (a+b+c)/2
     return sqrt(s*(s-a)*(s-b)*(s-c))
 
+def ptolemys_theorem(a, b, c, d, p, q):
+    """
+    Checks if the quadrilateral is cyclic using Ptolemy's Theorem
+    """
+    return (a * c + b * d) == (p * q)
+
+##Coordinate geometry
+
+def point_distance(x1, y1, x2, y2):
+    """
+    Calculates the distance between two points (x1, y1) and (x2, y2)
+    """
+    return sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+
+def midpoint(x1, y1, x2, y2):
+    """
+    Calculates the midpoint of a segment with endpoints (x1, y1) and (x2, y2)
+    """
+    return ((x1 + x2) / 2, (y1 + y2) / 2)
+
+def equation_of_circle(h, k, r):
+    """
+    Returns the equation of a circle in standard form - (x - h)^2 + (y - k)^2 = r^2
+    """
+    return f"(x - {h})^2 + (y - {k})^2 = {r**2}"
+
+def intersection_of_lines(m1, c1, m2, c2):
+    """
+    Calculates the intersection point of two lines given by y = m1*x + c1 and y = m2*x + c2
+    """
+    if m1 == m2:
+        return None  
+    x = (c2 - c1) / (m1 - m2)
+    y = m1 * x + c1
+    return (x, y)
+
+def equation_of_ellipse(h, k, a, b):
+    """
+    Returns the equation of an ellipse in the form ((x - h)^2 / a^2) + ((y - k)^2 / b^2) = 1
+    """
+    return f"((x - {h})^2 / {a**2}) + ((y - {k})^2 / {b**2}) = 1"
+
+def equation_of_parabola(vertex_x, vertex_y, focus_x, focus_y):
+    """
+    Returns the equation of a parabola given its vertex and focus
+    """
+    if vertex_x == focus_x:
+        p = focus_y - vertex_y
+        return f"(x - {vertex_x})^2 = 4 * {p} * (y - {vertex_y})"
+    else:
+        p = focus_x - vertex_x
+        return f"(y - {vertex_y})^2 = 4 * {p} * (x - {vertex_x})"
+    
+def equation_of_parabola_given_points(x1, y1, x2, y2, x3, y3):
+    """
+    Returns the equation of a parabola given three points on the parabola
+    """
+    vertex_x, vertex_y, focus_x, focus_y = 0
+    return equation_of_parabola(vertex_x, vertex_y, focus_x, focus_y)
+
+
+
+def polygon_area(vertices):
+    """
+    Calculates the area of a polygon given its vertices
+    """
+    pass
+
+def circumcenter(x1, y1, x2, y2, x3, y3):
+    """
+    Calculates the coordinates of the circumcenter of a triangle given its vertices
+    """
+    pass
+
+def incenter(x1, y1, x2, y2, x3, y3):
+    """
+    Calculates the coordinates of the incenter of a triangle given its vertices
+    """
+    pass
+
+def orthocenter(x1, y1, x2, y2, x3, y3):
+    """
+    Calculates the coordinates of the orthocenter of a triangle given its vertices
+    """
+    pass
+
+def centroid(x1, y1, x2, y2, x3, y3):
+    """
+    Calculates the coordinates of the centroid of a triangle given its vertices
+    """
+    pass
+
+def nine_point_center(x1, y1, x2, y2, x3, y3):
+    """
+    Calculates the coordinates of the nine point center of a triangle given its vertices
+    """
+    pass
+
+def nagel_point():
+    """
+    Calculates the coordinates of the Nagel point of a triangle given its vertices
+    """
+    pass
+
+def spieker_center():
+    """
+    Calculates the coordinates of the Spieker center of a triangle given its vertices
+    """
+    pass
+
+def symmedian_point():
+    """
+    Calculates the coordinates of the symmedian point of a triangle given its vertices
+    """
+    pass
+
+def harmonic_conjugate():
+    pass
+
+
+def balancing_point_triangle():
+    pass
 
 """
 END OF OF GEOMETRY

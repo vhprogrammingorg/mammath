@@ -14,7 +14,7 @@ Mammath is the python library with all the functions you need to do complicated 
 
 Install via <code> pip install mammath </code>
 
-It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, sympy, tabulate, re, matplotlib, and modules within them. 
+It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, tabulate, re, matplotlib, and modules within them. 
 
 | All categories                                    | All categories    |
 | :----------------------------------------------- | :-------------- |

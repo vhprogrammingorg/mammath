@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="mammath",
-    version="0.2.0",
+    version="0.3.0",
     author="Vihaan Mathur & Harihar Rengan",
     author_email="vihaan.harihar314@gmail.com",
     description="A package that contains all you will need when you need to do maths or science in python",
@@ -18,5 +18,5 @@ setup(
     ],
     packages = find_packages(),
     python_requires=">=3.6",
-    install_requires=["sympy", "tabulate", "numpy", "matplotlib", "keyboard"],
+    install_requires=["tabulate", "numpy", "matplotlib", "keyboard"],
 )
