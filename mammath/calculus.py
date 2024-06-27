@@ -193,7 +193,7 @@ def maclaurin_coefficients(function, terms, h = 0.001, with_factorial = True, ta
     """
     Numerical Taylor series coefficients. Choose to ignore factorial for speed.
     """
-    return taylor_alg(function, x, terms, h = h, with_factorial = with_factorial)
+    return taylor_alg(function, 0, terms, h = h, with_factorial = with_factorial)
 
 def divergence(functions, inputs, h = 0.001, partial = partial_derivative):
     """
@@ -309,7 +309,7 @@ def f_double_partial_xy(f_of, h = 0.0001):
     """
     return lambda x, y: double_partial_xy(f_of, x, y, h = h)
 
-def max_min_saddle(f_of, x, y):
+def max_min_saddle(f_of, x, y, h = 0.0001):
     """
     Calculates (second partial x)(second partial y) - (second partial x, y) ** 2
     """
