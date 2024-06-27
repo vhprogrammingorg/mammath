@@ -196,6 +196,7 @@ def dotprod(v1, v2):
         raise Exception("Vector not initialized")
     return v1.ihat * v2.ihat + v1.jhat * v2.jhat
 
+
 class Matrix:
     def __init__(self, data):
         self.data = data
