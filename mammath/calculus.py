@@ -217,28 +217,6 @@ def curl(functions, inputs, h = 0.001, partial = partial_derivative):
             curl_matrix[j][i] = -curl_matrix[i][j]
     return curl_matrix
 
-def curl_3d(vector_field, point, h = 0.0001):
-    """
-    Computes the curl of a 3-dimensional vector field at a given point.
-    """
-    F1, F2, F3 = vector_field
-    x, y, z = point
-
-    dF3_dy = partial(F3, [x, y, z], 1, h)
-    dF2_dz = partial(F2, [x, y, z], 2, h)
-    
-    dF1_dz = partial(F1, [x, y, z], 2, h)
-    dF3_dx = partial(F3, [x, y, z], 0, h)
-    
-    dF2_dx = partial(F2, [x, y, z], 0, h)
-    dF1_dy = (F1, [x, y, z], 1, h)
-
-    curl_x = dF3_dy - dF2_dz
-    curl_y = dF1_dz - dF3_dx
-    curl_z = dF2_dx - dF1_dy
-
-    return [curl_x, curl_y, curl_z]
-
 def f_derivative(f_of, h = 0.00001):
     """
     The function for the derivative of f(x)
