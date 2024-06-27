@@ -93,7 +93,7 @@ def determinant(matrix):
             det += sign * matrix[0][i] * determinant(sub_matrix)
         return det
 
-def inverse(matrix):
+def matrix_inverse(matrix):
     """
     Computes the inverse of an NxN matrix.
 
@@ -110,6 +110,13 @@ def inverse(matrix):
     inv = [[adj[i][j] / det for j in range(len(adj))] for i in range(len(adj))]
     return inv
 
+def matrix_transpose(matrix):
+    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+
+def matrix_multiply(A, B):
+    result = [[sum(A[i][k] * B[k][j] for k in range(len(B))) for j in range(len(B[0]))] for i in range(len(A))]
+    return result
+
 def mat_gauss_elim(mat, sol):
     """
     Enter an nxn 2D list of coefficients and n length list of solutions such as:
@@ -118,11 +125,24 @@ def mat_gauss_elim(mat, sol):
     [[3, 5, 1], [0, 1, 1], [1, 4, 2]]
     and [3, 8, 4]
     """
-    a = inverse(mat)
+    a = matrix_inverse(mat)
     new = np.matmul(a, [[i] for i in sol])
     return [i[0] for i in new]
 
-class vector:
+def eigenvalues_and_eigenvectors(matrix_data, num_simulations=100):
+    matrix = Matrix(matrix_data)
+    eigenvalue, eigenvector = matrix.power_iteration(num_simulations)
+    return eigenvalue, eigenvector
+
+def linear_least_squares(A, b):
+    A_T = matrix_transpose(A)
+    A_T_A = matrix_multiply(A_T, A)
+    A_T_A_inv = matrix_inverse(A_T_A)
+    A_T_b = matrix_multiply(A_T, [[x] for x in b])
+    x = matrix_multiply(A_T_A_inv, A_T_b)
+    return [xi[0] for xi in x]
+
+class Vector:
     def __init__(self):
         self.init = False
     def ij(self, i, j):
@@ -138,7 +158,7 @@ def addvec(v1, v2):
     '''
     if not v1.init or not v2.init:
         raise Exception("Vector not initialized")
-    new = vector()
+    new = Vector()
     new.ij(v1.ihat + v2.ihat, v1.jhat + v2.jhat)
     return new
 
@@ -148,7 +168,7 @@ def scalarvec(v, s):
     '''
     if not v.init:
         raise Exception("Vector not initialized")
-    new = vector()
+    new = Vector()
     new.ij(v.ihat * s, v.jhat * s)
     return new
 
@@ -176,6 +196,42 @@ def dotprod(v1, v2):
         raise Exception("Vector not initialized")
     return v1.ihat * v2.ihat + v1.jhat * v2.jhat
 
+class Matrix:
+    def __init__(self, data):
+        self.data = data
+        self.rows = len(data)
+        self.cols = len(data[0])
+        if not all(len(row) == self.cols for row in data):
+            raise ValueError("All rows must have the same number of columns")
+    
+    def multiply_vector(self, vec):
+        result = [sum(row[j] * vec[j] for j in range(self.cols)) for row in self.data]
+        return result
+    
+    def transpose(self):
+        transposed_data = [[self.data[j][i] for j in range(self.rows)] for i in range(self.cols)]
+        return Matrix(transposed_data)
+    
+    def subtract_identity(self, lam):
+        result = [[self.data[i][j] - (lam if i == j else 0) for j in range(self.cols)] for i in range(self.rows)]
+        return Matrix(result)
+    
+    def norm(self, vec):
+        return sum(x**2 for x in vec) ** 0.5
+    
+    def normalize(self, vec):
+        norm = self.norm(vec)
+        return [x / norm for x in vec]
+    
+    def power_iteration(self, num_simulations=100):
+        b_k = [1] * self.rows
+        for _ in range(num_simulations):
+            b_k1 = self.multiply_vector(b_k)
+            b_k1_norm = self.norm(b_k1)
+            b_k = self.normalize(b_k1)
+        eigenvalue = self.multiply_vector(b_k)[0] / b_k[0]
+        eigenvector = b_k
+        return eigenvalue, eigenvector
 
 """
 END OF LINEAR ALGEBRA

@@ -5,11 +5,9 @@ from .constants import *
 from .operations import *
 
 
-
 """
 GRAPHING
 """
-
 #graph("2*x", "3*x")
 def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
     """
@@ -61,7 +59,184 @@ def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=
             plt.ylim([lrangey,urangey])
             plt.show()
 
+def plot_histogram(data, bins=10, range=None, xlabel='Value', ylabel='Frequency', title=None):
+    """
+    Plots a histogram of the given data.
     
+    Args:
+        data (array-like): The data to plot.
+        bins (int, optional): The number of bins. Defaults to 10.
+        range (tuple, optional): The lower and upper range of the bins. Defaults to None.
+        xlabel (str, optional): The label for the x-axis. Defaults to 'Value'.
+        ylabel (str, optional): The label for the y-axis. Defaults to 'Frequency'.
+        title (str, optional): The title of the graph. Defaults to None.
+    
+    Returns:
+        None
+    """
+    plt.hist(data, bins=bins, range=range)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if title:
+        plt.title(title)
+    plt.show()
+
+def plot_box(data, labels=None, xlabel=None, ylabel='Value', title=None):
+    """
+    Plots a box plot of the given data.
+    
+    Args:
+        data (array-like): The data to plot. Each element in the array should be a dataset.
+        labels (array-like, optional): The labels for each dataset. Defaults to None.
+        xlabel (str, optional): The label for the x-axis. Defaults to None.
+        ylabel (str, optional): The label for the y-axis. Defaults to 'Value'.
+        title (str, optional): The title of the graph. Defaults to None.
+    
+    Returns:
+        None
+    """
+    plt.boxplot(data, labels=labels)
+    if xlabel:
+        plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if title:
+        plt.title(title)
+    plt.show()
+
+def plot_scatter_with_regression(x, y, xlabel='X', ylabel='Y', title=None):
+    """
+    Plots a scatter plot of the given data with a regression line.
+    
+    Args:
+        x (array-like): The x-coordinates of the data points.
+        y (array-like): The y-coordinates of the data points.
+        xlabel (str, optional): The label for the x-axis. Defaults to 'X'.
+        ylabel (str, optional): The label for the y-axis. Defaults to 'Y'.
+        title (str, optional): The title of the graph. Defaults to None.
+    
+    Returns:
+        None
+    """
+    plt.scatter(x, y, label='Data Points')
+    m, b = np.polyfit(x, y, 1)
+    plt.plot(x, m * x + b, color='red', label='Regression Line')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if title:
+        plt.title(title)
+    plt.legend()
+    plt.show()
+
+def plot_heatmap(data, xlabel='X', ylabel='Y', title=None, cmap='viridis'):
+    """
+    Plots a heatmap of the given data.
+    
+    Args:
+        data (array-like): The data to plot. Should be a 2D array or matrix.
+        xlabel (str, optional): The label for the x-axis. Defaults to 'X'.
+        ylabel (str, optional): The label for the y-axis. Defaults to 'Y'.
+        title (str, optional): The title of the graph. Defaults to None.
+        cmap (str, optional): The colormap to use. Defaults to 'viridis'.
+    
+    Returns:
+        None
+    """
+    plt.imshow(data, aspect='auto', cmap=cmap)
+    plt.colorbar()
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if title:
+        plt.title(title)
+    plt.show()
+
+def plot_time_series(time, values, xlabel='Time', ylabel='Value', title=None):
+    """
+    Plots a time series of the given data.
+    
+    Args:
+        time (array-like): The time points.
+        values (array-like): The values at each time point.
+        xlabel (str, optional): The label for the x-axis. Defaults to 'Time'.
+        ylabel (str, optional): The label for the y-axis. Defaults to 'Value'.
+        title (str, optional): The title of the graph. Defaults to None.
+    
+    Returns:
+        None
+    """
+    plt.plot(time, values)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if title:
+        plt.title(title)
+    plt.show()
+
+def plot_lissajous(a, b, delta, t_max=10, num_points=1000, xlabel='X', ylabel='Y', title='Lissajous Curve'):
+    """
+    Plots a Lissajous curve with the given parameters.
+    
+    Args:
+        a (float): Parameter a for the x equation.
+        b (float): Parameter b for the y equation.
+        delta (float): Phase shift.
+        t_max (float, optional): The maximum value of t. Defaults to 10.
+        num_points (int, optional): The number of points to sample for the graph. Defaults to 1000.
+        xlabel (str, optional): The label for the x-axis. Defaults to 'X'.
+        ylabel (str, optional): The label for the y-axis. Defaults to 'Y'.
+        title (str, optional): The title of the graph. Defaults to 'Lissajous Curve'.
+    
+    Returns:
+        None
+    """
+    t = np.linspace(0, t_max, num_points)
+    x = np.sin(a * t + delta)
+    y = np.sin(b * t)
+    
+    plt.plot(x, y)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.title(title)
+    plt.axis('equal')
+    plt.grid(True)
+    plt.show()
+
+def plot_mandelbrot(xmin=-2, xmax=2, ymin=-2, ymax=2, width=800, height=800, max_iter=256, cmap='hot'):
+    """
+    Plots the Mandelbrot set.
+    
+    Args:
+        xmin (float, optional): The minimum x-value. Defaults to -2.
+        xmax (float, optional): The maximum x-value. Defaults to 2.
+        ymin (float, optional): The minimum y-value. Defaults to -2.
+        ymax (float, optional): The maximum y-value. Defaults to 2.
+        width (int, optional): The width of the image in pixels. Defaults to 800.
+        height (int, optional): The height of the image in pixels. Defaults to 800.
+        max_iter (int, optional): The maximum number of iterations. Defaults to 256.
+        cmap (str, optional): The colormap to use. Defaults to 'hot'.
+    
+    Returns:
+        None
+    """
+    x = np.linspace(xmin, xmax, width)
+    y = np.linspace(ymin, ymax, height)
+    X, Y = np.meshgrid(x, y)
+    Z = X + 1j * Y
+    C = Z.copy()
+    
+    img = np.zeros(Z.shape, dtype=int)
+    mask = np.ones(Z.shape, dtype=bool)
+    
+    for i in range(max_iter):
+        Z[mask] = Z[mask] * Z[mask] + C[mask]
+        mask = np.logical_and(mask, np.abs(Z) < 2)
+        img += mask
+    
+    plt.imshow(img, extent=(xmin, xmax, ymin, ymax), cmap=cmap, origin='lower')
+    plt.colorbar(label='Iterations')
+    plt.xlabel('Re')
+    plt.ylabel('Im')
+    plt.title('Mandelbrot Set')
+    plt.show()
+
 def graph3d_contour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
     """
     Plots any number of 3D functions given a string function of x equating to y as a contour. The first 6 keyword arguments change the axis of the graph.
@@ -217,10 +392,6 @@ def graph3d_wire(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrange
     if lrangey != False or urangey == False:
         ax.set_zlim(lrangey, urangey)
     return plt.show()
-
-
-
-
 
 def graph3d_scatter(x_data, y_data, z_data, xlabel='x', ylabel='y', zlabel='z', graph_title=None):
     """

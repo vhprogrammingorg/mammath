@@ -1,6 +1,6 @@
 import math
 from .helper import parse_standard, parse_to_standard
-from .Sequences import nth_range
+from .sequences import nth_range
 
 """
 OPERATIONS
