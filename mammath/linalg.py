@@ -205,25 +205,76 @@ class Matrix:
             raise ValueError("All rows must have the same number of columns")
     
     def multiply_vector(self, vec):
+        """
+        Multiplies the matrix by a vector.
+
+        Args:
+            vec (list): The vector to multiply by.
+
+        Returns:
+            list: The resulting vector after multiplication.
+        """
         result = [sum(row[j] * vec[j] for j in range(self.cols)) for row in self.data]
         return result
     
     def transpose(self):
+        """
+        Transposes the matrix.
+
+        Returns:
+            Matrix: A new Matrix object that is the transpose of the original.
+        """
         transposed_data = [[self.data[j][i] for j in range(self.rows)] for i in range(self.cols)]
         return Matrix(transposed_data)
     
     def subtract_identity(self, lam):
+        """
+        Subtracts lambda times the identity matrix from the matrix.
+
+        Args:
+            lam (float): The scalar value to subtract along the diagonal.
+
+        Returns:
+            Matrix: A new Matrix object after the subtraction.
+        """
         result = [[self.data[i][j] - (lam if i == j else 0) for j in range(self.cols)] for i in range(self.rows)]
         return Matrix(result)
     
     def norm(self, vec):
+        """
+        Computes the Euclidean norm of a vector.
+
+        Args:
+            vec (list): The vector to compute the norm of.
+
+        Returns:
+            float: The Euclidean norm of the vector.
+        """
         return sum(x**2 for x in vec) ** 0.5
     
     def normalize(self, vec):
+        """
+        Normalizes a vector to have unit norm.
+
+        Args:
+            vec (list): The vector to normalize.
+
+        Returns:
+            list: The normalized vector.
+        """
         norm = self.norm(vec)
         return [x / norm for x in vec]
     
     def power_iteration(self, num_simulations=100):
+        """
+        Performs power iteration to find the dominant eigenvalue and corresponding eigenvector.
+
+        Args:
+            num_simulations (int, optional): The number of iterations to perform. Defaults to 100.
+
+        Returns:
+            tuple: The dominant eigenvalue and the corresponding eigenvector.
+        """
         b_k = [1] * self.rows
         for _ in range(num_simulations):
             b_k1 = self.multiply_vector(b_k)
