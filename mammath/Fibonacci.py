@@ -1,5 +1,5 @@
 from .operations import sqrt
-from .checks_and_printers import perfect_square_check
+from .special_numbers import is_perfect_square
 
 """
 FIBONACCI
@@ -68,7 +68,7 @@ def fibonacci_check(n):
     Returns:
         bool: True if the number is in the Fibonacci sequence, False otherwise.
     """
-    return perfect_square_check(5*n*n + 4) or perfect_square_check(5*n*n - 4)
+    return is_perfect_square(5*n*n + 4) or is_perfect_square(5*n*n - 4)
 
 def fibonacci_printer(low, high):
     """

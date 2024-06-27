@@ -5,112 +5,79 @@ from .helper import remove_decimal
 SEQUENCES
 """
 
-def sequence_checker(a, b, c):
+def sequence_checker(*terms):
     """
     Checks the degree / type of sequence.
 
     Args:
-        a (int/float): The first term of the sequence.
-        b (int/float): The second term of the sequence.
-        c (int/float): The third term of the sequence.
-    """
-    while True:
-        if b - a == c - b:
-            print("Arithmetic")
-            break
-        if b / a == c / b or a / b == b / c:
-            print("Geometric")
-            break
-        else:
-            print("Quadratic")
-            break
-
-def nth_finder(a, b):
-    """
-    Returns the value of the bth term in a sequence whose formula is a.
-
-    Args:
-        a (str): The formula of the sequence with variable "n".
-        b (int): The term number to be found.
+        *terms (int/float): The terms of the sequence.
         
     Returns:
-        int: The value of the bth term in the sequence.
+        str: The type or degree of the sequence.
     """
-    a = str(a)
-    b = str(b)
-    x = a.replace("n", b)
-    y = eval(x)
-    return y
+    if len(terms) < 3:
+        return "Insufficient data to determine sequence type"
+    
+    if all((terms[i+1] - terms[i] == terms[1] - terms[0]) for i in range(len(terms) - 1)):
+        return "Arithmetic"
+    
+    if all((terms[i+1] / terms[i] == terms[1] / terms[0]) for i in range(len(terms) - 1)):
+        return "Geometric"
+    
+    differences = [terms[i+1] - terms[i] for i in range(len(terms) - 1)]
+    second_differences = [differences[i+1] - differences[i] for i in range(len(differences) - 1)]
+    
+    if all(d == second_differences[0] for d in second_differences):
+        return "Quadratic"
+    
+    degree = 2
+    while len(set(second_differences)) > 1:
+        degree += 1
+        differences = second_differences
+        second_differences = [differences[i+1] - differences[i] for i in range(len(differences) - 1)]
+    
+    return f"Polynomial of degree {degree}"
 
-def nth_range(a, b, c):
+def nth_term_value(formula, n):
     """
-    Returns the terms b-c of a sequence defined by the formula a.
-
+    Returns the value of the nth term in a sequence defined by the formula.
+    
     Args:
-        a (str): The formula of the sequence with variable "n".
-        b (int): The starting term number.
-        c (int): The ending term number.
+        formula (str): The formula of the sequence with variable "n".
+        n (int): The term number to be found.
         
     Returns:
-        list: A list of terms from bth to cth term in the sequence.
+        int: The value of the nth term in the sequence.
     """
-    ls = []
-    a = str(a)
-    b = str(b)
-    c = str(c)
-    if int(b) > int(c):
-        while int(c) < int(b)+1:
-            x = a.replace("n", c)
-            y = int(eval(x))
-            ls.append(y)
-            c = int(c)
-            c=int(c)+1
-            c = str(c)
-    elif int(c) > int(b):
-        while int(b) < int(c)+1:
-            x = a.replace("n", b)
-            y = int(eval(x))
-            ls.append(y)
-            b = int(b)
-            b=int(b)+1
-            b = str(b)
-    return list(ls)
+    formula = formula.replace("n", str(n))
+    return eval(formula)
 
-def nth_table(a, b, c):
+def terms_in_range(formula, start, end):
     """
-    Returns the terms b-c of a sequence defined by the formula a in a table format.
-
+    Returns the terms from start to end in a sequence defined by the formula.
+    
     Args:
-        a (str): The formula of the sequence with variable "n".
-        b (int): The starting term number.
-        c (int): The ending term number.
+        formula (str): The formula of the sequence with variable "n".
+        start (int): The starting term number.
+        end (int): The ending term number.
+        
+    Returns:
+        list: A list of terms from start to end in the sequence.
     """
-    ls = []
-    a = str(a)
-    b = str(b)
-    c = str(c)
-    if int(b) > int(c):
-        while int(c) < int(b)+1:
-            x = a.replace("n", c)
-            y = eval(x)
-            q = [c, y]
-            ls.append(q)
-            ls.append(q)
-            c = int(c)
-            c=int(c)+1
-            c = str(c)
-    elif int(c) > int(b):
-        while int(b) < int(c)+1:
-            x = a.replace("n", b)
-            y = eval(x)
-            q = [b, y]
-            ls.append(q)
-            b = int(b)
-            b=int(b)+1
-            b = str(b)
+    return [nth_term_value(formula, i) for i in range(start, end + 1)]
+
+def terms_table(formula, start, end):
+    """
+    Returns the terms from start to end in a sequence defined by the formula in a table format.
+    
+    Args:
+        formula (str): The formula of the sequence with variable "n".
+        start (int): The starting term number.
+        end (int): The ending term number.
+    """
+    terms = [[i, nth_term_value(formula, i)] for i in range(start, end + 1)]
     headers = ["Term", "Value"]
-    terms = tabulate(ls, headers = headers)
-    print(terms)
+    print(tabulate.tabulate(terms, headers=headers))
 
 def arithemetic_sequence(term1, term2, term = 1):
     """
@@ -190,7 +157,7 @@ def ascending_powers(a, *args):
         i += 1
         i = str(i)
     eq += '0'
-    return nth_finder(eq, a)
+    return nth_term_value(eq, a)
 
 def ascending_powers_range(a, b, *args):
     """
@@ -213,7 +180,7 @@ def ascending_powers_range(a, b, *args):
         i += 1
         i = str(i)
     eq += '0'  
-    return nth_range(eq, a, b)
+    return terms_in_range(eq, a, b)
 
 def ascendingpowers_table(a, b, *args):
     """
@@ -233,8 +200,51 @@ def ascendingpowers_table(a, b, *args):
         i += 1
         i = str(i)
     eq += '0'  
-    return nth_table(eq, a, b)
+    return terms_table(eq, a, b)
     
+def partial_harmonic_series(n):
+    """
+    Returns the sum of the first n terms of the harmonic series.
+    
+    Args:
+        n (int): The number of terms to sum.
+    """
+    return sum(1 / i for i in range(1, n + 1))
+
+def sum_arithmetic_sequence(n, *terms):
+    """
+    Returns the sum of the first n terms of an arithmetic sequence given the starting terms
+    
+    Args:
+        n (int): The number of terms to sum.
+        *terms: A list of the first terms of the arithmetic sequence
+    """
+    terms = list(terms)
+    d = terms[1]-terms[0]
+    return n*(2*terms[0]+(n-1)*d)/2
+
+def sum_geometric_sequence(n, *terms):
+    """
+    Returns the sum of the first n terms of a geometric sequence given the starting terms
+    
+    Args:
+        n (int): The number of terms to sum.
+        *terms: A list of the first terms of the geometric sequence
+    """
+    terms = list(terms)
+    r = terms[1]/terms[0]
+    return (terms[0]*(1-r**n))/(1-r)
+
+def infinite_geometric_sum(*terms):
+    """
+    Returns the sum of an infinite geometric series
+
+    Args:
+        *terms: A list of the first terms of the geometric series
+    """
+    terms = list(terms)
+    return terms[0]/(1-terms[1]/terms[0])
+
 """
 END OF SEQUENCES
 """

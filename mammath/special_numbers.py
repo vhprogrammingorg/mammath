@@ -5,7 +5,7 @@ import math
 NUMBER/SEQUENCE CHECKS AND PRINTERS
 """
 
-def perfect_square(num):
+def is_perfect_square(num):
     """
     Checks if a number is a perfect square.
     
@@ -21,20 +21,6 @@ def perfect_square(num):
         return True
     return False
 
-def perfect_square_check(num):
-    """
-    Checks if a number is a perfect square.
-    
-    Args:
-        num (int): The number to check.
-        
-    Returns:
-        bool: True if the number is a perfect square, False otherwise.
-    """
-    if perfect_square(num) == True:
-        return True
-    return False
-
 def perfect_square_printer(low, high):
     """
     Prints perfect squares within a given range.
@@ -47,10 +33,10 @@ def perfect_square_printer(low, high):
         None
     """
     for i in range(low, high):
-        if perfect_square(i) == True:
+        if is_perfect_square(i) == True:
             print(i)
             
-def perfect_root_check(a, b):
+def is_perfect_root(a, b):
     """
     Checks if a number is a perfect root.
     
@@ -65,7 +51,8 @@ def perfect_root_check(a, b):
     if x % 1 == 0:
         return True
     return False
-def triangular_check(n):
+
+def is_triangular(n):
     """
     Checks if a number is a triangular number.
     
@@ -92,11 +79,11 @@ def triangular_printer(low, high):
         None
     """
     for i in range(low, high):
-        if triangular_check(i) == True:
+        if is_triangular(i) == True:
             print(i)
 
             
-def pentagonal_check(n):
+def is_pentagonal(n):
     """
     Checks if a number is a pentagonal number.
     
@@ -126,10 +113,10 @@ def pentagonal_printer(low, high):
         None
     """
     for i in range(low, high):
-        if pentagonal_check(i) == True:
+        if is_pentagonal(i) == True:
             print(i)
 
-def perfect_number_check(n):
+def is_perfect_number(n):
     """
     Checks if a number is a perfect number.
     
@@ -157,7 +144,7 @@ def perfect_number_printer(lower, upper, list = False):
     Returns:
         None
     """
-    perfects = [i for i in range(lower, upper+1) if perfect_number_check(i)]
+    perfects = [i for i in range(lower, upper+1) if is_perfect_number(i)]
     if list:
         return perfects
     for i in perfects:
@@ -175,11 +162,11 @@ def pascals_printer(n):
     """
     for i in range(n):
         if i > 0:
-            print('')
+            print("")
         for j in range(i+1):
             print(factorial(i)//(factorial(j)*factorial(i-j)), end=" ")
             
-def pascals(n):
+def pascals_nth_row(n):
     """
     Gives the nth row of the pascals triangle
 
@@ -194,7 +181,74 @@ def pascals(n):
         l.append(factorial(n)//(factorial(i)*factorial(n-i)))     
     return l
 
+def bernoulli_number(n):
+    """
+    Returns the nth Bernoulli number.
+    
+    Args:
+        n (int): The index of the Bernoulli number.
+        
+    Returns:
+        float: The nth Bernoulli number.
+    """
+    A = [0] * (n+1)
+    for m in range(n+1):
+        A[m] = 1 / (m + 1)
+        for j in range(m, 0, -1):
+            A[j-1] = j * (A[j-1] - A[j])
+    return A[0]
 
+def bernoulli_printer(n):
+    """
+    Returns the first n Bernoulli numbers.
+    
+    Args:
+        n (int): The number of Bernoulli numbers to return.
+        
+    Returns:
+        list: The first n Bernoulli numbers.
+    """
+    return [bernoulli_number(i) for i in range(n)]
+
+def catalan_number(n):
+    """
+    Returns the nth Catalan number.
+    
+    Args:
+        n (int): The index of the Catalan number.
+        
+    Returns:
+        int: The nth Catalan number.
+    """
+    from math import comb
+    return comb(2*n, n) // (n + 1)
+
+def catalan_printer(n):
+    """
+    Returns the first n Catalan numbers.
+    
+    Args:
+        n (int): The number of Catalan numbers to return.
+        
+    Returns:
+        list: The first n Catalan numbers.
+    """
+    return [catalan_number(i) for i in range(n)]
+
+def lucas_sequence(n):
+    """
+    Returns the first n terms of the Lucas sequence.
+    
+    Args:
+        n (int): The number of terms to return.
+        
+    Returns:
+        list: The first n terms of the Lucas sequence.
+    """
+    lucas_seq = [2, 1]
+    while len(lucas_seq) < n:
+        lucas_seq.append(lucas_seq[-1] + lucas_seq[-2])
+    return lucas_seq[:n]
 
 """
 END OF NUMBER/SEQUENCE CHECKS AND PRINTERS

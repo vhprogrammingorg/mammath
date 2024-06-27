@@ -1,6 +1,6 @@
 import math
 from .helper import parse_standard, parse_to_standard
-from .sequences import nth_range
+from .sequences import terms_in_range
 
 """
 OPERATIONS
@@ -132,10 +132,10 @@ def LCM(a, b):
     return (a*b)/HCF(a, b)
     
 def summate(n, a, b):
-    return sum(nth_range(n, a, b))
+    return sum(terms_in_range(n, a, b))
 
 def product(n, a, b):
-    return listMultiply(nth_range(n, a, b))
+    return listMultiply(terms_in_range(n, a, b))
 
 def nchoosek(n, k):
     """
