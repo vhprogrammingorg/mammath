@@ -433,6 +433,83 @@ def v_from_lorentz(lorentz_factor):
     """
     return c * (1 - lorentz_factor ** -2) ** 0.5
 
+def rayleigh_jeans_law(wavelength, temperature):
+    """
+    Computes the spectral radiance of a blackbody at a given temperature using the Rayleigh-Jeans Law.
+    """
+    spectral_radiance = (2 * c * k * temperature) / (wavelength ** 4)
+    return spectral_radiance
+
+def schrodinger_1d_infinite_potential_well(L, N, m=9.10938356e-31):
+    """
+    Solves the time-independent Schrödinger equation for a particle in a 1D infinite potential well.
+    """
+    dx = L / (N + 1)
+    x = np.linspace(0, L, N)
+    H = np.zeros((N, N))
+
+    for i in range(N):
+        H[i, i] = -2
+        if i > 0:
+            H[i, i - 1] = 1
+        if i < N - 1:
+            H[i, i + 1] = 1
+
+    H = - (h_bar**2 / (2 * m * dx**2)) * H
+
+    eigenvalues, eigenvectors = np.linalg.eigh(H)
+    
+    return eigenvalues, eigenvectors
+
+def feynman_path_integral(x0, x1, T, N, V, m):
+    """
+    Computes the Feynman path integral for a particle moving from x0 to x1 in potential V(x)
+    """
+    paths = np.linspace(x0, x1, N)
+    dt = T / N
+    integral = 0.0
+
+    for i in range(N-1):
+        dx = paths[i+1] - paths[i]
+        action = 0.5 * m * (dx / dt) ** 2 - V(paths[i]) * dt
+        integral += np.exp(-1j * action / h_bar)
+    
+    return integral
+
+def heat_transfer_finite_difference(L, T, alpha, Nx, Nt):
+    """
+    Simulates heat transfer in a 1D rod using the finite difference method.
+    """
+    dx = L / (Nx - 1)
+    dt = T / Nt
+    r = alpha * dt / dx**2
+
+    u = np.zeros((Nt, Nx))
+    u[0, :] = np.sin(np.pi * np.linspace(0, L, Nx) / L) 
+    
+    for n in range(0, Nt-1):
+        for i in range(1, Nx-1):
+            u[n+1, i] = u[n, i] + r * (u[n, i+1] - 2 * u[n, i] + u[n, i-1])
+    
+    return u
+
+def photoelectric_effect_simulation(frequency, work_function, intensity, duration):
+    """
+    Simulates the photoelectric effect.
+    """
+    power_per_photon = h * frequency
+    photon_flux = intensity / power_per_photon  
+    area = 1.0 
+    total_photons = photon_flux * area * duration
+
+    if power_per_photon > work_function:
+        excess_energy_per_photon = power_per_photon - work_function
+        electrons_emitted = total_photons * (excess_energy_per_photon / power_per_photon)
+    else:
+        electrons_emitted = 0  
+
+    return electrons_emitted
+
 """
 END OF PHYSICS
 """

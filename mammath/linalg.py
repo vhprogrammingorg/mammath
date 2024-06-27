@@ -1,4 +1,5 @@
 import numpy as np
+from .geometry import sin, cos, atan
 
 """
 LINEAR ALGEBRA
@@ -117,11 +118,9 @@ def mat_gauss_elim(mat, sol):
     [[3, 5, 1], [0, 1, 1], [1, 4, 2]]
     and [3, 8, 4]
     """
-    a = np.linalg.inv(mat)
+    a = inverse(mat)
     new = np.matmul(a, [[i] for i in sol])
     return [i[0] for i in new]
-
-from numpy import sin, cos, atan
 
 class vector:
     def __init__(self):
