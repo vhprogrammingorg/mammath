@@ -1,7 +1,18 @@
-from .geometry import rad_to_deg
 from .constants import e
 from .operations import ln
 import math
+
+def rad_to_deg(rad):
+    """
+    Converts radians to degrees
+    """
+    return rad * 180/pi
+
+def deg_to_rad(deg):
+    """
+    Converts degrees to radians
+    """
+    return deg * pi/180
 
 def sin(theta, radians=False):
     """
