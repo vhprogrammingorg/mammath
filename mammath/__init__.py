@@ -14,7 +14,7 @@ from .misc import *
 from .operations import *
 from .physics import *
 from .prime_numbers import *
-from .sequences import *
+from .Sequences import *
 from .shunting_yard import *
 from .tables import *
 from .teachers import *
