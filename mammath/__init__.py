@@ -19,3 +19,4 @@ from .shunting_yard import *
 from .tables import *
 from .teachers import *
 from .unit_conversions import *
+from .deprecated import *
