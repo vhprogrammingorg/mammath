@@ -7,19 +7,6 @@ import math
 """
 GEOMETRY
 """
-
-def rad_to_deg(rad):
-    """
-    Converts radians to degrees
-    """
-    return rad * 180/pi
-
-def deg_to_rad(deg):
-    """
-    Converts degrees to radians
-    """
-    return deg * pi/180
-
 def valid_triangle(s1, s2, s3):
     """
     If a triangle with three given sides is valid
