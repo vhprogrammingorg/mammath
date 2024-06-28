@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import warnings
 import numpy as np
 from .helper import f, parse_graphing
 from .constants import *
@@ -10,7 +9,7 @@ from .operations import *
 GRAPHING
 """
 #graph("2*x", "3*x")
-def graph_str(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
+def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
     """
     Plots any number of 2D functions given a string function of x equating to y. The first 4 keyword arguments change the axis of the graph.
     
@@ -59,14 +58,6 @@ def graph_str(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_poi
         if lrangey or urangey != False:
             plt.ylim([lrangey,urangey])
             plt.show()
-
-def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
-    warnings.warn(
-        "This function is deprecated and will be removed in a future version. It has been replaced with graph_str for this purpose and graph_func for other purposes.",
-        DeprecationWarning,
-        stacklevel=2
-    )
-    return graph_str(*args, lrangex=lrangex, urangex=urangex, lrangey=lrangey, urangey=urangey, graph_points=graph_points, gridset=gridset, scaling=scaling, graph_title=graph_title, xtitle=xtitle, ytitle=ytitle)
 
 def plot_histogram(data, bins=10, range=None, xlabel='Value', ylabel='Frequency', title=None):
     """
@@ -246,7 +237,7 @@ def plot_mandelbrot(xmin=-2, xmax=2, ymin=-2, ymax=2, width=800, height=800, max
     plt.title('Mandelbrot Set')
     plt.show()
 
-def graph3d_contour_str(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
+def graph3d_contour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
     """
     Plots any number of 3D functions given a string function of x equating to y as a contour. The first 6 keyword arguments change the axis of the graph.
     
@@ -294,21 +285,8 @@ def graph3d_contour_str(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10,
         ax.set_zlim(lrangey, urangey)
     return plt.show()
 
-def graph3d_contour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
-    warnings.warn(
-        "This function is deprecated and will be removed in a future version. It has been replaced by graph3d_contour_str and graph3d_contour_func.",
-        DeprecationWarning,
-        stacklevel=2
-    )
-    return graph3d_contour_str(*args, lrangex=lrangex, lrangey=lrangey, urangex=urangex, urangey=urangey, lrangez=lrangez, urangez=urangez, graph_points=graph_points, lablex=lablex, labley=labley, lablez=lablez, graph_title=graph_title, cmap=cmap)
-
 #["2*x", "2*y"]
 def graph3d_line(*args, lrangex=-10, lrangey=-10, lrangez = -10, urangex=10, urangey=10, urangez = 10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, color='gray'):
-    warnings.warn(
-        "This function is deprecated and will be removed in a future version. It has been replaced with graph3d_parametric",
-        DeprecationWarning,
-        stacklevel=2
-    )
     """
     Plots any number of 3D line functions given a list of 2 elements - a function of x and a function of y, both equating to z. The first 6 keyword arguments change the axis of the graph.
     
