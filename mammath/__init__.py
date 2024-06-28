@@ -5,7 +5,6 @@ from .special_numbers import *
 from .Complex import *
 from .constants import *
 from .divisibility_checks import *
-from .fibonacci import *
 from .Fractions import *
 from .geometry import *
 from .graphing import *
