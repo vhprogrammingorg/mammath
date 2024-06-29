@@ -524,6 +524,122 @@ def graph3d_bar(x_data, y_data, z_data, xlabel='x', ylabel='y', zlabel='z', grap
     ax.set_title(graph_title)
 
     return plt.show()
+
+def graph3d_projection(f, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, lablex='x', labley='y', lablez='z', graph_title=None, cmap='viridis'):
+    """
+    Creates 2D slice functions from a 3D function f(x, y).
+    
+    Args:
+        f (function): The function f(x, y) to plot.
+        lrangex (float, optional): The lower bound for the x-axis. Defaults to -10.
+        urangex (float, optional): The upper bound for the x-axis. Defaults to 10.
+        lrangey (float, optional): The lower bound for the y-axis. Defaults to -10.
+        urangey (float, optional): The upper bound for the y-axis. Defaults to 10.
+        graph_points (int, optional): The number of points to sample for the graph. Defaults to 100.
+        lablex (str, optional): The label for the x-axis. Defaults to 'x'.
+        labley (str, optional): The label for the y-axis. Defaults to 'y'.
+        lablez (str, optional): The label for the z-axis. Defaults to 'z'.
+        graph_title (str, optional): The title of the graph. Defaults to None.
+        cmap (str, optional): The colormap to use for the plot. Defaults to 'viridis'.
+
+    Returns:
+        tuple: Functions to plot the slices at specified x, y, and z coordinates.
+    """
+    
+    x = np.linspace(lrangex, urangex, graph_points)
+    y = np.linspace(lrangey, urangey, graph_points)
+    X, Y = np.meshgrid(x, y)
+    Z = f(X, Y)
+    
+    def plot_xy_slice(z_value):
+        plt.figure()
+        cp = plt.contourf(X, Y, Z, cmap=cmap)
+        plt.colorbar(cp)
+        plt.xlabel(lablex)
+        plt.ylabel(labley)
+        plt.title(f"{graph_title} - XY Plane at z={z_value}")
+        plt.axhline(y=z_value, color='r', linestyle='--')
+        plt.show()
+
+    def plot_xz_slice(y_value):
+        plt.figure()
+        plt.plot(x, f(x, y_value), label=f'y={y_value:.2f}')
+        plt.xlabel(lablex)
+        plt.ylabel(lablez)
+        plt.title(f"{graph_title} - XZ Plane at y={y_value}")
+        plt.grid(True)
+        plt.show()
+
+    def plot_yz_slice(x_value):
+        plt.figure()
+        plt.plot(y, f(x_value, y), label=f'x={x_value:.2f}')
+        plt.xlabel(labley)
+        plt.ylabel(lablez)
+        plt.title(f"{graph_title} - YZ Plane at x={x_value}")
+        plt.grid(True)
+        plt.show()
+
+    return plot_xy_slice, plot_xz_slice, plot_yz_slice
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def graph3d_parametric_projection(x_func, y_func, z_func, t_range=(0, 2*np.pi), graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='viridis'):
+    """
+    Creates 2D slice functions from a 3D parametric function.
+    
+    Args:
+        x_func (function): The parametric function for x.
+        y_func (function): The parametric function for y.
+        z_func (function): The parametric function for z.
+        t_range (tuple, optional): The range of the parameter t. Defaults to (0, 2*pi).
+        graph_points (int, optional): The number of points to sample for the graph. Defaults to 1000.
+        lablex (str, optional): The label for the x-axis. Defaults to 'x'.
+        labley (str, optional): The label for the y-axis. Defaults to 'y'.
+        lablez (str, optional): The label for the z-axis. Defaults to 'z'.
+        graph_title (str, optional): The title of the graph. Defaults to None.
+        cmap (str, optional): The colormap to use for the plot. Defaults to 'viridis'.
+
+    Returns:
+        tuple: Functions to plot the slices at specified x, y, and z coordinates.
+    """
+    
+    t = np.linspace(t_range[0], t_range[1], graph_points)
+    X = x_func(t)
+    Y = y_func(t)
+    Z = z_func(t)
+    
+    def plot_xy_slice(z_value):
+        plt.figure()
+        plt.plot(X, Y, label='XY')
+        plt.axhline(y=z_value, color='r', linestyle='--')
+        plt.xlabel(lablex)
+        plt.ylabel(labley)
+        plt.title(f"{graph_title} - XY Plane at z={z_value}")
+        plt.grid(True)
+        plt.show()
+
+    def plot_xz_slice(y_value):
+        plt.figure()
+        plt.plot(X, Z, label='XZ')
+        plt.axhline(y=y_value, color='r', linestyle='--')
+        plt.xlabel(lablex)
+        plt.ylabel(lablez)
+        plt.title(f"{graph_title} - XZ Plane at y={y_value}")
+        plt.grid(True)
+        plt.show()
+
+    def plot_yz_slice(x_value):
+        plt.figure()
+        plt.plot(Y, Z, label='YZ')
+        plt.axhline(y=x_value, color='r', linestyle='--')
+        plt.xlabel(labley)
+        plt.ylabel(lablez)
+        plt.title(f"{graph_title} - YZ Plane at x={x_value}")
+        plt.grid(True)
+        plt.show()
+
+    return plot_xy_slice, plot_xz_slice, plot_yz_slice
     
 """
 END OF GRAPHING
