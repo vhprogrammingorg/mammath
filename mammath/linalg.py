@@ -117,7 +117,7 @@ def matrix_multiply(A, B):
     result = [[sum(A[i][k] * B[k][j] for k in range(len(B))) for j in range(len(B[0]))] for i in range(len(A))]
     return result
 
-def mat_gauss_elim(mat, sol):
+def mat_solve(mat, sol):
     """
     Enter an nxn 2D list of coefficients and n length list of solutions such as:
     3x + 5y + z = 3, y + z = 8, x + 4y + 2z = 4

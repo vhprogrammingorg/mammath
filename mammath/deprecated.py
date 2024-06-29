@@ -1,3 +1,8 @@
+from .helper import parse_graphing, f, deprecated
+import numpy as np
+import matplotlib as plt
+
+@deprecated
 def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
     """
     Plots any number of 2D functions given a string function of x equating to y. The first 4 keyword arguments change the axis of the graph.
@@ -48,6 +53,7 @@ def graph(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=
             plt.ylim([lrangey,urangey])
             plt.show()
 
+@deprecated
 def graph3d_wire(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, edgecolor=False, color='black', fill='viridis'):
     """
     Plots any number of 3D wireframe functions given a string function of x equating to y as a wire. The first 6 keyword arguments change the axis of the graph.
@@ -102,6 +108,8 @@ def graph3d_wire(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrange
     if lrangey != False or urangey == False:
         ax.set_zlim(lrangey, urangey)
     return plt.show()
+
+@deprecated
 def graph3d_surface(fx, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, edgecolor=False, color='black', fill='viridis'):
     """
     Plots a 3D surface function given a string function fx of x and y.
@@ -153,6 +161,7 @@ def graph3d_surface(fx, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrange
     
     plt.show()
 
+@deprecated
 def graph3d_wireframe(fx, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, color='black'):
     """
     Plots a 3D wireframe function given a string function fx of x and y.

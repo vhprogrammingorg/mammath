@@ -1,5 +1,5 @@
 from .constants import e
-from .operations import ln
+from .operations import ln, pi
 import math
 
 def rad_to_deg(rad):
