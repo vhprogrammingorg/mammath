@@ -12,6 +12,7 @@ from .graphing import *
 from .helper import *
 from .misc import *
 from .operations import *
+from .fibonacci import *
 from .physics import *
 from .prime_numbers import *
 from .sequences import *
@@ -19,4 +20,5 @@ from .shunting_yard import *
 from .tables import *
 from .teachers import *
 from .unit_conversions import *
+from .trig_functions import *
 from .deprecated import *
