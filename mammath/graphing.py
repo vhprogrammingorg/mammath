@@ -640,6 +640,40 @@ def graph3d_parametric_projection(x_func, y_func, z_func, t_range=(0, 2*np.pi), 
         plt.show()
 
     return plot_xy_slice, plot_xz_slice, plot_yz_slice
+
+ef vector_field(u, v, lrangex=-10, urangex=10, lrangey=-10, urangey=10, grid_points=20, lablex='x', labley='y', graph_title=None):
+    """
+    Plots a 2D vector field given the vector components u(x, y) and v(x, y).
+    
+    Args:
+        u (function): The function representing the x-component of the vector at each point (x, y).
+        v (function): The function representing the y-component of the vector at each point (x, y).
+        lrangex (float, optional): The lower bound for the x-axis. Defaults to -10.
+        urangex (float, optional): The upper bound for the x-axis. Defaults to 10.
+        lrangey (float, optional): The lower bound for the y-axis. Defaults to -10.
+        urangey (float, optional): The upper bound for the y-axis. Defaults to 10.
+        grid_points (int, optional): The number of points in the grid for plotting the vector field. Defaults to 20.
+        lablex (str, optional): The label for the x-axis. Defaults to 'x'.
+        labley (str, optional): The label for the y-axis. Defaults to 'y'.
+        graph_title (str, optional): The title of the graph. Defaults to None.
+    
+    Returns:
+        None
+    """
+    
+    x = np.linspace(lrangex, urangex, grid_points)
+    y = np.linspace(lrangey, urangey, grid_points)
+    X, Y = np.meshgrid(x, y)
+    U = u(X, Y)
+    V = v(X, Y)
+    
+    plt.figure()
+    plt.quiver(X, Y, U, V)
+    plt.xlabel(lablex)
+    plt.ylabel(labley)
+    plt.title(graph_title)
+    plt.grid(True)
+    plt.show()
     
 """
 END OF GRAPHING
