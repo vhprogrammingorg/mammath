@@ -674,7 +674,42 @@ def vector_field(u, v, lrangex=-10, urangex=10, lrangey=-10, urangey=10, grid_po
     plt.title(graph_title)
     plt.grid(True)
     plt.show()
+
+
+def complex_function(f, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=400, graph_title=None):
+    """
+    Plots a complex function f(z) where z = x + iy.
     
+    Args:
+        f (function): The complex function to plot.
+        lrangex (float, optional): The lower bound for the x-axis. Defaults to -10.
+        urangex (float, optional): The upper bound for the x-axis. Defaults to 10.
+        lrangey (float, optional): The lower bound for the y-axis. Defaults to -10.
+        urangey (float, optional): The upper bound for the y-axis. Defaults to 10.
+        graph_points (int, optional): The number of points to sample for the graph. Defaults to 400.
+        graph_title (str, optional): The title of the graph. Defaults to None.
+    
+    Returns:
+        None
+    """
+    
+    x = np.linspace(lrangex, urangex, graph_points)
+    y = np.linspace(lrangey, urangey, graph_points)
+    X, Y = np.meshgrid(x, y)
+    Z = X + 1j * Y
+    F = f(Z)
+    magnitude = np.abs(F)
+    phase = np.angle(F)
+    plt.figure(figsize=(8, 6))
+    plt.imshow(phase, extent=(lrangex, urangex, lrangey, urangey), origin='lower', cmap='hsv')
+    plt.colorbar(label='Phase (radians)')
+    plt.contour(X, Y, magnitude, colors='black', alpha=0.5)
+    plt.xlabel('Re(z)')
+    plt.ylabel('Im(z)')
+    plt.title(graph_title)
+    plt.show()
+
+
 """
 END OF GRAPHING
 """
