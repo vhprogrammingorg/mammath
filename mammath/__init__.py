@@ -7,13 +7,14 @@ from .constants import *
 from .divisibility_checks import *
 from .Fractions import *
 from .geometry import *
+from .coord_geometry import *
 from .graphing import *
 from .helper import *
 from .misc import *
 from .operations import *
 from .physics import *
 from .prime_numbers import *
-from .Sequences import *
+from .sequences import *
 from .shunting_yard import *
 from .tables import *
 from .teachers import *
