@@ -641,7 +641,7 @@ def graph3d_parametric_projection(x_func, y_func, z_func, t_range=(0, 2*np.pi), 
 
     return plot_xy_slice, plot_xz_slice, plot_yz_slice
 
-ef vector_field(u, v, lrangex=-10, urangex=10, lrangey=-10, urangey=10, grid_points=20, lablex='x', labley='y', graph_title=None):
+def vector_field(u, v, lrangex=-10, urangex=10, lrangey=-10, urangey=10, grid_points=20, lablex='x', labley='y', graph_title=None):
     """
     Plots a 2D vector field given the vector components u(x, y) and v(x, y).
     
