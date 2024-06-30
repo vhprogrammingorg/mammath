@@ -1,6 +1,7 @@
 from .geometry import *
 from .constants import e, pi, i
 from .operations import *
+from .calculus import trapezoidal_rule
 import math
 
 """
@@ -119,19 +120,61 @@ def root_complex(n, a, b):
     theta = math.atan2(b, a)
     return r**(1/n)*eulers_formula(theta/n)
 
-def complex_sin(theta):
+def complex_sin(z):
     """
-    Returns the sine of a complex number using the complex definition of sine derived from Euler's formula
+    Returns the sine of a complex number z using the complex definition of sine derived from Euler's formula
     """
     i = complex(0, 1)
-    return (exp(1 * theta) - exp(-i * theta))/(2*i)
+    return (exp(1 * z) - exp(-i * z))/(2*i)
 
-def complex_cos(theta):
+def complex_cos(z):
     """
-    Returns the cosine of a complex number using the complex definition of sine derived from Euler's formula
+    Returns the cosine of a complex number z using the complex definition of sine derived from Euler's formula
     """
     i = complex(0, 1)
-    return (exp(1 * theta) + exp(-i * theta))/2
+    return (exp(1 * z) + exp(-i * z))/2
+
+def complex_tan(z):
+    """
+    Returns the sine of a complex number z using the complex definition of sine derived from Euler's formula
+    """
+    return complex_sin(z)/complex_cos(z)
+
+def complex_sinh(z):
+    """
+    Returns the hyperbolic sine of a complex number z.
+    """
+    return (math.e**z - math.e**(-z)) / 2
+
+def complex_cosh(z):
+    """
+    Returns the hyperbolic cosine of a complex number z.
+    """
+    return (math.e**z + math.e**(-z)) / 2
+
+def complex_tanh(z):
+    """
+    Returns the hyperbolic tangent of a complex number z.
+    """
+    return complex_sinh(z) / complex_cosh(z)
+
+def complex_asinh(z):
+    """
+    Returns the inverse hyperbolic sine of a complex number z.
+    """
+    return math.log(z + math.sqrt(z**2 + 1))
+
+def complex_acosh(z):
+    """
+    Returns the inverse hyperbolic cosine of a complex number z.
+    """
+    return math.log(z + math.sqrt(z**2 - 1))
+
+def complex_atanh(z):
+    """
+    Returns the inverse hyperbolic tangent of a complex number z.
+    """
+    return 0.5 * math.log((1 + z) / (1 - z))
 
 def roots_of_unity(n, r):
     """
@@ -149,7 +192,14 @@ def W(x, n=100):
     return ans
 
 lambertW = product_log = W
-    
+
+def gamma(x, n = 1000):
+    """
+    Computes gamma(x). Larger n yields greater accuracy
+    """
+    gamma_function = lambda t: t**(x-1) * math.e**(-t)
+    return trapezoidal_rule(gamma_function, 0, n, n=n)
+
 """
 END OF COMPLEX
 """

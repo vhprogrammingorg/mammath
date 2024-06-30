@@ -11,6 +11,18 @@ COORDINATE GEOMETRY
 class Polygon:
     def __init__(self, *vertices):
         self.vertices = list(vertices)
+
+def rotate_about_origin(x, y, theta) -> tuple[float, float]:
+    """
+    Returns the coordinates of the rotation of a given point (x, y) clockwise about the origin by an angle of theta
+    """
+    return x*cos(theta)+y*sin(theta), -x*sin(theta) + y*cos(theta)
+
+def rotate_about_point(x, y, p, q, theta) -> tuple[float, float]:
+    """
+    Returns the coordinates of the rotation of a given point (x, y) clockwise about a point (p, q) by an angle of theta
+    """
+    return (x-p)*cos(theta)-(y-q)*sin(theta)+p, -(x-p)*sin(theta)+(y-q)*cos(theta)+q
     
 def equation_of_circle(h, k, r) -> str:
     """
