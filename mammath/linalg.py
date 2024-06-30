@@ -1,5 +1,5 @@
 import numpy as np
-from .geometry import sin, cos, atan
+from .trig_functions import sin, cos, atan
 
 """
 LINEAR ALGEBRA

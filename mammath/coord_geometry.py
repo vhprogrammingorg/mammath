@@ -11,10 +11,6 @@ COORDINATE GEOMETRY
 class Polygon:
     def __init__(self, *vertices):
         self.vertices = list(vertices)
-
-@overload
-def is_valid_triangle(x1: float, y1: float, x2: float, y2: float, x3: float, y3: float):
-    ...
     
 def equation_of_circle(h, k, r) -> str:
     """
@@ -34,11 +30,30 @@ def point_distance(x1, y1, x2, y2) -> float:
     """
     return sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
-def line_from_points(*points: list[tuple]) -> tuple[float, float]:
-    x2, y2 = points[1]
-    x1, y1 = points[0]
+def are_points_collinear(*points: tuple[tuple[float, float]]) -> bool:
+    """
+    Determines whether all of the given points are collinear
+    """
+    points = list(points)
+    if len(points) <= 2:
+        return True
+    (x0, y0), (x1, y1) = points[0], points[1]
+    dx, dy = x1 - x0, y1 - y0
+
+    for (x, y) in points[2:]:
+        if (y - y0)*dx != (x - x0)*dy:
+            return False
+    return True
+
+def line_from_points(*points: tuple[tuple[float, float], tuple[float, float]]) -> tuple[float, float]:
+    """
+    Returns the slope and intercept of the line formed by the two given points
+    """
+    (x1, y1), (x2, y2) = points
+    if x1 == x2:
+        return float('inf'), x1 
     m = (y2-y1)/(x2-x1)
-    c = y1-m*x1
+    c = y1 - m*x1
     return m, c
 
 def midpoint(x1, y1, x2, y2) -> tuple[float, float]:
@@ -230,9 +245,6 @@ def spieker_center(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     Calculates the coordinates of the Spieker center (incenter of the medial triangle) of a triangle given its vertices
     """
     return incenter(midpoint(x1, y1, x2, y2), midpoint(x2, y2, x3, y3), midpoint(x3, y3, x1, y1))
-
-def harmonic_conjugate():
-    pass
 
 def balancing_point_triangle(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """

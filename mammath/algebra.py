@@ -266,7 +266,7 @@ def linear_system_2x2(equation1: str, equation2: str, print = False):
 
     return (print(f"x: {sols[0]}\ny: {sols[1]}") if print else sols[0], sols[1]) if check else None   
 
-def linear_system_nxn(*equations: list[str]) -> list:
+def linear_system_nxn(*equations: list[str]) -> str:
     """
     Solves an nxn system of equations
     """

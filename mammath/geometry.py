@@ -19,7 +19,6 @@ def deg_to_rad(deg):
     """
     return deg * pi/180
 
-@overload
 def is_valid_triangle(s1: float, s2: float, s3: float):
     """
     If a triangle with three given sides is valid
