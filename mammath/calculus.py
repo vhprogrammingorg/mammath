@@ -227,7 +227,7 @@ def f_derivative(f_of, h = 0.00001):
     """
     The function for the derivative of f(x)
     """
-    return lambda x: point_derivative(f_of, x, h = h)
+    return lambda x: derivative(f_of, x, h = h)
 
 def f_partial_derivative(function, var_idx, h = 0.0001):
     """
