@@ -50,6 +50,12 @@ def point_derivative(f_of, x, h = 0.00001):
     """
     return round(1 / (12 * h) * (f_of(x - 2 * h) - 8 * f_of(x - h) + 8 * f_of(x + h) - f_of(x + 2 * h)), 7)
 
+def derivative(f_of, x, h = 0.00001):
+    """
+    Returns the derivative of any function at a point x. Smaller h is more accurate.
+    """
+    return 1 / (12 * h) * (f_of(x - 2 * h) - 8 * f_of(x - h) + 8 * f_of(x + h) - f_of(x + 2 * h))
+
 def limit_derivative(f, x, h = 0.00001):
     """
     Returns the derivative of any function at a point x. Smaller h is more accurate.
@@ -124,7 +130,7 @@ def partial_derivative(function, inputs, var_idx, h = 0.0001):
     """
     fi = function(*inputs)
     inputs[var_idx] += h
-    return round((function(*inputs) - fi) / h, 7)
+    return function(*inputs) - fi) / h
 
 def del_operator(function, inputs, h = 0.0001):
     """
