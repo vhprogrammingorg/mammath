@@ -8,6 +8,28 @@ from .operations import *
 """
 GRAPHING
 """
+def plot2d_vals_func(x_values, y_values, func):
+    '''
+    Plots values and a function on one graph
+    
+    Parameters:
+    x_values (array-like): The x coordinates of the data points.
+    y_values (array-like): The y coordinates of the data points.
+    poly_func (np.poly1d): The function.
+    '''
+    plt.scatter(x_values, y_values, color='red', label='Data points')
+    
+    x_fit = np.linspace(min(x_values), max(x_values), 500)
+    y_fit = func(x_fit)
+    
+    plt.plot(x_fit, y_fit, color='blue')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Comparative Plot')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+    
 def graph2d_func(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
     """
     Plots any number of 2D functions given a function of x equating to y. The first 4 keyword arguments change the axis of the graph.
