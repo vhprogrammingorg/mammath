@@ -4,6 +4,22 @@ from .operations import factorial
 """
 CALCULUS
 """
+def interpolate_polynomial(x_values, y_values, degree):
+    '''
+    Interpolates a polynomial of the given degree through the provided x and y values.
+    
+    Parameters:
+    x_values (array-like): The x coordinates of the data points.
+    y_values (array-like): The y coordinates of the data points.
+    degree (int): The degree of the polynomial to fit.
+    
+    Returns:
+    poly_func (np.poly1d): The polynomial function.
+    '''
+    coefficients = np.polyfit(x_values, y_values, degree)
+    poly_func = np.poly1d(coefficients)
+    return poly_func
+
 def rsum(f, a, b, n = 1000):
     """
     Riemann sum of f(x) (a to b). Larger n is more accurate to the integral.
