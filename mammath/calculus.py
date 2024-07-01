@@ -130,7 +130,7 @@ def partial_derivative(function, inputs, var_idx, h = 0.0001):
     """
     fi = function(*inputs)
     inputs[var_idx] += h
-    return function(*inputs) - fi) / h
+    return (function(*inputs) - fi) / h
 
 def del_operator(function, inputs, h = 0.0001):
     """
