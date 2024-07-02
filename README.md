@@ -34,6 +34,7 @@ It is built upon several other modules including sys, tkinter, string, time, mat
 | Linear Algebra                                   | Calculus         |
 | Complex (complex ln, etc.) | Physics             |
 | Unit conversions    |  Miscellaneous (Equation parser, special numbers)|
+| Coordinate Geometry | Deprecated |
 
 We hope Mammath is a useful and reliable asset. Install via <code>pip install mammath</code>
 
