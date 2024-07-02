@@ -25,6 +25,7 @@ sierpinski_constant = 2.584981759
 thue_morse_constant = 0.4124540336
 universal_parabolic_constant = 2.29558714939
 viswanath_constant = 1.13198824
+mandelbrot_approximate_area = 2.089
 
 # Physics and Astronomy
 𝑐 = c = speed_of_light = 299792458
