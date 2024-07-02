@@ -264,6 +264,15 @@ def balancing_point_triangle(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     return centroid(x1, y1, x2, y2, x3, y3)
 
+def shoelace(coords):
+    '''
+    Returns the area of simple polygons based on coordinates
+    '''
+    coords += [coords[0]]
+    a = [coords[i][0] * coords[i + 1][1] for i in range(len(coords) - 1)]
+    b = [coords[i][1] * coords[i + 1][0] for i in range(len(coords) - 1)]
+    return 0.5 * abs(sum(a) - sum(b))
+    
 """
 END OF COORDINATE GEOMETRY
 """
