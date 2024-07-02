@@ -21,4 +21,5 @@ from .tables import *
 from .teachers import *
 from .unit_conversions import *
 from .trig_functions import *
+from .Fibonacci import *
 from .deprecated import *
