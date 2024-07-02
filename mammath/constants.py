@@ -124,7 +124,7 @@ P_tropical = tropical_year = 365.24219
 # Electronics and Computer Science
 bit = 1
 byte = 8 * bit
-kB = kilobyte = 1024 * bit
+kB = kilobyte = 1024 * byte
 MB = megabyte = 1024 * kilobyte
 GB = gigabyte = 1024 * megabyte
 TB = terabyte = 1024 * gigabyte
