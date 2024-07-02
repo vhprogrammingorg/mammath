@@ -354,7 +354,7 @@ def plot_lissajous(a, b, delta, t_max=10, num_points=1000, xlabel='X', ylabel='Y
     plt.grid(True)
     plt.show()
 
-def plot_mandelbrot(xmin=-2, xmax=2, ymin=-2, ymax=2, width=800, height=800, max_iter=256, cmap='hot'):
+def plot_mandelbrot(xmin=-2, xmax=1, ymin=-1, ymax=1, width=800, height=800, max_iter=256, cmap='hot'):
     """
     Plots the Mandelbrot set.
     
