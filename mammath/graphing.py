@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from mpmath import zeta, im, re
 from .helper import f, parse_graphing
 from .constants import *
 from .operations import *
@@ -403,12 +402,6 @@ def riemann_zeta(start, end, num_points=1000):
     num_points (int): The number of points to plot.
     '''
     t_values = np.linspace(start, end, num_points)
-    zeta_values = []
-
-    for t in t_values:
-        s = 0.5 + t * 1j  # Riemann zeta function on the critical line
-        zeta_val = zeta(s)
-        zeta_values.append(zeta_val)
 
     zeta_real = [re(z) for z in zeta_values]
     zeta_imag = [im(z) for z in zeta_values]
