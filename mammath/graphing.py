@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from mpmath import zeta, im, re
 from .helper import f, parse_graphing
 from .constants import *
 from .operations import *
@@ -8,28 +9,6 @@ from .operations import *
 """
 GRAPHING
 """
-def plot2d_vals_func(x_values, y_values, func):
-    '''
-    Plots values and a function on one graph
-    
-    Parameters:
-    x_values (array-like): The x coordinates of the data points.
-    y_values (array-like): The y coordinates of the data points.
-    poly_func (np.poly1d): The function.
-    '''
-    plt.scatter(x_values, y_values, color='red', label='Data points')
-    
-    x_fit = np.linspace(min(x_values), max(x_values), 500)
-    y_fit = func(x_fit)
-    
-    plt.plot(x_fit, y_fit, color='blue')
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.title('Comparative Plot')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-    
 def graph2d_func(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_points=100, gridset=True, scaling=True, graph_title=None, xtitle=None, ytitle=None):
     """
     Plots any number of 2D functions given a function of x equating to y. The first 4 keyword arguments change the axis of the graph.
@@ -214,6 +193,28 @@ def graph3d_parametric(*args, t_range=(0, 2*np.pi), graph_points=1000, lablex='x
     
     plt.show()
 
+def plot2d_vals_func(x_values, y_values, func):
+    '''
+    Plots values and a function on one graph
+    
+    Parameters:
+    x_values (array-like): The x coordinates of the data points.
+    y_values (array-like): The y coordinates of the data points.
+    poly_func (np.poly1d): The function.
+    '''
+    plt.scatter(x_values, y_values, color='red', label='Data points')
+    
+    x_fit = np.linspace(min(x_values), max(x_values), 500)
+    y_fit = func(x_fit)
+    
+    plt.plot(x_fit, y_fit, color='blue')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.title('Comparative Plot')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
 def plot_histogram(data, bins=10, range=None, xlabel='Value', ylabel='Frequency', title=None):
     """
     Plots a histogram of the given data.
@@ -390,6 +391,38 @@ def plot_mandelbrot(xmin=-2, xmax=2, ymin=-2, ymax=2, width=800, height=800, max
     plt.xlabel('Re')
     plt.ylabel('Im')
     plt.title('Mandelbrot Set')
+    plt.show()
+
+def riemann_zeta(start, end, num_points=1000):
+    '''
+    Plots the Riemann zeta function in the complex plane over a range of values.
+    
+    Parameters:
+    start (float): The start of the range for the imaginary part of s.
+    end (float): The end of the range for the imaginary part of s.
+    num_points (int): The number of points to plot.
+    '''
+    t_values = np.linspace(start, end, num_points)
+    zeta_values = []
+
+    for t in t_values:
+        s = 0.5 + t * 1j  # Riemann zeta function on the critical line
+        zeta_val = zeta(s)
+        zeta_values.append(zeta_val)
+
+    zeta_real = [re(z) for z in zeta_values]
+    zeta_imag = [im(z) for z in zeta_values]
+
+    plt.figure(figsize=(10, 10))
+
+    plt.plot(zeta_real, zeta_imag, label=r'$\zeta(0.5 + it)$', color='blue')
+
+    plt.title('Riemann Zeta Function in the Complex Plane')
+    plt.xlabel('Real part')
+    plt.ylabel('Imaginary part')
+    plt.grid(True)
+    plt.legend()
+
     plt.show()
 
 def graph3d_contour(*args, lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
