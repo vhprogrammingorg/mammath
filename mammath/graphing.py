@@ -61,7 +61,7 @@ def graph2d_func(*args, lrangex=-10, urangex=10, lrangey=-10, urangey=10, graph_
     plt.legend()
     plt.show()
 
-def graph3d_func(*args, plot_type='contour', lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='binary'):
+def graph3d_func(*args, plot_type='contour', lrangex=-10, lrangey=-10, urangex=10, urangey=10, lrangez=-10, urangez=10, graph_points=1000, lablex='x', labley='y', lablez='z', graph_title=None, cmap='viridis'):
     """
     Plots any number of 3D functions given a function of x and y as a contour, wireframe, surface, or other plot. The first 6 keyword arguments change the axis of the graph.
     
