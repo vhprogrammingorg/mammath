@@ -376,7 +376,7 @@ def plot_mandelbrot(xmin=-2, xmax=1, ymin=-1, ymax=1, width=800, height=800, max
     plt.title('Mandelbrot Set')
     plt.show()
 
-class MandelbrotExplorer:
+class mandelbrot_explorer:
     def __init__(self, xmin=-2, xmax=1, ymin=-1, ymax=1, width=800, height=800, max_iter=256, cmap='hot'):
         self.xmin = xmin
         self.xmax = xmax
