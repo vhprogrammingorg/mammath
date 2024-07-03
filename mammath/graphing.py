@@ -355,22 +355,6 @@ def plot_lissajous(a, b, delta, t_max=10, num_points=1000, xlabel='X', ylabel='Y
     plt.show()
 
 def plot_mandelbrot(xmin=-2, xmax=1, ymin=-1, ymax=1, width=800, height=800, max_iter=256, cmap='hot'):
-    """
-    Plots the Mandelbrot set.
-    
-    Args:
-        xmin (float, optional): The minimum x-value. Defaults to -2.
-        xmax (float, optional): The maximum x-value. Defaults to 2.
-        ymin (float, optional): The minimum y-value. Defaults to -2.
-        ymax (float, optional): The maximum y-value. Defaults to 2.
-        width (int, optional): The width of the image in pixels. Defaults to 800.
-        height (int, optional): The height of the image in pixels. Defaults to 800.
-        max_iter (int, optional): The maximum number of iterations. Defaults to 256.
-        cmap (str, optional): The colormap to use. Defaults to 'hot'.
-    
-    Returns:
-        None
-    """
     x = np.linspace(xmin, xmax, width)
     y = np.linspace(ymin, ymax, height)
     X, Y = np.meshgrid(x, y)
@@ -391,6 +375,74 @@ def plot_mandelbrot(xmin=-2, xmax=1, ymin=-1, ymax=1, width=800, height=800, max
     plt.ylabel('Im')
     plt.title('Mandelbrot Set')
     plt.show()
+
+class MandelbrotExplorer:
+    def __init__(self, xmin=-2, xmax=1, ymin=-1, ymax=1, width=800, height=800, max_iter=256, cmap='hot'):
+        self.xmin = xmin
+        self.xmax = xmax
+        self.ymin = ymin
+        self.ymax = ymax
+        self.width = width
+        self.height = height
+        self.max_iter = max_iter
+        self.cmap = cmap
+        self.fig, self.ax = plt.subplots()
+        self.cid = self.fig.canvas.mpl_connect('button_press_event', self.on_click)
+        self.rect = None
+        self.press = None
+        self.plot()
+        plt.show()
+
+    def plot(self):
+        x = np.linspace(self.xmin, self.xmax, self.width)
+        y = np.linspace(self.ymin, self.ymax, self.height)
+        X, Y = np.meshgrid(x, y)
+        Z = X + 1j * Y
+        C = Z.copy()
+        
+        img = np.zeros(Z.shape, dtype=int)
+        mask = np.ones(Z.shape, dtype=bool)
+        
+        for i in range(self.max_iter):
+            Z[mask] = Z[mask] * Z[mask] + C[mask]
+            mask = np.logical_and(mask, np.abs(Z) < 2)
+            img += mask
+        
+        self.ax.clear()
+        self.ax.imshow(img, extent=(self.xmin, self.xmax, self.ymin, self.ymax), cmap=self.cmap, origin='lower')
+        self.ax.set_xlabel('Re')
+        self.ax.set_ylabel('Im')
+        self.ax.set_title('Mandelbrot Set')
+        plt.draw()
+
+    def on_click(self, event):
+        if event.inaxes is not None:
+            if event.button == 1:  # Left click
+                if self.press is None:
+                    self.press = (event.xdata, event.ydata)
+                    self.rect = plt.Rectangle((self.press[0], self.press[1]), 0, 0, linewidth=1, edgecolor='r', facecolor='none')
+                    self.ax.add_patch(self.rect)
+                    self.fig.canvas.mpl_connect('motion_notify_event', self.on_motion)
+                    self.fig.canvas.mpl_connect('button_release_event', self.on_release)
+
+    def on_motion(self, event):
+        if self.press is not None and event.inaxes is not None:
+            x0, y0 = self.press
+            x1, y1 = event.xdata, event.ydata
+            self.rect.set_width(x1 - x0)
+            self.rect.set_height(y1 - y0)
+            self.fig.canvas.draw()
+
+    def on_release(self, event):
+        if self.press is not None and event.inaxes is not None:
+            x0, y0 = self.press
+            x1, y1 = event.xdata, event.ydata
+            self.xmin, self.xmax = sorted([x0, x1])
+            self.ymin, self.ymax = sorted([y0, y1])
+            self.press = None
+            self.rect.remove()
+            self.rect = None
+            self.plot()
 
 def riemann_zeta(start, end, num_points=1000):
     '''
