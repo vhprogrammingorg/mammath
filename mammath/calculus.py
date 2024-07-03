@@ -365,6 +365,13 @@ def double_integral(f, a, b, c, d, nx=100, ny=100):
     volume *= hx * hy
     return round(volume, 7)
 
+def line_integral(f, x, y, a, b):
+    '''
+    The line integral under f(x, y) using parametric functions x and y of t
+    a <= t <= b
+    '''
+    return trapezoidal_rule(lambda t: f(x(t), y(t)) * (point_derivative(x, t) ** 2 + point_derivative(y, t) ** 2) ** (1/2), a, b)
+
 """
 END OF CALCULUS
 """
