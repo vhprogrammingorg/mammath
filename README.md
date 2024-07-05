@@ -5,7 +5,7 @@ Mammath is the python library with all the functions you need to do complicated 
 
 <h1><b> Release notes 0.3.0 - our biggest release yet</b></h1>
 <ul>
-    <li>Deprecated old graphing methods, they may be removed in the next release</li>  
+    <li>Removed deprecated functions</li>  
     <li>Methods are all grouped by category. For instance, all calculus functions can be accessed through mammath.calculus, as well as the standard import</li>  
     <li>Added many new graphs, including the Mandelbrot set (quite spectacular with almost infinite zoom capabilities using the <code>mandelbrot_explorer()</code> class), and other useful plots. The graphing functions have been updated with one function for a function for parametric and Cartesian graphing in 2 and 3 dimensions, as well as complex number functions.</li>  
     <li>Changed checkers_and_printers to special numbers and refactored the method names to be more intuitive</li>  
