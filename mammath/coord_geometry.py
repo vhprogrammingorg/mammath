@@ -1,8 +1,10 @@
 from .constants import pi, e
 from .operations import sqrt, ln
-from .trig_functions import sin, cos, tan
+from .trig_functions import sin, cos, tan, acos, atan
 from .linalg import mat_solve
+from .geometry import deg_to_rad
 from typing import overload, Union, Tuple
+import math
 
 """
 COORDINATE GEOMETRY
@@ -16,13 +18,13 @@ def rotate_about_origin(x, y, theta) -> tuple[float, float]:
     """
     Returns the coordinates of the rotation of a given point (x, y) clockwise about the origin by an angle of theta
     """
-    return x*cos(theta)+y*sin(theta), -x*sin(theta) + y*cos(theta)
+    return round(x*cos(theta)+y*sin(theta), 7), round(-x*sin(theta) + y*cos(theta), 7)
 
 def rotate_about_point(x, y, p, q, theta) -> tuple[float, float]:
     """
     Returns the coordinates of the rotation of a given point (x, y) clockwise about a point (p, q) by an angle of theta
     """
-    return (x-p)*cos(theta)-(y-q)*sin(theta)+p, -(x-p)*sin(theta)+(y-q)*cos(theta)+q
+    return round((x-p)*cos(theta)-(y-q)*sin(theta)+p, 7), round(-(x-p)*sin(theta)+(y-q)*cos(theta)+q, 7)
     
 def equation_of_circle(h, k, r) -> str:
     """
@@ -57,22 +59,51 @@ def are_points_collinear(*points: tuple[tuple[float, float]]) -> bool:
             return False
     return True
 
-def line_from_points(*points: tuple[tuple[float, float], tuple[float, float]]) -> tuple[float, float]:
+def line_from_points(x1, y1, x2, y2) -> tuple[float, float]:
     """
     Returns the slope and intercept of the line formed by the two given points
     """
-    (x1, y1), (x2, y2) = points
     if x1 == x2:
         return float('inf'), x1 
     m = (y2-y1)/(x2-x1)
     c = y1 - m*x1
     return m, c
 
+def translate(x, y, distance, angle) -> tuple[float, float]:
+    """
+    Translates a point (x, y) by a given distance at a specified angle.
+
+    Args:
+        x, y (floats): x and y coordinates of the original point.
+        distance (float): distance to translate the point.
+        angle (float): angle in degrees to translate the point.
+    """
+    angle_rad = deg_to_rad(angle)
+    return x + distance*cos(angle_rad), y + distance*sin(angle_rad)
+
+def translate_point_along_line(x, y, m, c, d) -> tuple[float, float]:
+    """
+    Translates a point (x, y) by a given distance along the line y = mx+c
+
+    Args:
+        x, y (floats): x and y coordinates of the original point
+        m, c (floats): slope and intercept of the line
+        d (float): the distance the point must move along the line
+    """
+    if m == float('inf'):
+        return x, y+d
+    dx = d / sqrt(1+m**2)
+    dy = m*dx
+    if (x - (x + dx))**2 + (y-(y+dy))**2 > d**2:
+        dx = -dx
+        dy = -dy
+    return x + dx, y + dy
+
 def midpoint(x1, y1, x2, y2) -> tuple[float, float]:
     """
     Calculates the midpoint of a segment with endpoints (x1, y1) and (x2, y2)
     """
-    return ((x1 + x2) / 2, (y1 + y2) / 2)
+    return (x1 + x2) / 2, (y1 + y2) / 2
 
 def perpendicular_from_point(x, y, m, c) -> tuple[float, float]:
     """
@@ -83,40 +114,36 @@ def perpendicular_from_point(x, y, m, c) -> tuple[float, float]:
         m (float): slope of line
         c (float): y-intercept of line 
     """
+    if m == 0:
+        return float('inf'), x
     m_perp = -1/m
-    c = y+m_perp*x
+    c = y-m_perp*x
     return m_perp, c
 
 def perpendicular_bisector(x1, y1, x2, y2) -> tuple[float, float]:
     """
     Returns the slope and intercept of the perpendicular bisector of a segment with endpoints (x1, y1) and (x2, y2)
     """
-    midpoint = midpoint(x1, y1, x2, y2)
+    midpt = midpoint(x1, y1, x2, y2)
     m, c = line_from_points(x1, y1, x2, y2)
-    return perpendicular_from_point(m, c, *midpoint)
+    return perpendicular_from_point(*midpt, m, c)
 
-def angle_bisector(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
+def angle_bisector(x1, y1, x2, y2, x3, y3):
     """
     Returns the slope and intercept of the angle bisector of the angle formed at (x2, y2) by the lines (x1, y1)-(x2, y2) and (x2, y2)-(x3, y3).
-
-    Args:
-        x1, y1 (float): x and y coordinates of the first point.
-        x2, y2 (float): x and y coordinates of the vertex where the angle is formed.
-        x3, y3 (float): x and y coordinates of the third point.
     """
-    side1 = point_distance(x1, y1, x2, y2)
-    side2 = point_distance(x3, y3, x2, y2)
-    side3 = point_distance(x1, y1, x3, y3)
-    ratio = side3/(side1+side2)
-    m_opp, c_opp = line_from_points(x1, y1, x3, y3)
-    x_ab, y_ab = ratio * side1, m_opp*ratio*side1+c_opp
-    return line_from_points(x2, y2, x_ab, y_ab)
+    d1 = point_distance(x2, y2, x1, y1)
+    d2 = point_distance(x2, y2, x3, y3)
+    x_b = (x1*d2 + x3*d1)/(d1+d2)
+    y_b = (y1*d2 + y3*d1)/(d1+d2)
+    m_b, c_b = line_from_points(x2, y2, x_b, y_b)    
+    return m_b, c_b
 
 def median(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Returns the slope and intercept of the median from the vertex (x2, y2) in the triangle with all three vertices
     """
-    return line_from_points((x2, y2), midpoint(x1, y1, x3, y3))
+    return line_from_points(*(x2, y2), *midpoint(x1, y1, x3, y3))
 
 def intersection_of_lines(m1, c1, m2, c2):
     """
@@ -142,10 +169,11 @@ def reflect_point_in_line(x, y, m, c) -> tuple[float, float]:
         m (float): slope of line
         c (float): y-intercept of line 
     """
-    x_i, y_i = perpendicular_from_point(x, y, m, c)
+    m_i, c_i = perpendicular_from_point(x, y, m, c)
+    x_i, y_i = intersection_of_lines(m_i, c_i, m, c)
     return 2*x_i-x, 2*y_i-y
 
-def reflect_segment_in_line(x1, y1, x2, y2, m, c) -> list[tuple[float, float], tuple[float, float]]:
+def reflect_segment_in_line(x1, y1, x2, y2, m, c) -> list[tuple[float, float]]:
     """
     Args:
         x (float): x and y coordinates of point
@@ -204,9 +232,9 @@ def polygon_area(vertices: list[tuple]):
             xi2, yi2 = vertices[i+1]
         area += (xi2+xi)*(yi2-yi)
     return abs(area)/2
-
-shoelace = polygon_area
     
+shoelace = polygon_area
+
 def circumcenter(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Calculates the coordinates of the circumcenter of a triangle given its vertices
@@ -219,16 +247,16 @@ def incenter(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Calculates the coordinates of the incenter of a triangle given its vertices
     """
-    m1_angle_bis, c1_angle_bis = angle_bisector(x1, y1, x2, y2, x3, y3)
-    m2_angle_bis, c2_angle_bis = angle_bisector(x2, y2, x3, y3, x1, y2)
-    return intersection_of_lines(m1_angle_bis, c1_angle_bis, m2_angle_bis, c2_angle_bis)
+    m1_bisector, c1_altitude = angle_bisector(x1, y1, x2, y2, x3, y3)
+    m2_bisector, c2_bisector = angle_bisector(x2, y2, x3, y3, x1, y1)
+    return intersection_of_lines(m1_bisector, c1_altitude, m2_bisector, c2_bisector)
 
 def orthocenter(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Calculates the coordinates of the orthocenter of a triangle given its vertices
     """
-    m1_altitude, c1_altitude = perpendicular_from_point(line_from_points(x2, y2, x3, y3), x1, y1)
-    m2_altitude, c2_altitude = perpendicular_from_point(line_from_points(x1, y1, x2, y2), x3, y3)
+    m1_altitude, c1_altitude = perpendicular_from_point(x1, y1, *line_from_points(x2, y2, x3, y3))
+    m2_altitude, c2_altitude = perpendicular_from_point(x3, y3, *line_from_points(x1, y1, x2, y2))
     return intersection_of_lines(m1_altitude, c1_altitude, m2_altitude, c2_altitude)
 
 def centroid(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
@@ -244,28 +272,45 @@ def symmedian_point(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     Calculates the coordinates of the symmedian point of a triangle given its vertices
     This is the intersection of the three symmedians (medians reflected in the angle bisectors) of the triangle
     """
-    m1_symmedian, c1_symmedian = reflect_segment_in_line(x1, y1, midpoint(x2, y2, x3, y3), angle_bisector(x2, y2, x1, y1, x3, y3))
-    m2_symmedian, c2_symmedian = reflect_segment_in_line(x2, y2, midpoint(x1, y1, x3, y3), angle_bisector(x1, y1, x2, y2, x3, y3))
+    symmedian1 = reflect_segment_in_line(x1, y1, *midpoint(x2, y2, x3, y3), *angle_bisector(x2, y2, x1, y1, x3, y3))
+    m1_symmedian, c1_symmedian = line_from_points(*symmedian1[0], *symmedian1[1])
+    symmedian2 = reflect_segment_in_line(x2, y2, *midpoint(x1, y1, x3, y3), *angle_bisector(x1, y1, x2, y2, x3, y3))
+    m2_symmedian, c2_symmedian = line_from_points(*symmedian2[0], *symmedian2[1])
     return intersection_of_lines(m1_symmedian, c1_symmedian, m2_symmedian, c2_symmedian)
 
 def nine_point_center(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Calculates the coordinates of the nine point center of a triangle given its vertices
     """
-    return midpoint(orthocenter(x1, y1, x2, y2, x3, y3), circumcenter(x1, y1, x2, y2, x3, y3))
+    return midpoint(*orthocenter(x1, y1, x2, y2, x3, y3), *circumcenter(x1, y1, x2, y2, x3, y3))
 
 def spieker_center(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Calculates the coordinates of the Spieker center (incenter of the medial triangle) of a triangle given its vertices
     """
-    return incenter(midpoint(x1, y1, x2, y2), midpoint(x2, y2, x3, y3), midpoint(x3, y3, x1, y1))
+    return incenter(*midpoint(x1, y1, x2, y2), *midpoint(x2, y2, x3, y3), *midpoint(x3, y3, x1, y1))
+
+def gergonne_point(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
+    """
+    Calculates the coordinates of the Gergonne point of a triangle given its vertices
+    """
+    incenter_x, incenter_y = incenter(x1, y1, x2, y2, x3, y3)
+    s1 = line_from_points(x1, y1, x2, y2)
+    s2 = line_from_points(x2, y2, x3, y3)
+    tangent1 = perpendicular_from_point(incenter_x, incenter_y, *s1)
+    tangent2 = perpendicular_from_point(incenter_x, incenter_y, *s2)
+    point_of_tangency1 = intersection_of_lines(*s1, *tangent1)
+    point_of_tangency2 = intersection_of_lines(*s2, *tangent2)
+    cevian1 = line_from_points(x3, y3, *point_of_tangency1)
+    cevian2 = line_from_points(x1, y1, *point_of_tangency2)
+    return intersection_of_lines(*cevian1, *cevian2)
 
 def balancing_point_triangle(x1, y1, x2, y2, x3, y3) -> tuple[float, float]:
     """
     Computes the coordinates of the balancing point of a triangle (centroid) given its vertices
     """
     return centroid(x1, y1, x2, y2, x3, y3)
-    
+
 """
 END OF COORDINATE GEOMETRY
 """
