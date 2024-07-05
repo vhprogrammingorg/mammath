@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="mammath",
-    version="0.3.0",
+    version="0.3.1",
     author="Vihaan Mathur & Harihar Rengan",
     author_email="vihaan.harihar314@gmail.com",
     description="A comprehensive package for advanced mathematics and science in Python",
