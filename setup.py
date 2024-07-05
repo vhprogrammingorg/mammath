@@ -8,7 +8,7 @@ setup(
     version="0.3.0",
     author="Vihaan Mathur & Harihar Rengan",
     author_email="vihaan.harihar314@gmail.com",
-    description="A package that contains all you will need when you need to do maths or science in python",
+    description="A comprehensive package for advanced mathematics and science in Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
