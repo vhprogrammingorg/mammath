@@ -1,5 +1,6 @@
 from .constants import pi, e
 from .operations import factorial
+import numpy as np
 
 """
 CALCULUS
