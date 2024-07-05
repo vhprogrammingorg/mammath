@@ -3,7 +3,7 @@
 Mammath is the python library with all the functions you need to do complicated mathematics, anywhere from 2D and 3D graphing calculators to linear algebra, calculus and even physics. We even have a constant and function for practically everything
 <br>
 
-<h1><b> Release notes 0.3.0 - our biggest release yet</b></h1>
+<h1><b> Release notes 0.3.1 - Bugfixes and deletions directly after 0.3.0</b></h1>
 <ul>
     <li>Removed deprecated functions</li>  
     <li>Methods are all grouped by category. For instance, all calculus functions can be accessed through mammath.calculus, as well as the standard import</li>  
