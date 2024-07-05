@@ -19,10 +19,19 @@ Mammath is the python library with all the functions you need to do complicated 
 </ul>
 
 Enjoy some cool graphs that can be made with the newest release of mammath:
-![VectorPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/92a74089-c1c7-444d-9019-8d66530b5deb)
-![ComplexPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/de187fb5-5007-4fec-a7f1-59f8d453ac1c)
-![LissajousPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/8f4abcda-5256-4c57-9a72-cd43ab6edd84)
-![MandelbrotPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/465a3840-ae29-4522-a1bd-8e9dc55d27a1)
+
+<p float="left">
+  <img src="https://github.com/vhprogrammingorg/mammath/assets/91592863/92a74089-c1c7-444d-9019-8d66530b5deb" width="45%" />
+  <img src="https://github.com/vhprogrammingorg/mammath/assets/91592863/de187fb5-5007-4fec-a7f1-59f8d453ac1c" width="45%" />
+</p>
+<p float="left">
+  <img src="https://github.com/vhprogrammingorg/mammath/assets/91592863/8f4abcda-5256-4c57-9a72-cd43ab6edd84" width="45%" />
+  <img src="https://github.com/vhprogrammingorg/mammath/assets/91592863/465a3840-ae29-4522-a1bd-8e9dc55d27a1" width="45%" />
+</p>
+<p float="left">
+  <img src="https://github.com/vhprogrammingorg/mammath/assets/91592863/bd335740-d3d9-44d3-8569-f19d00a1d54b" width="90%" />
+</p>
+
 
 It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, tabulate, re, matplotlib, and modules within them. 
 
