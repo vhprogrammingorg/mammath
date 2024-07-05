@@ -14,7 +14,7 @@ Mammath is the python library with all the functions you need to do complicated 
     <li>Created many new physics methods, including time dilation methods, path integrals, and even a photoelectric effect simulator</li>  
     <li>New linear algebra classes - Vector and Matrix, which each come will useful methods. Methods to compute linear least squares, eigenvalues, and more.</li>  
     <li>Many new complex functions, including complex hyperbolic methods, the Lambert W function, and the gamma function</li>  
-    <li>New coordinate geometry section. It already has a multitude of features from triangle cevians, special centers, to rotations and harmonic conjguates. We plan to continue expanding this section to a full-on coordinate-based geometry engine with complex geometrical operations</li>  
+    <li>New coordinate geometry section. It already has a multitude of features from the construction of special triangle cevians and special centers (more than you think), to rotations and reflections. We plan to continue expanding this section to a full-on coordinate-based geometry engine with complex geometrical operations</li>  
     <li>Created many new calculus functions, from integral approximations like the trapezoidal rule, to multivariable calculus (partial derivatives, divergence, and curl). There are also new methods for each calculus function that allow you to visualize the actual function (e.g. derivative calculates the derivative at a point but f_derivative produces a function that can be used to compute, graph, and so much more)</li>
 </ul>
 
