@@ -18,7 +18,11 @@ Mammath is the python library with all the functions you need to do complicated 
     <li>Created many new calculus functions, from integral approximations like the trapezoidal rule, to multivariable calculus (partial derivatives, divergence, and curl). There are also new methods for each calculus function that allow you to visualize the actual function (e.g. derivative calculates the derivative at a point but f_derivative produces a function that can be used to compute, graph, and so much more)</li>
 </ul>
 
-Install via <code> pip install mammath </code>
+Enjoy some cool graphs that can be made with the newest release of mammath:
+![VectorPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/92a74089-c1c7-444d-9019-8d66530b5deb)
+![ComplexPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/de187fb5-5007-4fec-a7f1-59f8d453ac1c)
+![LissajousPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/8f4abcda-5256-4c57-9a72-cd43ab6edd84)
+![MandelbrotPlot](https://github.com/vhprogrammingorg/mammath/assets/91592863/465a3840-ae29-4522-a1bd-8e9dc55d27a1)
 
 It is built upon several other modules including sys, tkinter, string, time, math, cmath, fractions, mpmath, keyboard, numpy, tabulate, re, matplotlib, and modules within them. 
 
